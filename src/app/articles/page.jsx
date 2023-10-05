@@ -3,9 +3,17 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      <Card></Card>
-    </div>
+    <section className="flex flex-row flex-wrap mx-auto">
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      </section>
   )
 }
 

@@ -1,6 +1,5 @@
 import React from 'react'
-import alpineTemplate from "../layout/alpinejs/search"
-console.log(alpineTemplate)
+import alpineTemplate from "../layout/alpinejs/search";
 const Header = () => {
   return (
     <header className="h-20 w-full flex shadow-lg justify-between items-center px-5 space-x-23 ">
