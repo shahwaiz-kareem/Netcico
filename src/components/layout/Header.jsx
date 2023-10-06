@@ -2,7 +2,7 @@ import React from 'react'
 import alpineTemplate from "../layout/alpinejs/search";
 const Header = () => {
   return (
-    <header className="h-20 w-full flex shadow-lg justify-between items-center px-5 space-x-23 ">
+    <header className="h-20 w-full flex shadow justify-between items-center px-5 space-x-23 ">
       <div dangerouslySetInnerHTML={{__html: alpineTemplate}}></div>
       <div className="flex flex-shrink-0 items-center space-x-4 text-white">
         <div className="flex flex-col items-end ">
