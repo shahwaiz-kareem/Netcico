@@ -6,31 +6,31 @@ import {MdOutlineForum} from "react-icons/md"
 import Link from 'next/link';
 const Sidebar = () => {
   return (
-    <aside className="h-full w-20 flex flex-col space-y-10  outline-none relative bg-white items-center text-white">
+    <aside className="h-full w-20 flex flex-col space-y-16 px-4 outline-none relative bg-white items-center text-white">
      <div className='mt-3'>
       <h2 className='text-5xl text-blue-400'>N</h2>
       </div>    
-    <div className="h-10 w-10 flex items-center text-gray-800 text-2xl justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
+    <div className="h-10 w-10 flex items-center font-light text-black text-[30px] justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
       <Link href={"/"}>
       <GoHome/>
       </Link>
     </div>
 
-    <div className="h-10 w-10 flex items-center text-gray-800 text-2xl justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
+    <div className="h-10 w-10 flex items-center font-light text-black text-[30px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
       <Link href={"/articles"}>
     <SiReaddotcv/>
       </Link>
     </div>
   
     {/* <!-- Theme - <!-- Sidebar -->-> */}
-    <div className="h-10 w-10 flex items-center text-gray-800 text-2xl justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
+    <div className="h-10 w-10 flex items-center font-light text-black text-[30px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
       <Link href={"/biographies"}>
     <GoPeople/>
       </Link>
     </div>
   
     {/* <!-- Configuration --> */}
-    <div className="h-10 w-10 flex items-center text-gray-800 text-2xl justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
+    <div className="h-10 w-10 flex items-center font-light text-black text-[30px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
       <Link href={"/forum"}>
      <MdOutlineForum/>
       </Link>

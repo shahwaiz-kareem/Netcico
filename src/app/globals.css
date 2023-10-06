@@ -5,3 +5,25 @@
 body{
   font-family: 'ubuntu' !important;
 }
+
+::-webkit-scrollbar { 
+  width: 8px; 
+  height: 1px;
+} 
+
+/* Track */
+::-webkit-scrollbar-track { 
+  background: #ffffff; 
+  border-radius: 5px; 
+} 
+
+/* Handle */
+::-webkit-scrollbar-thumb { 
+  background: #3994d1; 
+  border-radius: 5px; 
+} 
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover { 
+  background: #555; 
+}

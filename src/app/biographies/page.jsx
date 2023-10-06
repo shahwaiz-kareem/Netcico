@@ -3,7 +3,9 @@ import React from 'react'
 
 const Page = () => {
   return (
-    <div className='flex  justify-center items-center flex-wrap gap-12'>
+    <>
+    <h1 className='text-2xl text-center m-auto text-gray-800 mb-2'>Biographies & Autograpies</h1>
+    <div className='flex  justify-center items-center flex-wrap gap-14'>
       <Card/>
       <Card/>
       <Card/>
@@ -14,6 +16,7 @@ const Page = () => {
       <Card/>
       <Card/>
     </div>
+    </>
   )
 }
 
