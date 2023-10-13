@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
           <div className="w-full h-full flex flex-col justify-between">
             <Header />
             <main className="max-w-full h-full flex relative overflow-y-hidden">
-              <div className="h-full w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll">
+              <div className="h-full w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max  overflow-y-scroll">
                 {children}
               </div>
             </main>

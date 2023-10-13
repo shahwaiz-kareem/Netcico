@@ -45,7 +45,7 @@ p {
 
 /* CARD COMPONENT */
 .card {
-  @apply grid place-items-center w-[80vw] max-w-[20.875rem] h-[26.125rem] overflow-hidden shadow-[0.25rem_0.25rem_0.5rem_rgba(0,0,0,0.25)] rounded-[0.625rem];
+  @apply grid place-items-center w-[75vw] max-w-[20.875rem] h-[23rem] overflow-hidden shadow-[0.25rem_0.25rem_0.5rem_rgba(0,0,0,0.25)] rounded-[0.625rem];
 }
 .card > * {
   @apply col-[1_/_2] row-[1_/_2];
@@ -54,7 +54,7 @@ p {
   @apply object-cover max-w-full h-full;
 }
 .card__content {
-  @apply flex flex-col justify-between self-end  pt-[12%] pb-[1.775rem] px-5;
+  @apply flex flex-col justify-between self-end  pb-[1.775rem] px-5;
   --flow-space: 0.9375rem;
   background: linear-gradient(
     180deg,

@@ -10,27 +10,27 @@ const Sidebar = () => {
      <div className='mt-3'>
       <h2 className='text-5xl text-blue-400'>N</h2>
       </div>    
-    <div className="h-10 w-10 flex items-center font-light text-black text-[30px] justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
+    <div className="h-10 w-10 flex items-center font-thin text-black text-[28px] justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
       <Link href={"/"}>
       <GoHome/>
       </Link>
     </div>
 
-    <div className="h-10 w-10 flex items-center font-light text-black text-[30px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
+    <div className="h-10 w-10 flex items-center font-thin text-black text-[28px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
       <Link href={"/articles"}>
     <SiReaddotcv/>
       </Link>
     </div>
   
     {/* <!-- Theme - <!-- Sidebar -->-> */}
-    <div className="h-10 w-10 flex items-center font-light text-black text-[30px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
+    <div className="h-10 w-10 flex items-center font-thin text-black text-[28px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
       <Link href={"/biographies"}>
     <GoPeople/>
       </Link>
     </div>
   
     {/* <!-- Configuration --> */}
-    <div className="h-10 w-10 flex items-center font-light text-black text-[30px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
+    <div className="h-10 w-10 flex items-center font-thin text-black text-[28px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
       <Link href={"/forum"}>
      <MdOutlineForum/>
       </Link>

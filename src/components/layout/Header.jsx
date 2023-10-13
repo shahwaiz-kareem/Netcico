@@ -9,7 +9,6 @@ const Header = () => {
       <div dangerouslySetInnerHTML={{__html: alpineTemplate}}></div>
       <div className="flex flex-shrink-0 items-center space-x-4 text-white">
         <div className="flex flex-col items-end justify-center">
-          
                <div className='flex gap-4 items-center justify-center  text-gray-600'>
                 <BiBell className='text-2xl cursor-pointer text-gray-500'/>
           <div className="text text-gray-600 ">Shah23</div>

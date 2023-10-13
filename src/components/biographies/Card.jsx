@@ -14,7 +14,7 @@ const Card = () => {
     width={1920}
     height={2193}
   />
-  <div className="card__content | flow w-full pb-4">
+  <div className="card__content | flow w-full ">
     <div className="card__content--container | flow">
       <h2 className="card__title text-2xl ">Haris Ali Khan</h2>
       <div className='bg-blue-500 inline-block  px-2 rounded-lg'>

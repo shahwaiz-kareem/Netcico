@@ -5,7 +5,7 @@ const Card = () => {
   return (
 
   <div
-    className="transition-all duration-150 flex w-full px-4  md:w-1/2 lg:w-1/3"
+    className="transition-all duration-150 flex w-full px-4 my-4 md:w-1/2 lg:w-1/3"
   >
     <div
       className="flex flex-col items-stretch min-h-full pb-4 mb-6 transition-all duration-150 bg-white rounded-lg shadow-lg hover:shadow-2xl"
