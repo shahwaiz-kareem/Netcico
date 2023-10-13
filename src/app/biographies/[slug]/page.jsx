@@ -115,15 +115,10 @@ const Page = () => {
           Gallery</a
         >
       </li>
+     
       <li class="flex-1">
         <a href="#" class="flex items-center justify-center gap-2 px-1 py-3 text-gray-500 hover:text-blue-500">
-          Videos
-          <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-semibold text-gray-500"> 8 </span></a
-        >
-      </li>
-      <li class="flex-1">
-        <a href="#" class="flex items-center justify-center gap-2 px-1 py-3 text-gray-500 hover:text-blue-500">
-          Conclusion</a
+          Table</a
         >
       </li>
       <li class="flex-1">
