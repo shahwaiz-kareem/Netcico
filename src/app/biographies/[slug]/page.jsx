@@ -5,7 +5,7 @@ import pic from "public/vercel.svg"
 const Page = () => {
   return (
   <>
-<div className='w-screen flex flex-col items-center'>
+<div className='w-screen flex flex-col justify-center'>
   {/* nav */}
   <div>
   <main className="bg-gray-100 bg-opacity-25">
@@ -98,105 +98,42 @@ const Page = () => {
     </div>
   </main>
   </div>
-  <div>
-  {/*Tabs navigation*/}
-  <ul
-    className="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0"
-    role="tablist"
-    data-te-nav-ref=""
-  >
-    <li role="presentation">
-      <a
-        href="#tabs-home"
-        className="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
-        data-te-toggle="pill"
-        data-te-target="#tabs-home"
-        data-te-nav-active=""
-        role="tab"
-        aria-controls="tabs-home"
-        aria-selected="true"
-      >
-        Home
-      </a>
-    </li>
-    <li role="presentation">
-      <a
-        href="#tabs-profile"
-        className="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
-        data-te-toggle="pill"
-        data-te-target="#tabs-profile"
-        role="tab"
-        aria-controls="tabs-profile"
-        aria-selected="false"
-      >
-        Profile
-      </a>
-    </li>
-    <li role="presentation">
-      <a
-        href="#tabs-messages"
-        className="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
-        data-te-toggle="pill"
-        data-te-target="#tabs-messages"
-        role="tab"
-        aria-controls="tabs-messages"
-        aria-selected="false"
-      >
-        Messages
-      </a>
-    </li>
-    <li role="presentation">
-      <a
-        href="#tabs-contact"
-        className="disabled pointer-events-none my-2 block border-x-0 border-b-2 border-t-0 border-transparent bg-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-400 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent dark:text-neutral-600"
-        data-te-toggle="pill"
-        data-te-target="#tabs-contact"
-        role="tab"
-        aria-controls="tabs-contact"
-        aria-selected="false"
-      >
-        Contact
-      </a>
-    </li>
-  </ul>
-  {/*Tabs content*/}
-  <div className="mb-6">
-    <div
-      className="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-      id="tabs-home"
-      role="tabpanel"
-      aria-labelledby="tabs-home-tab"
-      data-te-tab-active=""
-    >
-      Tab 1 content
-    </div>
-    <div
-      className="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-      id="tabs-profile"
-      role="tabpanel"
-      aria-labelledby="tabs-profile-tab"
-    >
-      Tab 2 content
-    </div>
-    <div
-      className="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-      id="tabs-messages"
-      role="tabpanel"
-      aria-labelledby="tabs-profile-tab"
-    >
-      Tab 3 content
-    </div>
-    <div
-      className="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-      id="tabs-contact"
-      role="tabpanel"
-      aria-labelledby="tabs-contact-tab"
-    >
-      Tab 4 content
-    </div>
+  {/* tabs */}
+  <div class="space-y-5">
+  <div class="border-b border-b-gray-200">
+    <ul class="-mb-px flex items-center gap-4 text-sm font-medium">
+      <li class="flex-1">
+        <a
+          href="#"
+          class="relative flex items-center justify-center gap-2 px-1 py-3 text-blue-500 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-blue-500 hover:text-blue-400"
+        >
+          Biography</a
+        >
+      </li>
+      <li class="flex-1">
+        <a href="#" class="flex items-center justify-center gap-2 px-1 py-3 text-gray-500 hover:text-blue-500">
+          Gallery</a
+        >
+      </li>
+      <li class="flex-1">
+        <a href="#" class="flex items-center justify-center gap-2 px-1 py-3 text-gray-500 hover:text-blue-500">
+          Videos
+          <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-semibold text-gray-500"> 8 </span></a
+        >
+      </li>
+      <li class="flex-1">
+        <a href="#" class="flex items-center justify-center gap-2 px-1 py-3 text-gray-500 hover:text-blue-500">
+          Conclusion</a
+        >
+      </li>
+      <li class="flex-1">
+        <a href="#" class="flex items-center justify-center gap-2 px-1 py-3 text-gray-500 hover:text-blue-500"
+          >Fans</a
+        >
+      </li>
+    </ul>
   </div>
-</div>
-
+  </div>
 </div>
   </>
   )
