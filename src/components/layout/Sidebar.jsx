@@ -6,7 +6,7 @@ import {MdOutlineForum} from "react-icons/md"
 import Link from 'next/link';
 const Sidebar = () => {
   return (
-    <aside className="h-full w-20 flex flex-col space-y-16 px-4 outline-none relative bg-white items-center text-white">
+    <aside className="max-sm:hidden max-md:hidden  h-full w-20 flex flex-col space-y-16 px-4 outline-none relative bg-white items-center text-white">
      <div className='mt-3'>
       <h2 className='text-5xl text-blue-400'>N</h2>
       </div>    

@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header';
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Sidebar from '@/components/layout/Sidebar'
+import Bottombar from '@/components/layout/Bottombar';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,16 +15,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <body className={inter.className}>
-        <div className="h-screen w-full bg-white relative flex overflow-hidden">
+      <body className={inter.className + "overflow-x-hidden"} >
+        <div className="h-screen -full w-full bg-white relative flex overflow-hidden">
           <Sidebar />
           <div className="w-full h-full flex flex-col justify-between">
             <Header />
             <main className="max-w-full h-full flex relative overflow-y-hidden">
-              <div className="h-full w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max  overflow-y-scroll">
+              <div className="h-full w-screen lg:w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max  overflow-y-scroll">
                 {children}
               </div>
             </main>
+           <Bottombar/>
           </div>
         </div>
       </body>
