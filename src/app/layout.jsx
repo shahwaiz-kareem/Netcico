@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" >
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={inter.className + "overflow-x-hidden"} >
         <div className="h-screen -full w-full bg-white relative flex overflow-hidden">
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
           <div className="w-full h-full flex flex-col justify-between">
             <Header />
             <main className="max-w-full h-full flex relative overflow-y-hidden">
-              <div className="h-full w-screen lg:w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max  overflow-y-scroll">
+              <div className="h-full w-screen lg:w-[91vw] xl:w-[93vw] 2xl:w-[99-vw]  m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max  overflow-y-scroll">
                 {children}
               </div>
             </main>

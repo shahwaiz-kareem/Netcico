@@ -13,8 +13,8 @@ const Page = () => {
         <div className="md:w-3/12 md:ml-16">
           {/* profile image */}
           <Image
-           height={100}
-           width={100}
+           height={500}
+           width={500}
             className="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
                border-2 border-blue-500 p-1"
             src="https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
@@ -24,13 +24,13 @@ const Page = () => {
         {/* profile meta */}
         <div className="w-8/12 md:w-7/12 ml-4">
           <div className="md:flex md:flex-wrap md:items-center mb-4">
-            <h2 className="text-3xl text-black font-light md:mr-2 mb-2 sm:mb-0">
+            <h2 className="font-light  text-3xl text-black md:mr-2 mb-2 sm:mb-0">
               __shahwaix_23k
             </h2>
             {/* badge */}
             <span
               className="inline-block fas fa-certificate fa-lg text-blue-500 
-                         relative mr-6 text-xl transform -translate-y-2"
+                          mr-6 text-xl transform -translate-y-2"
               aria-hidden="true"
             >
               <i
