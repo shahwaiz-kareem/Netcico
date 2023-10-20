@@ -16,12 +16,12 @@ export default function RootLayout({ children }) {
     <html lang="en" >
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={inter.className + "overflow-x-hidden"} >
-        <div className="h-screen -full w-full bg-white relative flex overflow-hidden">
+        <div className="h-screen w-screen bg-white  flex overflow-hidden">
           <Sidebar />
-          <div className="w-full h-full flex flex-col justify-between">
+          <div className="w-screen h-full flex flex-col justify-between">
             <Header />
-            <main className="max-w-full h-full flex relative overflow-y-hidden">
-              <div className="h-full w-screen lg:w-[91vw] xl:w-[93vw] 2xl:w-[99-vw]  m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max  overflow-y-scroll">
+            <main className=" h-full flex  overflow-y-hidden">
+              <div className="h-full w-screen  lg:w-[93vw] m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max  overflow-y-scroll">
                 {children}
               </div>
             </main>
@@ -32,3 +32,5 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
+
+// lg:w-[91vw] xl:w-[93vw] 2xl:w-[99-vw]  
