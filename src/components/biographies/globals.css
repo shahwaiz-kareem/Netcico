@@ -5,8 +5,6 @@
   --brand-color: #2b75c5;
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
-
-  /* Fonts */
   --font-title: "Montserrat", sans-serif;
   --font-text: "Lato", sans-serif;
 }
@@ -45,7 +43,7 @@ p {
 
 /* CARD COMPONENT */
 .card {
-  @apply grid place-items-center w-[75vw] max-w-[20.875rem] h-[23rem] overflow-hidden shadow-[0.25rem_0.25rem_0.5rem_rgba(0,0,0,0.25)] rounded-[0.625rem];
+  @apply grid place-items-center w-[75vw] max-w-[20.875rem] h-[23rem] overflow-hidden shadow-[0.25rem_0.25rem_0.5rem_rgba(0,0,0,0.25)] rounded-[0.725rem];
 }
 .card > * {
   @apply col-[1_/_2] row-[1_/_2];
@@ -80,6 +78,11 @@ p {
 }
 .card__button:focus {
   outline: 2px solid black;
+}
+@media (min-width:500px) and (max-width:760px) {
+  .card {
+    @apply  w-[80vw] max-w-[80rem] h-[38rem] ;
+  }
 }
 @media (any-hover: hover) and (any-pointer: fine) {
   .card__content {

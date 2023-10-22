@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <>
 
-    <h1 className='text-[30px] pb-2 lg:pl-12 items-end text-gray-800 '>Biographies</h1>
+    <h1 className='text-[30px] pb-2 max-lg:m-auto lg:pl-12 items-end text-gray-800 '>Biographies</h1>
     <section className='flex  justify-center items-center flex-wrap gap-14 '>
       <Link href={"biographies/cwh"}>
       <Card/>

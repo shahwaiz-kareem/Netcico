@@ -6,7 +6,7 @@ const Header = () => {
 
 
   return (
-    <header className=" flex flex-col shadow pr-2 space-x-23 ">
+    <header className=" flex flex-col shadow pr-2 space-x-23 clear-both">
       <div className="  flex   justify-between items-center ">
       <div dangerouslySetInnerHTML={{__html: alpineTemplate}}></div>
       <div className="flex flex-shrink-0 items-center space-x-12 text-white">

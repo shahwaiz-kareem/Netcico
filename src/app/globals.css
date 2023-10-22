@@ -7,7 +7,7 @@ body{
 }
 
 ::-webkit-scrollbar { 
-  width: 8px; 
+  width: 5px; 
   height: 1px;
 } 
 
@@ -19,7 +19,7 @@ body{
 
 /* Handle */
 ::-webkit-scrollbar-thumb { 
-  background: #3994d1; 
+  background: #787879; 
   border-radius: 5px; 
 } 
 
@@ -27,3 +27,14 @@ body{
 ::-webkit-scrollbar-thumb:hover { 
   background: #555; 
 }
+
+p::selection{
+ background-color: #d9fa45 !important;
+}
+
+@media (max-width:780px) {
+  ::-webkit-scrollbar { 
+    display: none;
+  } 
+}
+
