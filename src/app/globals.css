@@ -28,9 +28,7 @@ body{
   background: #555; 
 }
 
-p::selection{
- background-color: #d9fa45 !important;
-}
+
 
 @media (max-width:780px) {
   ::-webkit-scrollbar { 
@@ -38,3 +36,6 @@ p::selection{
   } 
 }
 
+.imp-light{
+  font-weight: 300 !important;
+}
