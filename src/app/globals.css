@@ -2,40 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
   font-family: 'ubuntu' !important;
 }
 
-::-webkit-scrollbar { 
-  width: 5px; 
+::-webkit-scrollbar {
+  width: 5px;
   height: 1px;
-} 
+}
 
 /* Track */
-::-webkit-scrollbar-track { 
-  background: #ffffff; 
-  border-radius: 5px; 
-} 
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 5px;
+}
 
 /* Handle */
-::-webkit-scrollbar-thumb { 
-  background: #787879; 
-  border-radius: 5px; 
-} 
+::-webkit-scrollbar-thumb {
+  background: #787879;
+  border-radius: 5px;
+}
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover { 
-  background: #555; 
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 
 
 @media (max-width:780px) {
-  ::-webkit-scrollbar { 
+  ::-webkit-scrollbar {
     display: none;
-  } 
+  }
 }
 
-.imp-light{
+@media (min-width:800px) and (max-width:1570px) {
+  .ml_20 {
+    margin-right: 80px;
+  }
+}
+
+@media (min-width:1570px) and (max-width:2060px) {
+  .ml_20 {
+    margin-right: 40px;
+  }
+}
+
+
+.imp-light {
   font-weight: 300 !important;
 }

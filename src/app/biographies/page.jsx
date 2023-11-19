@@ -1,27 +1,22 @@
-import Card from '@/components/biographies/Card'
-import Link from 'next/link'
-import React from 'react'
+import Card from '@/components/biographies/Card';
+import React from 'react';
 
 const Page = () => {
   return (
-    <>
-
-    <h1 className='text-[30px] pb-2 max-lg:m-auto lg:pl-12 items-end text-gray-800 '>Biographies</h1>
-    <section className='flex  justify-center items-center flex-wrap gap-14 '>
-      <Link href={"biographies/cwh"}>
-      <Card/>
-      </Link>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-
+    <section className=' h-screen  overflow-x-hidden'>
+      <h1 className='text-[30px]  max-sm:text-center  items-end text-gray-800 '>Biographies</h1>
+      <main className='flex flex-row flex-wrap '>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </main>
     </section>
-    </>
   )
 }
 

@@ -20,12 +20,10 @@ export default function RootLayout({ children }) {
           <Sidebar />
           <div className="w-screen h-full flex flex-col justify-between">
             <Header />
-            <main className=" h-full flex  overflow-y-hidden">
-              <div className="h-full w-screen  lg:w-[93vw] m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max  overflow-y-scroll">
-                {children}
-              </div>
+            <main className="ml_20 h-full flex flex-col  overflow-y-scroll">
+              {children}
             </main>
-           <Bottombar/>
+            <Bottombar />
           </div>
         </div>
       </body>
