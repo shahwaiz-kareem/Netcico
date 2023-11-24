@@ -17,7 +17,7 @@ const Sidebar = () => {
       </div>
 
       <div className="h-10 w-10 flex items-center font-thin text-black text-[28px]  justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
-        <Link href={"/articles"}>
+        <Link href={"/blogs"}>
           <SiReaddotcv />
         </Link>
       </div>

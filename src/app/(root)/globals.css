@@ -7,7 +7,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
   height: 1px;
 }
 
@@ -19,7 +19,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #787879;
+  background: #9c9c9c;
   border-radius: 5px;
 }
 

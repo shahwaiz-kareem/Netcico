@@ -7,14 +7,14 @@ const Header = () => {
 
   return (
     <header className=" flex flex-col shadow  w-full ">
-      <div className="  flex sm:w-[93vw] justify-between items-center ">
-        <div className='clear-both' dangerouslySetInnerHTML={{ __html: alpineTemplate }}>
+      <div className="  flex  justify-between items-center ">
+        <div dangerouslySetInnerHTML={{ __html: alpineTemplate }}>
         </div>
-        <div className="flex gap-2 clear-both text-white">
+        <div className="flex gap-2 px-2 clear-both text-white">
           <div className="flex   justify-center">
             <div className='flex gap-4 items-center justify-center  text-gray-600'>
               <BiBell className='text-2xl cursor-pointer text-gray-500' />
-              <div className="text text-gray-600 ">Shah23</div>
+              <div className="text text-gray-600 ">Shahwaiz kareem</div>
             </div>
 
           </div>
