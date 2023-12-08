@@ -15,17 +15,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" >
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <body className={inter.className + "overflow-x-hidden"} >
-        <div className="h-screen w-screen bg-white  flex overflow-hidden">
+      <body className={inter.className + " overflow-x-hidden"} >
+        <Header />
+        <main className='flex flex-row'>
           <Sidebar />
-          <div className="w-screen h-full flex flex-col justify-between">
-            <Header />
-            <main className="h-full flex flex-col overflow-x-hidden  overflow-y-scroll">
+          <section className='flex min-h-screen flex-1 flex-col items-center   pb-10 pt-28 max-md:pb-32 '>
+            <div className='w-full  '>
               {children}
-            </main>
-            <Bottombar />
-          </div>
-        </div>
+            </div>
+          </section>
+        </main>
+        <Bottombar />
       </body>
     </html>
   )

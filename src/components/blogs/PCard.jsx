@@ -24,7 +24,7 @@ const Card = () => {
           </div>
         </Link>
         <div className="flex items-center justify-between px-4 py-2 overflow-hidden">
-          <span className="text-xs font-medium text-white bg-blue-500 rounded-md px-2 uppercase">
+          <span className="text-xs font-medium text-white bg-[#1970d5] rounded-md px-2 uppercase">
             Web Programming
           </span>
           <div className="flex flex-row items-center">

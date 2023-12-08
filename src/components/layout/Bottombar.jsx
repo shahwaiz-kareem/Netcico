@@ -6,7 +6,7 @@ import { MdOutlineForum } from "react-icons/md"
 import Link from 'next/link';
 const Bottombar = () => {
   return (
-    <div className="min-[800px]:hidden justify-between px-16 flex py-2   outline-none shadow-2xl bg-white items-center text-white ">
+    <div className="min-[800px]:hidden bottom-0 w-full justify-between fixed z-30 px-4 sm:px-16 flex py-2   outline-none shadow-2xl bg-white items-center text-white ">
       <div className="h-10 w-10 flex items-center font-thin text-black text-[28px] justify-center rounded-lg cursor-pointer hover:text-white hover:bg-blue-400  hover:duration-200 hover:ease-linear focus:bg-white">
         <Link href={"/"}>
           <GoHome />

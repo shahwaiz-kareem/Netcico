@@ -2,15 +2,15 @@ import Image from 'next/image';
 import './globals.css'
 import { AiFillLike } from "react-icons/ai"
 import { AiOutlineEye } from "react-icons/ai";
-import techJpg from "public/tech.jpg"
+import techJpg from "public/tech.webp"
 import { AiOutlineShareAlt } from "react-icons/ai";
 import Link from 'next/link';
 const Card = () => {
   return (
-    <article className='card overflow-hidden   rounded-lg transition-all duration-150 flex w-full px-4 my-4  md:w-1/2 lg:w-1/3   2xl:w-1/4 '>
-      <div className='relative h-[60vh]  '>
+    <article className='card overflow-hidden   h-[420px] rounded-lg transition-all duration-150 flex w-full px-4 my-4  md:w-1/2 lg:w-1/3  2xl:w-1/4 '>
+      <div className='relative'>
         <Link href={"blogs/cwh"}>
-          <Image className='avatar  rounded-lg  h-full object-cover' height={800} width={800} alt='alternative text' src={techJpg} />
+          <Image className='avatar    rounded-lg w-full  h-full' height={1000} width={1000} alt='alternative text' src={techJpg} />
         </Link>
         <div className='  card_content rounded-lg overflow-hidden  flex h-fit flex-col px-2 py-2 text-white absolute bottom-0  w-full gap-3'>
           <span className='text-xl md:text-xl mt-2'>Which technologies are going to kill nodejs in 2025?</span>

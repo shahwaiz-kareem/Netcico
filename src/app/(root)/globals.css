@@ -2,14 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 body {
   font-family: 'ubuntu' !important;
 }
 
 ::-webkit-scrollbar {
   width: 6px;
-  height: 1px;
+
 }
+
+
 
 /* Track */
 ::-webkit-scrollbar-track {

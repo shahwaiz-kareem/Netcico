@@ -1,9 +1,7 @@
-import React from 'react'
-
-const Chip = ({text}) => {
+const Chip = ({ text, active }) => {
   return (
     <>
-      <span className='rounded text-md  bg-gray-100 text-gray-800 p-1 shadow hover:bg-gray-200 '>{text}</span>
+      <span className={`rounded-lg text-md font-normal ${active ? "bg-black text-white" : "bg-gray-100 text-gray-800"}  p-1 ${text.length <= 3 ? "px-3" : ""}  hover:bg-gray-200 `}>{text}</span>
     </>
   )
 }

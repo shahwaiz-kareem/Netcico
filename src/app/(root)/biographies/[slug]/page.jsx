@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 import { AiTwotoneHeart } from "react-icons/ai"
-const Page = () => {
+const Page = (params) => {
+  console.log(params);
   return (
     <>
       <div className='flex flex-col justify-center'>
@@ -41,7 +42,7 @@ const Page = () => {
                     {/* follow button */}
                     <button
                       href="#"
-                      className="flex justify-center items-center gap-2 bg-blue-500 hover:bg-blue-600  px-4 py-1 
+                      className="flex justify-center items-center gap-2 bg-[#1970d5] hover:bg-blue-600  px-4 py-1 
                   text-white font-semibold text-md rounded  text-center 
                   "
                     >
@@ -107,7 +108,7 @@ const Page = () => {
               <li className="flex-1">
                 <a
                   href="#"
-                  className="relative flex items-center justify-center gap-2 px-1 py-3 text-blue-500 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-blue-500 hover:text-blue-400"
+                  className="relative flex items-center justify-center gap-2 px-1 py-3 text-blue-500 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-[#1970d5] hover:text-blue-400"
                 >
                   Biography</a
                 >
