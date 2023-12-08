@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import Sidebar from '@/components/layout/Sidebar'
 import Bottombar from '@/components/layout/Bottombar';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], weight: '400' })
 
 export const metadata = {
   title: 'Netcico.com || The treasure of information',
