@@ -1,8 +1,8 @@
-import Header from '@/components/layout/Header';
+import Header from '@/components/root/layout/Header';
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Sidebar from '@/components/layout/Sidebar'
-import Bottombar from '@/components/layout/Bottombar';
+import Sidebar from '@/components/root/layout/Sidebar'
+import Bottombar from '@/components/root/layout/Bottombar';
 
 const inter = Inter({ subsets: ['latin'], weight: '400' })
 

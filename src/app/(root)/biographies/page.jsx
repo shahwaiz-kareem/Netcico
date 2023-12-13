@@ -1,4 +1,4 @@
-import Card from '@/components/biographies/Card';
+import Card from '@/components/root/biographies/Card';
 import React from 'react';
 
 export const metadata = {

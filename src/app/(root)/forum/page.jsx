@@ -1,5 +1,5 @@
-import InputBox from '@/components/forum/InputBox'
-import Container from '@/components/forum/Container'
+import InputBox from '@/components/root/forum/InputBox'
+import Container from '@/components/root/forum/Container'
 import React from 'react'
 import { BiSolidFilterAlt } from 'react-icons/bi'
 const Page = () => {
@@ -14,8 +14,8 @@ const Page = () => {
         </div>
         <article className='flex flex-col flex-wrap'>
 
-         <Container/>
-        
+          <Container />
+
         </article>
       </main>
     </section>

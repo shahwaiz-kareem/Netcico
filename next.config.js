@@ -1,13 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["imgs.search.brave.com", "www.unfe.org", "images.app.goo.gl,images.unsplash.com", "shorturl.at", "*"],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com ',
-      },
-    ],
+
+    domains: ['images.unsplash.com', "shorturl.at"]
   }
 }
 
