@@ -5,11 +5,14 @@ import { IoIosCreate } from "react-icons/io";
 import { FaBookReader } from "react-icons/fa";
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBin5Fill } from "react-icons/ri";
+// ReadPanel,
+// UpdatePanel,
+// DeletePanel
 
-import NavigatorCard from "@/components/dashboard/crud/NavigatorCard";
-import Navigator from './Navigator';
+const TabsCont = ({
+  CreatePanel,
 
-const TabsCont = () => {
+}) => {
   return (
     <Tabs className=" mt-1">
       <TabList className="flex rounded-lg bg-[#1c212c] w-full h-full p-2 flex-row gap-2">
@@ -33,23 +36,8 @@ const TabsCont = () => {
       </TabList>
 
       <TabPanel >
-        <Navigator />
+        <CreatePanel />
       </TabPanel>
-
-      <TabPanel>
-        <Navigator />
-      </TabPanel>
-
-      <TabPanel>
-        <Navigator />
-
-      </TabPanel>
-
-      <TabPanel>
-
-        <Navigator />
-      </TabPanel>
-
     </Tabs >
   )
 }

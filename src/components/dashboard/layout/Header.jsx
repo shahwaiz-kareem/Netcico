@@ -10,9 +10,9 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex px-2 shadow bg-[#1c212c] h-14 gap-2 items-center">
-        <div className="flex px-2 w-full  gap-3 items-center">
-          <RxHamburgerMenu onClick={toggleSidebar} className='text-xl cursor-pointer text-white hover:text-blue-500' />
+      <header className="flex px-2  bg-zinc-950 h-16 gap-2 items-center">
+        <div className="flex px-2 justify-between w-full   gap-3 items-center">
+          <RxHamburgerMenu onClick={toggleSidebar} className='text-xl cursor-pointer text-white hover:text-white' />
           <Link href={"/"}>
             <div className='flex items-center justify-center gap-[2px]' >
               <Image className='w-full h-6' alt='logo' src={logo} height={10} width={200} />

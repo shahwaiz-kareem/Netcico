@@ -10,14 +10,14 @@ const RootLayout = ({ children }) => {
     <html lang="en">
 
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <body className={inter.className + " overflow-x-hidden"} >
+      <body className={inter.className + " overflow-x-hidden  bg-[#0c0c0c]"} >
         <main>
           <ThemeProvider>
-            <div className="flex flex-col h-screen">
+            <div className="flex flex-col  h-screen">
               <Header />
-              <div className="flex flex-1 overflow-hidden">
+              <div className="flex flex-1  overflow-hidden">
                 <Sidebar />
-                <article className="flex flex-1  overflow-y-auto paragraph px-4">
+                <article className="flex flex-1 py-2 h-full overflow-y-auto paragraph px-4">
                   {children}
                 </article>
               </div>

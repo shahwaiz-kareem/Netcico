@@ -11,7 +11,7 @@ const alegreya = Alegreya({ subsets: ["cyrillic"], weight: '500' })
 const Card = ({ title, thumbnail, category }) => {
   return (
     <>
-      <div className=" px-3 my-3  w-full lg:w-[32.3333%]    py-4 bg-white shadow-md rounded-lg">
+      <div className=" px-4 my-3  w-full lg:w-[32.3333%]    py-4 bg-white shadow-md rounded-lg">
         <div className="py-2 px-2 flex flex-row w-full items-center justify-between">
           <div className="flex flex-row items-center">
             <a
@@ -19,7 +19,7 @@ const Card = ({ title, thumbnail, category }) => {
               className="flex  flex-row items-center focus:outline-none focus:shadow-outline rounded-lg"
             >
               <Image
-                className="rounded-full h-8 w-8 object-cover"
+                className="rounded-full  h-8 w-8 object-cover"
                 src={thumbnail}
                 alt="Image"
               />
@@ -32,7 +32,7 @@ const Card = ({ title, thumbnail, category }) => {
         </div>
         <div className="mt-2  ">
           <Image
-            className="  lg:h-[300px] align-middle   max-w-full max-h-full rounded-lg"
+            className="  lg:h-[300px] align-middle   max-w-full max-h-full rounded-tl-[2rem] rounded-br-[2rem]"
             src={thumbnail}
 
             alt="Image"

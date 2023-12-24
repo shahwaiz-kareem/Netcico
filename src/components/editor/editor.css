@@ -1,0 +1,54 @@
+#editorjs {
+  padding: 20px 30px;
+  height: 100%;
+  background: white;
+  scroll-behavior: smooth;
+}
+
+/* .ce-toolbar__plus {
+  color: white
+}
+
+.ce-toolbar__settings-btn {
+  color: white
+}
+
+.ce-toolbar__plus:hover {
+  color: black
+}
+
+.ce-toolbar__settings-btn:hover {
+  color: black
+} */
+
+.ce-toolbar__content,
+.ce-block__content {
+  max-width: unset;
+  width: 92% !important;
+}
+
+.editorjs-codeFlask_Wrapper .editorjs-codeFlask_LangDisplay {
+  max-width: unset;
+  height: unset !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #18171b;
+  cursor: pointer;
+}
