@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useContext, } from "react";
 import "./editor.css";
 import EditorComponent from "./EditorComponent";
@@ -9,7 +9,6 @@ function Editor() {
   const context = useContext(ThemeContext)
   const { data, setData } = context;
   return (
-
     <EditorComponent data={data} onChange={setData} />
   );
 }

@@ -4,9 +4,7 @@ import EditorJS from "@editorjs/editorjs";
 import { EDITOR_JS_TOOLS } from "./tools";
 const EditorComponent = ({ data, onChange, }) => {
   const ref = useRef();
-
   useEffect(() => {
-
     if (!ref.current) {
       const editor = new EditorJS({
         holder: "editorjs",
@@ -18,9 +16,12 @@ const EditorComponent = ({ data, onChange, }) => {
           const data = await api.saver.save();
           onChange(data)
         }
-      });
+      })
+
       ref.current = editor;
+
     }
+
 
     return () => {
       if (ref.current && ref.current.destroy) {
@@ -28,6 +29,6 @@ const EditorComponent = ({ data, onChange, }) => {
       }
     };
   }, []);
-  return <div id="editorjs" className="h-full" />;
+  return <div id="editorjs" className="h-full w-full lg:w-[75%] mx-auto  px-2 text-black bg-white rounded-md overflow-y-scroll" />;
 };
 export default memo(EditorComponent);

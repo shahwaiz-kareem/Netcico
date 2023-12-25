@@ -25,7 +25,8 @@ export const ThemeProvider = ({ children }) => {
       SidebarRef.current.style.display = 'none';
     }
   }, [])
-
+  // console.clear()
+  // console.groupCollapsed(data)
 
   const toggleSidebar = () => {
     if (SidebarRef.current.style.display === 'none') {

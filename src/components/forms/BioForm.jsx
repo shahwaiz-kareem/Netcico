@@ -91,14 +91,14 @@ const BioForm = () => {
   // }
 
 
-  console.log(errors);
+
 
   const saveAsDraft = (e) => {
   }
 
   return (
-    <section className="w-full h-full py-4 flex flex-col  rounded-lg">
-      <div className={'px-6 flex flex-col  h-full justify-center  mx-auto  gap-2 ' + width}>
+    <section className="w-full h-full py-4 flex flex-col   rounded-lg">
+      <div className={'px-6 flex flex-col  h-full justify-center  relative mx-auto  gap-2 ' + width}>
         <h1 className='text-2xl font-bold'>Create Biography ({currentStep.name})</h1>
         {/* <div className={'relative border-2  border-red-500 bg-zinc-800 mx-auto my-3 rounded p-2 flex flex-col '}>
           {
@@ -152,9 +152,8 @@ const BioForm = () => {
         {
           currentStep.step === 1 &&
 
-          <div className='h-full w-[75%] m-auto mt-4 px-2 text-black bg-white rounded-lg overflow-y-scroll'>
-            <Editor />
-          </div>
+          < Editor />
+
         }
         {
           currentStep.step === 2 &&
@@ -183,13 +182,13 @@ const BioForm = () => {
 
           </div>
         }
-        <div className={`flex w-full items-center justify-between   px-4 `}>
-          <div className="flex justify-end mt-4">
+        <div className={`flex w-full  mx-auto  mt-6 items-center justify-between  bottom-0 absolute   `}>
+          <div className="flex justify-end ">
             <button onClick={prevStep} className='w-10 h-10 flex items-center justify-center bg-zinc-800 rounded-full cursor-pointer' >
               <IoIosArrowBack className='text-xl' />
             </button>
           </div>
-          <div className="flex justify-end mt-6">
+          <div className="flex justify-end ">
             <button onClick={nextStep} className='w-10 h-10 flex items-center justify-center bg-zinc-800 rounded-full cursor-pointer' >
               <IoIosArrowForward className='text-xl' />
             </button>
