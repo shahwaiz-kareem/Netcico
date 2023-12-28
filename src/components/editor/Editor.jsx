@@ -9,7 +9,9 @@ function Editor() {
   const context = useContext(ThemeContext)
   const { data, setData } = context;
   return (
-    <EditorComponent data={data} onChange={setData} />
-  );
+    <div className="w-full  mt-4">
+      <EditorComponent data={data} onChange={setData} />
+    </div>
+  )
 }
 export default Editor;

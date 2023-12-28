@@ -1,9 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-
-    domains: ['images.unsplash.com', "shorturl.at"]
-  }
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: "shorturl.at",
+        pathname: '**',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

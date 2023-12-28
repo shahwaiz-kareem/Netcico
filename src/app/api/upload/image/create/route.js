@@ -17,14 +17,14 @@ export const POST = async (request) => {
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    let pathname = path.join(process.cwd(), "/public/uploads/wyswyg", imageName)
+    let pathname = path.join(process.cwd(), "/public/uploads/wysiwyg", imageName)
     console.log(pathname)
     //TODO: resize the request image with sharp!
     await fs.writeFile(pathname, buffer)
     resObj = {
       success: 1,
       file: {
-        url: `${process.env.HOSTNAME}/uploads/wyswyg/${imageName}`
+        url: `${process.env.HOSTNAME}/uploads/wysiwyg/${imageName}`
       }
     }
   } catch (error) {

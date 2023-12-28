@@ -6,7 +6,7 @@ class customeImageTool extends ImageTool {
     console.log(imageUrl);
     try {
       if (imageUrl === undefined) return "url not found!";
-      const request = await fetch("/api/upload/delete", {
+      const request = await fetch("/api/upload/image/delete", {
         method: "Delete",
         body: JSON.stringify({ url: imageUrl })
       })
@@ -19,3 +19,5 @@ class customeImageTool extends ImageTool {
 }
 
 export default customeImageTool;
+
+

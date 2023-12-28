@@ -17,30 +17,35 @@ export const POST = async (req) => {
     });
     const extension = response.headers['content-type'].split("/")[1]
     const name = `img_${Date.now().toString()}.${extension}`;
-    const pathname = path.join(process.cwd(), "/public/uploads/wyswyg", name)
-    console.log(extension);
-    response.data.pipe(
-      sharp({
-        failOnError: false,
-        force: false,
-        format: extension,
-        quality: 100,
-      }).resize(1280, 720)
-    ).pipe(
-      fs.createWriteStream(pathname)
-        .on('finish', () => {
-          console.log('Image downloaded and saved successfully')
-        })
-        .on('error', (error) => {
-          return error.message
-        })
-    );
+    const pathname = path.join(process.cwd(), "/public/uploads/wysiwyg", name)
+
+    setTimeout(() => {
+      response.data.pipe(
+        sharp({
+          failOnError: false,
+          force: false,
+          format: extension,
+        }).flatten({ background: { r: 255, g: 255, b: 255, alpha: 0 } })
+          .resize(1280, 720)
+      ).pipe(
+        fs.createWriteStream(pathname)
+          .on('finish', () => {
+            console.log('Image downloaded and saved successfully')
+          })
+          .on('error', (error) => {
+            return error.message
+          })
+      );
+    }, 0);
+
+
     return res.json({
       success: 1,
       file: {
-        url: `${process.env.HOSTNAME}/uploads/wyswyg/${name}`
+        url: `${process.env.HOSTNAME}/uploads/wysiwyg/${name}`
       }
     })
+
   } catch (error) {
     console.log(error);
     return res.json({

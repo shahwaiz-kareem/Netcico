@@ -9,7 +9,7 @@ const INITIAL_DATA = {
       type: "header",
       data: {
         text: "Welcome to Netcioc.com! ",
-        level: 1,
+        level: 3,
       },
     },
   ],
@@ -18,6 +18,11 @@ export const ThemeProvider = ({ children }) => {
   const SidebarRef = useRef(null)
   const [width, setWidth] = useState("w-[85%]")
   const [data, setData] = useState(INITIAL_DATA)
+  const [submitSuccess, setSubmitSuccess] = useState({
+    success: null,
+    message: ""
+  })
+  const [thumbnailUrl, setThumbnailUrl] = useState("")
   const pathname = usePathname();
 
   useEffect(() => {
@@ -40,7 +45,7 @@ export const ThemeProvider = ({ children }) => {
 
 
   return (
-    < ThemeContext.Provider value={{ toggleSidebar, SidebarRef, width, data, setData }}>
+    < ThemeContext.Provider value={{ toggleSidebar, SidebarRef, width, data, setData, thumbnailUrl, setThumbnailUrl, submitSuccess, setSubmitSuccess }}>
       {children}
     </ ThemeContext.Provider>
   )

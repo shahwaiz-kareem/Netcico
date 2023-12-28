@@ -1,10 +1,10 @@
 import BioCard from '@/components/root/biographies/Card'
 import BlogCard from '@/components/root/blogs/Card'
-import romanImg from "public/roman.png"
-import techJpg from "public/tech.png"
-import tech1 from "public/1tech.jpg"
-import img1 from "public/image.png"
-import img2 from "public/image2.png"
+import romanImg from "@/../public/roman.png"
+import techJpg from "@/../public/tech.png"
+import tech1 from "@/../public/1tech.jpg"
+import img1 from "@/../public/image.png"
+import img2 from "@/../public/image2.png"
 import Wrapper from '@/components/root/blogs/Wrapper'
 export default function Home() {
   return (

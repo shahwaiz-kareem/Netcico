@@ -1,7 +1,6 @@
-import React from 'react'
 import { BiBell } from "react-icons/bi"
 import { AiOutlineSearch } from "react-icons/ai"
-import logo from "public/logo.png"
+import logo from "@/../public/logo.png"
 import Wrapper from './Wrapper';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -39,6 +38,7 @@ const Header = () => {
 
       <Wrapper />
     </header >
+
   )
 }
 

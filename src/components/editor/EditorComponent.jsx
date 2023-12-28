@@ -1,7 +1,11 @@
 "use client"
-import React, { memo, useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
 import { EDITOR_JS_TOOLS } from "./tools";
+import MermaidTool from "editorjs-mermaid";
+import Undo from 'editorjs-undo';
+import Script from 'next/script'
+
 const EditorComponent = ({ data, onChange, }) => {
   const ref = useRef();
   useEffect(() => {
@@ -11,10 +15,16 @@ const EditorComponent = ({ data, onChange, }) => {
         tools: EDITOR_JS_TOOLS,
         data: data,
         autofocus: true,
+        minHeight: 350,
+        tunes: ['textVariant'],
         inlineToolbar: true,
         onChange: async (api) => {
           const data = await api.saver.save();
           onChange(data)
+        },
+        onReady: () => {
+          MermaidTool.config({ 'theme': 'neutral' })
+          new Undo({ editor });
         }
       })
 
@@ -29,6 +39,9 @@ const EditorComponent = ({ data, onChange, }) => {
       }
     };
   }, []);
-  return <div id="editorjs" className="h-full w-full lg:w-[75%] mx-auto  px-2 text-black bg-white rounded-md overflow-y-scroll" />;
+  return <>
+    <div id="editorjs" className="h-[110%] w-full lg:w-[65%] mx-auto  shadow-xl px-2 text-black bg-white rounded-2xl " />
+    <Script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest" />
+  </>
 };
-export default memo(EditorComponent);
+export default memo(EditorComponent)
