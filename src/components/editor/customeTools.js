@@ -3,7 +3,6 @@ class customeImageTool extends ImageTool {
   async removed() {
     const imageData = this.data;
     const imageUrl = imageData.file.url;
-    console.log(imageUrl);
     try {
       if (imageUrl === undefined) return "url not found!";
       const request = await fetch("/api/upload/image/delete", {

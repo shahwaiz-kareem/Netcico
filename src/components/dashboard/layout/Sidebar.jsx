@@ -15,15 +15,9 @@ const Sidebar = () => {
   const { SidebarRef } = useContext(ThemeContext)
   return (
 
-    <aside ref={SidebarRef} className={`w-48  bg-zinc-950 rounded-tr-sm min-h-full h-screen  flex-col items-center    pb-2 space-y-7`}>
-      <div className="flex w-full  flex-col items-center justify-center pt-4  ">
-        <Link href={"/dashboard/create"}>
-          <AiFillPlusCircle className="text-[98px] hover:scale-95 text-center   mr-5 cursor-pointer" />
-        </Link>
+    <aside ref={SidebarRef} className={`w-48  bg-zinc-950 rounded-tr-sm h-full  flex-col items-center justify-center   pb-2 `}>
 
-      </div>
-      <div className="w-full  flex flex-col gap-y-8 text-sm">
-
+      <div className="w-full mt-4 h-full  flex flex-col gap-8 text-sm">
         <AdminLink Icon={BiSolidDashboard} text={"Dashboard"} link={"/dashboard"} />
         <AdminLink Icon={SiReaddotcv} text={"Blogs"} link={"/dashboard/blogs"} />
         <AdminLink Icon={GoPeople} text={"Biographies"} link={"/dashboard/biographies"} />

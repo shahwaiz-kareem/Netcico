@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
 
-    <header className="flex px-2  bg-zinc-950 h-16 gap-2 items-center">
+    <div className="flex px-2  bg-zinc-950 h-16 gap-2 items-center">
       <div className="flex px-2 justify-between w-full   gap-3 items-center">
         <RxHamburgerMenu onClick={toggleSidebar} className='text-xl cursor-pointer text-white hover:text-white' />
         <Link href={"/"}>
@@ -19,7 +19,7 @@ const Header = () => {
           </div>
         </Link>
       </div>
-    </header>
+    </div>
 
   )
 }

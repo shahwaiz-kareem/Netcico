@@ -1,9 +1,9 @@
 "use server"
 import path from "path"
-import { writeFile } from "fs/promises"
 import sharp from "sharp";
 
 export const uploadThumbnail = async (data, type, height, width) => {
+  console.log(data);
   const file = data.get("file");
   if (!file || file.name == 'undefined') return {
     success: false,
@@ -11,16 +11,15 @@ export const uploadThumbnail = async (data, type, height, width) => {
   }
 
   try {
+    const name = `thumbnail_${type}_${Date.now().toString()}`;
+    const pathname = path.join(process.cwd(), "/public/uploads/thumbnail", name)
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
-    const name = `thumbnail_${type}_${Date.now().toString()}.webp`;
-    const pathname = path.join(process.cwd(), "/public/uploads/thumbnail", name)
-    await writeFile(pathname, buffer)
-    await sharp(pathname)
-      .webp({ quality: 100, alphaQuality: 100 })
+    await sharp(buffer)
+      .webp()
       .resize(width, height)
       .flatten({ background: { r: 255, g: 255, b: 255, alpha: 0 } })
-
+      .toFile(pathname)
     return {
       success: true,
       message: "Your image has been resized and uploaded successfully!",

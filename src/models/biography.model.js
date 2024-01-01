@@ -9,7 +9,7 @@ const BioSchema = new mongoose.Schema({
   metaTitle: { type: String, required: true, },
   metaDescription: { type: String, required: true, },
   category: { type: String, required: true },
-  published: {
+  isActive: {
     type: Boolean,
     default: false
   }

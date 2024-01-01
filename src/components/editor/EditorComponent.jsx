@@ -1,18 +1,18 @@
 "use client"
 import { memo, useEffect, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
-import { EDITOR_JS_TOOLS } from "./tools";
 import MermaidTool from "editorjs-mermaid";
 import Undo from 'editorjs-undo';
 import Script from 'next/script'
 
-const EditorComponent = ({ data, onChange, }) => {
+
+const EditorComponent = ({ data, onChange, tools }) => {
   const ref = useRef();
   useEffect(() => {
     if (!ref.current) {
       const editor = new EditorJS({
         holder: "editorjs",
-        tools: EDITOR_JS_TOOLS,
+        tools: tools,
         data: data,
         autofocus: true,
         minHeight: 350,
