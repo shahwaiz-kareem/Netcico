@@ -1,7 +1,9 @@
 "use server"
 import { connectToDb } from "@/db/db";
 import { Blog } from "@/models/blog.model";
-
+import { revalidatePath } from "next/cache";
+import { unlink } from "fs/promises"
+import { join } from "path";
 
 export const updateBlog = async ({ title, slug, category, itemId, isActive, thumbnail, altText, content, metaTitle, metaDescription, tags, author }) => {
   await connectToDb()
@@ -89,6 +91,28 @@ export const getPopularBlogs = async () => {
 
     const data = await Blog.find().sort({ likes: "desc" })
     return JSON.parse(JSON.stringify(data))
+
+  } catch (error) {
+    throw new Error({
+      success: false,
+      error: error.message
+    })
+  }
+}
+export const deleteBlog = async (id, pathname) => {
+  await connectToDb()
+  try {
+
+    const { thumbnail } = await Blog.findOne({ _id: id })
+    const thumbnailPath = join(process.cwd(), "public", new URL(thumbnail).pathname);
+    console.log(thumbnail, thumbnailPath);
+    await unlink(thumbnailPath)
+    await Blog.findByIdAndRemove(id)
+    revalidatePath(pathname)
+    return JSON.parse(JSON.stringify({
+      success: true,
+      message: "Your item has been deleted successfully from the database!"
+    }))
 
   } catch (error) {
     throw new Error({

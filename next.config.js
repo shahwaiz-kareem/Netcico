@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "shorturl.at",
         pathname: '**',
       },
+      {
+        protocol: 'http',
+        hostname: "localhost",
+        pathname: '**',
+      },
     ],
   },
 }

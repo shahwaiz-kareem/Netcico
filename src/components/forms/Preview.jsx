@@ -7,12 +7,12 @@ const Preview = ({ successDisplay, message, success, altText, NameOrTitle, saveA
 
 
   return (
-    <div className='h-full flex justify-between flex-col gap-2  w-[80%]'>
+    <div className=' flex justify-between flex-col gap-6  w-[80%]'>
       <SuccessTag successDisplay={successDisplay} success={success} message={message} />
-      <div className="flex mt-1 flex-wrap justify-center h-full items-center  w-full ">
-        <div className="xp-4 w-1/2  p-6 bg-zinc-900 rounded-xl">
+      <div className="flex  flex-wrap   justify-center   w-full ">
+        <div className=" w-1/2   p-6  bg-zinc-900 rounded-xl">
           <div className=" rounded-xl">
-            <img className="h-44 rounded-lg w-full object-cover object-center mb-2" src={thumbnailUrl} alt={altText} />
+            <img className=" rounded-lg h-[12rem] w-full object-cover object-center mb-2" src={thumbnailUrl} alt={altText} />
             <ul className='flex flex-col  gap-2'>
               <li className="leading-relaxed capitalize font-bold text-sm">Name/Title: {NameOrTitle}</li>
               <li className="leading-relaxed capitalize text-sm">Author: {author}</li>
