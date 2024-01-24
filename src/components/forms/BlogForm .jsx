@@ -327,8 +327,14 @@ const BlogForm = ({
               <select
                 {...register("category")}
                 aria-placeholder="Category"
-                className=" pr-4 flex  py-3 rounded-lg bg-zinc-900 text-white outline-none gap-2"
+                className=" px-2 flex  py-3 rounded-lg bg-zinc-900 text-white outline-none gap-2"
               >
+                {isUpdate && (
+                  <option className="capitalize" value={updateCategory}>
+                    {updateCategory}
+                  </option>
+                )}
+
                 {Object.keys(categories).map((e) => (
                   <option className="capitalize" value={categories[e].category}>
                     {categories[e].category}

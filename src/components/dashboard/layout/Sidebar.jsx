@@ -37,22 +37,22 @@ const Sidebar = () => {
         <AdminLink
           Icon={BiCategory}
           text={"Categories"}
-          link={"dashboard/category"}
+          link={"/dashboard/category"}
         />
         <AdminLink
           Icon={FaMoneyBillTrendUp}
           text={"Ads"}
-          link={"dashboard/ads"}
+          link={"/dashboard/ads"}
         />
         <AdminLink
           Icon={IoFolderOpenOutline}
           text={"Files"}
-          link={"dashboard/files"}
+          link={"/dashboard/files"}
         />
         <AdminLink
           Icon={BsGear}
           text={"Settings"}
-          link={"dashboard/settings"}
+          link={"/dashboard/settings"}
         />
       </div>
     </aside>

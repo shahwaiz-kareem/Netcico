@@ -2,13 +2,14 @@
 import { deleteBlog } from "@/actions/blog.action";
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
+import { deleteBio } from "@/actions/bio.action";
 
-const DeleteModal = ({ id, refreshPage, setFilterBy }) => {
+const DeleteModal = ({ isBio, id, refreshPage, setFilterBy }) => {
   const pathname = usePathname();
   const modalRef = useRef();
   const deleteItem = async () => {
     setFilterBy("published");
-    await deleteBlog(id, pathname);
+    isBio ? await deleteBio(id, pathname) : await deleteBlog(id, pathname);
     modalRef.current.close();
     refreshPage();
   };

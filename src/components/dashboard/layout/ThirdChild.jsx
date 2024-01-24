@@ -58,9 +58,11 @@ const ThirdChild = ({ href }) => {
       </div>
 
       <div className="flex flex-row-reverse justify-center items-center h-full gap-2 ">
-        <button className="flex items-center justify-center p-2 border hover:text-black hover:bg-white rounded-lg ring-1">
-          Add New Category
-        </button>
+        <Link href={"/dashboard/category/create"}>
+          <button className="flex items-center justify-center p-2 border hover:text-black hover:bg-white rounded-lg ring-1">
+            Add New Category
+          </button>
+        </Link>
         <Link href={href}>
           <button className="flex items-center justify-center p-2 border hover:text-black hover:bg-white rounded-lg ring-1">
             <BsPlus className="text-2xl font-bold " />

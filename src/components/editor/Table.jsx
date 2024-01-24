@@ -1,28 +1,26 @@
 "use client";
-import { memo, useEffect, useRef } from "react";
+import { memo, useContext, useEffect, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
-import MermaidTool from "editorjs-mermaid";
 import Undo from "editorjs-undo";
-import Script from "next/script";
-
-const EditorComponent = ({ data, onChange, tools }) => {
+import { ThemeContext } from "@/context/ThemeContext";
+import "./editor.css";
+const Table = ({ tools }) => {
+  const context = useContext(ThemeContext);
+  const { setTableData } = context;
   const ref = useRef();
   useEffect(() => {
     if (!ref.current) {
       const editor = new EditorJS({
-        holder: "editorjs",
+        holder: "tableEditor",
         tools: tools,
-        data: data,
         autofocus: true,
-        minHeight: 350,
-        tunes: ["textVariant"],
+        minHeight: 250,
         inlineToolbar: true,
         onChange: async (api) => {
           const data = await api.saver.save();
-          onChange(data);
+          setTableData(data);
         },
         onReady: () => {
-          MermaidTool.config({ theme: "neutral" });
           new Undo({ editor });
         },
       });
@@ -37,13 +35,12 @@ const EditorComponent = ({ data, onChange, tools }) => {
     };
   }, []);
   return (
-    <>
+    <div className="w-full  mt-4">
       <div
-        id="editorjs"
-        className="h-[110%] w-full lg:w-[65%] mx-auto  shadow-xl px-2 text-black bg-white rounded-2xl "
+        id="tableEditor"
+        className="h-[110%] w-full lg:w-[80%] mx-auto  shadow-xl px-4 text-black bg-white rounded-2xl "
       />
-      <Script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest" />
-    </>
+    </div>
   );
 };
-export default memo(EditorComponent);
+export default memo(Table);
