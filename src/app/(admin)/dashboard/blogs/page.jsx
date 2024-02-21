@@ -5,7 +5,7 @@ import "@/components/dashboard/layout/layout.css";
 import {
   getAllBlogs,
   getDraftBlogs,
-  getPopularBlogs,
+  getPopularBlogsByViews,
   getPublishedBlogs,
 } from "@/actions/blog.action";
 import Container from "@/components/dashboard/layout/Container";
@@ -40,10 +40,14 @@ const page = () => {
       const draftBlogs = await getDraftBlogs();
       setDataObj(draftBlogs);
     } else if (filterBy === "popular") {
-      const popularBlogs = await getPopularBlogs();
+      const popularBlogs = await getPopularBlogsByViews();
       setDataObj(popularBlogs);
     }
   };
+
+  useEffect(() => {
+    (async () => await getData())();
+  }, []);
 
   useEffect(() => {
     const renderData = async () => {

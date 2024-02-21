@@ -7,6 +7,7 @@ export const getCategories = async (type) => {
   try {
     const data =
       type === "all" ? await Category.find() : await Category.find({ type });
+
     return JSON.parse(JSON.stringify(data));
   } catch (error) {
     return JSON.parse(

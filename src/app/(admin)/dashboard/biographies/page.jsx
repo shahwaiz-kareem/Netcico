@@ -5,7 +5,7 @@ import "@/components/dashboard/layout/layout.css";
 import {
   getAllBios,
   getDraftBios,
-  getPopularBios,
+  getPopularBiosByViews,
   getPublishedBios,
 } from "@/actions/bio.action";
 import Container from "@/components/dashboard/layout/Container";
@@ -40,10 +40,14 @@ const page = () => {
       const draftBios = await getDraftBios();
       setDataObj(draftBios);
     } else if (filterBy === "popular") {
-      const popularBios = await getPopularBios();
+      const popularBios = await getPopularBiosByViews();
       setDataObj(popularBios);
     }
   };
+
+  useEffect(() => {
+    (async () => await getData())();
+  }, []);
 
   useEffect(() => {
     const renderData = async () => {
@@ -63,7 +67,7 @@ const page = () => {
 
   return (
     <Container>
-      <h1 className="text-[30px] text-white">Bios</h1>
+      <h1 className="text-[30px] text-white">Biographies</h1>
       <FilterSearch setFilterBy={setFilterBy} setSearchQuery={setSearchQuery} />
       <div className="flex flex-col rounded-xl shadow-inner w-full items-center overflow-y-scroll  h-full  ">
         <table className="w-full text-left  relative  border-spacing-y-[10px] border-separate -mt-2">
@@ -130,7 +134,7 @@ const page = () => {
                   </td>
                   <td className="px-5 py-3 dark:border-darkmode-300 first:rounded-l-md last:rounded-r-md bg-zinc-900 border-b-0 dark:bg-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
                     <span className="font-medium whitespace-pre-wrap">
-                      {item.likes.length}
+                      {item.fans.length}
                     </span>
                   </td>
                   <td className="px-5 py-3 dark:border-darkmode-300 first:rounded-l-md last:rounded-r-md bg-zinc-900 border-b-0 dark:bg-darkmode-600 shadow-[20px_3px_20px_#0000000b]">

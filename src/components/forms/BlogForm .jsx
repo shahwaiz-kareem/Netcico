@@ -55,6 +55,7 @@ const BlogForm = ({
     updatedThumb,
     setThumbnailFormData,
   } = context;
+
   const [currentStep, setCurrentStep] = useState(steps[0]);
   const [successDisplay, setSuccessDisplay] = useState("hidden");
   const [draftId, setDraftId] = useState("");
@@ -234,43 +235,18 @@ const BlogForm = ({
     }, 3000);
   };
 
-  const PublishBlog = async () => {
+  const SaveToDatabase = async (active) => {
     await uploadThumbnailToServer().then(async (res) => {
       const result = await updateBlog({
         title,
         slug,
         itemId: isUpdate ? itemId : draftId,
-        isActive: true,
+        isActive: active,
         author,
         altText,
         category,
         content: JSON.stringify(data),
         metaDescription,
-        metaTitle,
-        tags,
-        thumbnail: res.thumbnailUrl,
-      });
-      setSubmitSuccess({
-        success: result.success,
-        message: result.data !== null && result.data,
-      });
-      setSuccessDisplay("flex");
-      hideTag();
-    });
-  };
-  const saveAsDraft = async () => {
-    await uploadThumbnailToServer().then(async (res) => {
-      const result = await updateBlog({
-        title,
-        slug,
-        isActive: false,
-        itemId: isUpdate ? itemId : draftId,
-        author,
-        altText,
-        content: JSON.stringify(data),
-        category,
-        metaDescription,
-        itemId: isUpdate ? itemId : draftId,
         metaTitle,
         tags,
         thumbnail: res.thumbnailUrl,
@@ -335,11 +311,19 @@ const BlogForm = ({
                   </option>
                 )}
 
-                {Object.keys(categories).map((e) => (
-                  <option className="capitalize" value={categories[e].category}>
-                    {categories[e].category}
-                  </option>
-                ))}
+                {Object.keys(categories).map((e) => {
+                  if (isUpdate && categories[e].category === updateCategory)
+                    return;
+                  return (
+                    <option
+                      key={categories[e].category}
+                      className="capitalize"
+                      value={categories[e].category}
+                    >
+                      {categories[e].category}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <div className="flex flex-col gap-8">
@@ -379,10 +363,9 @@ const BlogForm = ({
         {currentStep.step === 2 && (
           <Preview
             NameOrTitle={title}
-            PublishFunc={PublishBlog}
             altText={altText}
             message={message}
-            saveAsDraftFunc={saveAsDraft}
+            SaveToDatabase={SaveToDatabase}
             success={success}
             author={author}
             slug={slug}

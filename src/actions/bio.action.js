@@ -11,6 +11,7 @@ export const updateBio = async ({
   category,
   itemId,
   isActive,
+  table,
   thumbnail,
   altText,
   content,
@@ -28,10 +29,10 @@ export const updateBio = async ({
         itemId,
         slug,
         category,
+        table,
         thumbnail,
         altText,
         content,
-
         isActive,
         metaTitle,
         metaDescription,
@@ -56,7 +57,7 @@ export const updateBio = async ({
   }
 };
 
-export const getAllBios = async (_id) => {
+export const getAllBios = async () => {
   await connectToDb();
   try {
     const data = await Bio.find();
@@ -73,6 +74,18 @@ export const getPublishedBios = async () => {
   await connectToDb();
   try {
     const data = await Bio.find({ isActive: true });
+    return JSON.parse(JSON.stringify(data));
+  } catch (error) {
+    throw new Error({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+export const getPublishedBiosByCategory = async (category) => {
+  await connectToDb();
+  try {
+    const data = await Bio.find({ isActive: true, category });
     return JSON.parse(JSON.stringify(data));
   } catch (error) {
     throw new Error({
@@ -105,10 +118,22 @@ export const getBioById = async (_id) => {
     });
   }
 };
-export const getPopularBios = async () => {
+export const getPopularBiosByFans = async () => {
   await connectToDb();
   try {
-    const data = await Bio.find().sort({ likes: "desc" });
+    const data = await Bio.find({ isActive: true }).sort({ fans: "desc" });
+    return JSON.parse(JSON.stringify(data));
+  } catch (error) {
+    throw new Error({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+export const getPopularBiosByViews = async () => {
+  await connectToDb();
+  try {
+    const data = await Bio.find({ isActive: true }).sort({ views: "desc" });
     return JSON.parse(JSON.stringify(data));
   } catch (error) {
     throw new Error({
@@ -145,23 +170,24 @@ export const deleteBio = async (id, pathname) => {
 };
 export const deleteImageFromGallery = async (id, index, pathname) => {
   await connectToDb();
+
   try {
     const { gallery } = await Bio.findOne({ itemId: id });
     const imagePathname = gallery[index].url;
-    const newGallery = gallery.splice(index, 1);
-    await Bio.findOneAndUpdate(
+    const newGallery = gallery.filter((item, i) => {
+      return index !== i;
+    });
+
+    const data = await Bio.findOneAndUpdate(
       { itemId: id },
-      { $set: { gallery: newGallery } }
+      { $set: { gallery: newGallery } },
+      { new: true }
     );
+
     const imagePath = join(process.cwd(), "public", imagePathname);
     await unlink(imagePath);
     revalidatePath(pathname);
-    return JSON.parse(
-      JSON.stringify({
-        success: true,
-        message: "Your item has been deleted successfully from the database!",
-      })
-    );
+    return JSON.parse(JSON.stringify(data.gallery));
   } catch (error) {
     console.log(error);
     throw new Error({

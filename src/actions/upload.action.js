@@ -1,5 +1,6 @@
 "use server";
 import { Bio } from "@/models/biography.model";
+import { revalidatePath } from "next/cache";
 import path from "path";
 import sharp from "sharp";
 
@@ -38,15 +39,8 @@ export const uploadThumbnail = async (data, type, height, width) => {
     };
   }
 };
-export const uploadGallery = async (
-  id,
-  formData,
-  captionArr,
-  height,
-  width
-) => {
+export const uploadGallery = async (id, formData, captionArr, pathname) => {
   const files = formData.getAll("file");
-  console.log("CAption arr", captionArr);
   if (!files)
     return {
       success: false,
@@ -65,12 +59,11 @@ export const uploadGallery = async (
       const buffer = Buffer.from(bytes);
       await sharp(buffer)
         .webp()
-        .resize(width, height)
+        // .resize(width, height)
         .flatten({ background: { r: 255, g: 255, b: 255, alpha: 0 } })
         .toFile(pathname);
-      const url = `/uploads/gallery/${name}`;
 
-      return url;
+      return `/uploads/gallery/${name}`;
     } catch (error) {
       return {
         success: false,
@@ -81,13 +74,14 @@ export const uploadGallery = async (
 
   for (let i = 0; i < files.length; i++) {
     const url = await writeImage(files[i]);
-    await Bio.findOneAndUpdate(
+
+    const data = await Bio.findOneAndUpdate(
       { itemId: id },
       {
         $push: { gallery: { caption: captionArr[i], url } },
       }
     );
   }
-
+  revalidatePath(pathname);
   return JSON.parse(JSON.stringify({ success: true }));
 };

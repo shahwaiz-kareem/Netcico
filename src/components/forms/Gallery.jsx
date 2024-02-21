@@ -11,12 +11,12 @@ const Gallery = ({
   galleryUrls,
   itemId,
   pathname,
-  captionArr,
   setCaptionArr,
 }) => {
   const fileRef = useRef(null);
   const [isUpdateAndUploaded, setIsUpdateAndUploaded] = useState(false);
   const [caption, setCaption] = useState("");
+  const [uploadDisable, setUploadDisable] = useState(true);
   const router = useRouter();
   const handleClick = () => {
     fileRef.current.click();
@@ -62,24 +62,31 @@ const Gallery = ({
       >
         <input
           className="hidden"
+          disabled={uploadDisable}
           onChange={handleChange}
           type="file"
           ref={fileRef}
         />
         <span
           onClick={handleClick}
-          className="flex cursor-pointer items-center flex-col gap-2 justify-center"
+          className={`flex ${
+            !uploadDisable ? "cursor-pointer " : "text-gray-600"
+          } items-center flex-col gap-2 justify-center`}
         >
           <AiFillPicture className="text-3xl" />
           Add Photo
         </span>
 
         <input
-          className=" outline-none p-2 text-black  w-full h-[20%] rounded-lg "
+          className=" outline-none p-2 text-white  bg-zinc-700 w-full h-[20%] rounded-lg "
           type="text"
           value={caption}
-          onChange={(e) => setCaption(e.target.value)}
-          placeholder="Caption"
+          minLength={2}
+          onChange={(e) => {
+            setCaption(e.target.value);
+            setUploadDisable(caption.length > 2 ? false : true);
+          }}
+          placeholder="Add caption to upload!"
         />
       </form>
 

@@ -9,12 +9,11 @@ import Editor from "../editor/Editor";
 import ThumbnailForm from "./ThumbnailForm";
 import { updateBio } from "@/actions/bio.action";
 import { Create_JS_TOOLS } from "@/components/editor/tools";
-import { Table_Tool } from "@/components/editor/tools";
 import Preview from "./Preview";
 import NavigationBtns from "./NavigationBtns";
 import { uploadGallery, uploadThumbnail } from "@/actions/upload.action";
 import { getCategories } from "@/actions/category.action";
-import Table from "../editor/Table";
+import Table from "./Table";
 import Gallery from "./Gallery";
 const steps = [
   {
@@ -38,7 +37,48 @@ const steps = [
     name: "Publish",
   },
 ];
-
+const initialTableItems = [
+  {
+    heading: "name",
+    content: "*",
+  },
+  {
+    heading: "age",
+    content: "*",
+  },
+  {
+    heading: "profession",
+    content: "*",
+  },
+  {
+    heading: "net worth",
+    content: "*",
+  },
+  {
+    heading: "gender",
+    content: "*",
+  },
+  {
+    heading: "BF/GF",
+    content: "*",
+  },
+  {
+    heading: "father",
+    content: "*",
+  },
+  {
+    heading: "mother",
+    content: "*",
+  },
+  {
+    heading: "married status",
+    content: "*",
+  },
+  {
+    heading: "hobbies",
+    content: "*",
+  },
+];
 const BioForm = ({
   isUpdate,
   updateName,
@@ -46,6 +86,7 @@ const BioForm = ({
   updateCategory,
   updateGallery,
   updateAuthor,
+  updateTable,
   updateMetaTitle,
   updateMetaDescription,
   galleryUrls,
@@ -77,9 +118,11 @@ const BioForm = ({
   const [categories, setCategores] = useState({});
   const [galleryData, setGalleryData] = useState(new FormData());
   const [captionArr, setCaptionArr] = useState([]);
-
-  let pathname = usePathname();
-  let onPage = pathname.split("/dashboard/").join(" ").split("/")[0].trim();
+  const [tableArr, setTableArr] = useState(
+    isUpdate ? updateTable : initialTableItems
+  );
+  const pathname = usePathname();
+  const onPage = pathname.split("/dashboard/").join(" ").split("/")[0].trim();
 
   useEffect(() => {
     if (isUpdate) {
@@ -126,7 +169,6 @@ const BioForm = ({
     metaTitle,
     tags,
   } = getValues();
-
   const uploadThumbnailToServer = async () => {
     const responce = await uploadThumbnail(thumbnailFormData, onPage);
     const { success, thumbnailUrl } = responce;
@@ -200,12 +242,11 @@ const BioForm = ({
 
   const nextStep = async () => {
     if (currentStep.step === steps.length - 1) return;
-    console.log(formState);
     if (isUpdate && formState.isValid)
       setCurrentStep(steps[currentStep.step + 1]);
     if (formState.isValid && !success && thumbnailUrl !== "") {
+      setCurrentStep(steps[currentStep.step + 1]);
     }
-    setCurrentStep(steps[currentStep.step + 1]);
   };
 
   const useInterval = (callback, delay) => {
@@ -215,7 +256,6 @@ const BioForm = ({
       savedCallback.current = callback;
     }, [callback]);
 
-    // Set up the interval.
     useEffect(() => {
       const tick = () => {
         savedCallback.current();
@@ -250,59 +290,45 @@ const BioForm = ({
     }, 3000);
   };
 
-  const PublishBio = async () => {
-    await uploadThumbnailToServer().then(async (res) => {
-      const result = await updateBio({
-        name,
-        slug,
-        itemId: isUpdate ? itemId : draftId,
-        isActive: true,
-        author,
-        altText,
-        category,
-        content: JSON.stringify(data),
-        metaDescription,
-        metaTitle,
-        tags,
-        thumbnail: res.thumbnailUrl,
+  const SaveToDatabase = async (active) => {
+    await uploadThumbnailToServer()
+      .then(async (res) => {
+        console.log("you this is your arr ", tableArr);
+        const result = await updateBio({
+          name,
+          slug,
+          itemId: isUpdate ? itemId : draftId,
+          isActive: active,
+          author,
+          table: tableArr,
+          altText,
+          category,
+          content: JSON.stringify(data),
+          metaDescription,
+          metaTitle,
+          tags,
+          thumbnail: res.thumbnailUrl,
+        });
+        await uploadGallery(
+          isUpdate ? itemId : draftId,
+          galleryData,
+          captionArr,
+          pathname
+        );
+        setSubmitSuccess({
+          success: result.success,
+          message: result.data !== null && result.data,
+        });
+        setSuccessDisplay("flex");
+        hideTag();
+        setData("");
+      })
+      .catch((error) => {
+        setSubmitSuccess({
+          success: false,
+          message: `Thumbnail not uploaded! error ${error}`,
+        });
       });
-      console.log("this is data", galleryData);
-      await uploadGallery(draftId, galleryData, captionArr);
-
-      setSubmitSuccess({
-        success: result.success,
-        message: result.data !== null && result.data,
-      });
-      setSuccessDisplay("flex");
-      hideTag();
-    });
-  };
-  const saveAsDraft = async () => {
-    await uploadThumbnailToServer().then(async (res) => {
-      const result = await updateBio({
-        name,
-        slug,
-        isActive: false,
-        itemId: isUpdate ? itemId : draftId,
-        author,
-        altText,
-        content: JSON.stringify(data),
-        category,
-        metaDescription,
-        itemId: isUpdate ? itemId : draftId,
-        metaTitle,
-        tags,
-        thumbnail: res.thumbnailUrl,
-      });
-
-      await uploadGallery(draftId, galleryData, captionArr);
-      setSubmitSuccess({
-        success: result.success,
-        message: result.data !== null && result.data,
-      });
-      setSuccessDisplay("flex");
-      hideTag();
-    });
   };
 
   return (
@@ -357,15 +383,19 @@ const BioForm = ({
                   </option>
                 )}
 
-                {Object.keys(categories).map((e) => (
-                  <option
-                    key={categories[e].category}
-                    className="capitalize"
-                    value={categories[e].category}
-                  >
-                    {categories[e].category}
-                  </option>
-                ))}
+                {Object.keys(categories).map((e) => {
+                  if (isUpdate && categories[e].category === updateCategory)
+                    return;
+                  return (
+                    <option
+                      key={categories[e].category}
+                      className="capitalize"
+                      value={categories[e].category}
+                    >
+                      {categories[e].category}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <div className="flex flex-col gap-8">
@@ -418,15 +448,14 @@ const BioForm = ({
           />
         )}
         {currentStep.step === 3 && (
-          <Table key={"tableEditor"} tools={Table_Tool} />
+          <Table tableArr={tableArr} setTableArr={setTableArr} />
         )}
         {currentStep.step === 4 && (
           <Preview
             NameOrTitle={name}
-            PublishFunc={PublishBio}
             altText={altText}
             message={message}
-            saveAsDraftFunc={saveAsDraft}
+            SaveToDatabase={SaveToDatabase}
             success={success}
             author={author}
             slug={slug}

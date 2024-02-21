@@ -9,6 +9,7 @@ const page = async ({ params }) => {
     content,
     altText,
     slug,
+    table,
     category,
     tags,
     metaDescription,
@@ -27,6 +28,7 @@ const page = async ({ params }) => {
       updateCategory={category}
       updateMetaDescription={metaDescription}
       updateName={name}
+      updateTable={table}
       updateMetaTitle={metaTitle}
       updateAuthor={author}
       updateSlug={slug}

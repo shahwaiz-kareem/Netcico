@@ -9,6 +9,9 @@
       hsla(0, 0%, 0%, 0.397) 10%,
       hsl(0, 0%, 0%) 100%)
 }
+.avatar{
+  width: -webkit-fill-available;
+}
 
 .card:hover {
 
@@ -17,12 +20,12 @@
     @apply transition-transform duration-300 ease-[ease-in] scale-100;
   }
 
-  .card_content {
-    height: fit-content;
+ &> .card_content {
+  @apply h-fit
   }
 
-  .div_move {
-    width: 100%;
+   &>.div_move {
+   @apply w-full
   }
 }
 
@@ -34,8 +37,4 @@
   }
 }
 
-@media (min-width:150px) and (max-width: 290px) {
-  .card_content {
-    height: 12rem;
-  }
-}
+

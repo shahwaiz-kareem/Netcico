@@ -1,15 +1,15 @@
-"use client"
-import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
+"use client";
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 
 const TopLoader = () => {
   return (
     <ProgressBar
-      height="2px"
+      height="2.6px "
       color="#1970d5"
       options={{ showSpinner: false }}
       shallowRouting
     />
-  )
-}
+  );
+};
 
-export default TopLoader
+export default TopLoader;
