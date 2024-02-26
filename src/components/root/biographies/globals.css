@@ -4,37 +4,37 @@
 }
 
 .card_content {
-  background: linear-gradient(180deg,
-      hsla(0, 0%, 0%, 0.144) 0%,
-      hsla(0, 0%, 0%, 0.397) 10%,
-      hsl(0, 0%, 0%) 100%)
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 0%, 0.144) 0%,
+    hsla(0, 0%, 0%, 0.397) 10%,
+    hsl(0, 0%, 0%) 100%
+  );
+
+  /* transition: height 0.5s ease-in; */
 }
-.avatar{
+.avatar {
   width: -webkit-fill-available;
 }
 
 .card:hover {
-
   .avatar:hover,
   .avatar:focus-within {
-    @apply transition-transform duration-300 ease-[ease-in] scale-100;
+    @apply transition-transform duration-300   ease-[ease-in] scale-100;
   }
 
- &> .card_content {
-  @apply h-fit
+  .card_content {
+    @apply h-fit;
   }
 
-   &>.div_move {
-   @apply w-full
+  .div_move {
+    @apply w-full;
   }
 }
 
 @media (any-hover: hover) and (any-pointer: fine) {
-
   .card:hover,
   .card:focus-within {
     @apply transition-transform duration-300 ease-[ease-in] scale-105;
   }
 }
-
-

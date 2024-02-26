@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@calumk/editorjs-codeflask": "^1.0.9",
     "@editorjs/checklist": "^1.6.0",
     "@editorjs/delimiter": "^1.4.0",
     "@editorjs/editorjs": "^2.28.2",
@@ -27,6 +26,7 @@
     "@editorjs/underline": "^1.1.0",
     "@editorjs/warning": "^1.4.0",
     "@hookform/resolvers": "^3.3.2",
+    "@rxpm/editor-js-code": "^0.0.1",
     "axios": "^1.5.1",
     "editorjs-audio-player": "^0.0.3",
     "editorjs-button": "^1.0.4",
@@ -35,6 +35,7 @@
     "editorjs-html": "^3.4.3",
     "editorjs-latex": "^1.0.4",
     "editorjs-mermaid": "^1.0.0",
+    "editorjs-parser": "^1.5.3",
     "editorjs-style": "^3.0.3",
     "editorjs-video": "^1.1.0",
     "file-type": "^18.7.0",
@@ -44,6 +45,7 @@
     "next-auth": "^4.24.5",
     "next-nprogress-bar": "^2.1.2",
     "nextjs-toploader": "^1.6.4",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",

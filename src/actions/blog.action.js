@@ -4,6 +4,7 @@ import { Blog } from "@/models/blog.model";
 import { revalidatePath } from "next/cache";
 import { unlink } from "fs/promises";
 import { join } from "path";
+import { log } from "console";
 
 export const updateBlog = async ({
   title,
@@ -109,6 +110,21 @@ export const getBlogById = async (_id) => {
     const data = await Blog.findOne({ _id });
     return JSON.parse(JSON.stringify(data));
   } catch (error) {
+    throw new Error({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+export const getBlogBySlug = async (slug) => {
+  await connectToDb();
+  try {
+    const data = await Blog.findOne({ slug }).select(
+      "-_id -itemId  -altText -isActive"
+    );
+    return JSON.parse(JSON.stringify(data));
+  } catch (error) {
+    console.log(error);
     throw new Error({
       success: false,
       error: error.message,

@@ -118,6 +118,7 @@ export const getBioById = async (_id) => {
     });
   }
 };
+
 export const getPopularBiosByFans = async () => {
   await connectToDb();
   try {

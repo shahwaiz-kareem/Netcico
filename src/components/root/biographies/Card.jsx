@@ -30,7 +30,7 @@ const Card = ({
           />
         </Link>
         <div
-          className={`card_content  rounded-lg overflow-hidden ${
+          className={`card_content   rounded-lg overflow-hidden ${
             name.length < 20 ? "max-lg:h-32" : "max-lg:h-[10rem] "
           } flex h-14 flex-col px-2 py-2 text-white absolute bottom-0  w-full gap-3`}
         >
@@ -66,7 +66,7 @@ const Card = ({
               </span>
             </div>
           </div>
-          <div className="div_move absolute rounded-lg bottom-0 bg-[#1970d5] w-32 h-1 "></div>
+          <div className="div_move absolute transition-all duration-500 ease-in rounded-lg bottom-0 bg-[#1970d5] w-32 h-1 "></div>
         </div>
       </div>
     </article>

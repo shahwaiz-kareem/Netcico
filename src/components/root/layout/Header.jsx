@@ -25,13 +25,13 @@ const Header = () => {
         <div className="w-[50%]  max-sm:w-[50%]  max-md:w-[70%] m-auto">
           <div className="flex rounded-full border m-2 items-center ">
             <input
-              className="outline-none   py-2 px-4 w-full h-full border-none text-gray-600"
+              className="outline-none    px-4 w-full h-full border-none text-gray-600"
               type="text"
               placeholder="search..."
               name="search"
               id=""
             />
-            <button className="border rounded-r-full p-2 h-[49px] ">
+            <button className="border rounded-r-full px-2  h-[42px] ">
               <AiOutlineSearch className="text-2xl text-gray-800" />
             </button>
           </div>

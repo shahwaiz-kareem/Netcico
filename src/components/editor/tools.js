@@ -22,7 +22,7 @@ import EJLaTeX from "editorjs-latex";
 import FontSize from "editorjs-inline-font-size-tool";
 import Underline from "@editorjs/underline";
 import InlineCode from "@editorjs/inline-code";
-import editorjsCodeflask from "@calumk/editorjs-codeflask";
+import CodeTool from "@rxpm/editor-js-code";
 import ButtonLink from "editorjs-button";
 import Hyperlink from "editorjs-hyperlink";
 import ChangeCase from "editorjs-change-case";
@@ -87,7 +87,20 @@ export const Create_JS_TOOLS = {
   fontSize: FontSize,
 
   checkList: CheckList,
-  code: editorjsCodeflask,
+  code: {
+    class: CodeTool,
+    config: {
+      modes: {
+        js: "JavaScript",
+        py: "Python",
+        go: "Go",
+        cpp: "C++",
+        cs: "C#",
+        md: "Markdown",
+      },
+      defaultMode: "js",
+    },
+  },
   Color: {
     class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
     config: {
