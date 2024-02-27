@@ -11,7 +11,6 @@ import CheckList from "@editorjs/checklist";
 import AudioPlayer from "editorjs-audio-player";
 import RawTool from "@editorjs/raw";
 import VideoTool from "editorjs-video";
-import MermaidTool from "editorjs-mermaid";
 import ColorPlugin from "editorjs-text-color-plugin";
 import Tooltip from "editorjs-tooltip";
 import axios from "axios";
@@ -23,16 +22,14 @@ import FontSize from "editorjs-inline-font-size-tool";
 import Underline from "@editorjs/underline";
 import InlineCode from "@editorjs/inline-code";
 import CodeTool from "@rxpm/editor-js-code";
-import ButtonLink from "editorjs-button";
 import Hyperlink from "editorjs-hyperlink";
 import ChangeCase from "editorjs-change-case";
-import Quote from "@editorjs/quote";
 import TextSpolier from "editorjs-inline-spoiler-tool";
 export const Create_JS_TOOLS = {
   header: {
     class: Header,
   },
-  linkButton: ButtonLink,
+
   changeCase: {
     class: ChangeCase,
     config: {
@@ -40,7 +37,6 @@ export const Create_JS_TOOLS = {
       locale: "tr",
     },
   },
-  quote: Quote,
   raw: RawTool,
   embed: {
     class: Embed,
@@ -160,7 +156,7 @@ export const Create_JS_TOOLS = {
   delimiter: Delimiter,
   link: Link,
   warning: Warning,
-  mermaid: MermaidTool,
+  // mermaid: MermaidTool,
   image: {
     class: customeImageTool,
     config: {

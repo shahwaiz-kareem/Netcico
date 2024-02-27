@@ -293,7 +293,6 @@ const BioForm = ({
   const SaveToDatabase = async (active) => {
     await uploadThumbnailToServer()
       .then(async (res) => {
-        console.log("you this is your arr ", tableArr);
         const result = await updateBio({
           name,
           slug,
