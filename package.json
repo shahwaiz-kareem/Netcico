@@ -69,6 +69,7 @@
     "eslint-config-next": "^14.0.4",
     "postcss": "latest",
     "postcss-import": "^15.1.0",
+    "shiki": "^1.1.7",
     "simple-image-editorjs": "^1.4.0",
     "tailwindcss": "latest"
   }

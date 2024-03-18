@@ -11,9 +11,6 @@ const alegreya = Alegreya({ subsets: ["cyrillic"], weight: "500" });
 const Card = ({
   title,
   thumbnail,
-  likes,
-  views,
-  share,
   slug,
   category,
   metaDescription,
@@ -58,20 +55,6 @@ const Card = ({
           />
         </Link>
 
-        <div className="flex my-2 px-2 pt-2 items-center  gap-4">
-          <div className=" cursor-pointer flex items-center   gap-1">
-            <BsHandThumbsUp className="text-2xl  flex items-center  gap-1 font-light hover:fill-blue-500" />
-            <span className="text-sm">{formatter.format(likes)}</span>
-          </div>
-          <div className="  flex items-center  gap-1">
-            <AiOutlineEye className="text-2xl font-light" />
-            <span className="text-sm">{formatter.format(views)}</span>
-          </div>
-          <div className=" cursor-pointer flex items-center   gap-1">
-            <AiOutlineShareAlt className="text-2xl font-light hover:text-blue-500" />
-            <span className="text-sm">{formatter.format(share)}</span>
-          </div>
-        </div>
         <div className="py-2 px-2 flex flex-col gap-1">
           <Link href={`/blogs/${category}/${slug}`}>
             <h2 className={alegreya.className + "  md:text-xl font-bold"}>

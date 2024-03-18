@@ -107,7 +107,10 @@ export const getPublishedBlogsByCategory = async (category) => {
 export const getBlogById = async (_id) => {
   await connectToDb();
   try {
-    const data = await Blog.findOne({ _id });
+    const data = await Blog.findById(_id).select(
+      "-share -views -likes -createdAt -updatedAt -__v -_id -isActive"
+    );
+    revalidatePath(`/dashboard/blogs/update/${_id}`);
     return JSON.parse(JSON.stringify(data));
   } catch (error) {
     throw new Error({

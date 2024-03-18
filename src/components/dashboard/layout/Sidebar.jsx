@@ -18,7 +18,7 @@ const Sidebar = () => {
       ref={SidebarRef}
       className={`w-48  bg-zinc-950 rounded-tr-sm h-full  flex-col items-center justify-center   pb-2 `}
     >
-      <div className="w-full mt-4 h-full  flex flex-col gap-8 text-sm">
+      <div className="w-full mt-4 h-full  transition-all  duration-1000  flex flex-col gap-8 text-sm">
         <AdminLink
           Icon={BiSolidDashboard}
           text={"Dashboard"}

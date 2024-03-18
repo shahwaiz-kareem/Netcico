@@ -1,12 +1,12 @@
-import Image from 'next/image'
-import React from 'react'
-import { AiTwotoneHeart } from "react-icons/ai"
+import TabComp from "@/components/root/biographies/TabComp";
+import { TabPanel } from "react-tabs";
+import Image from "next/image";
+import { AiTwotoneHeart } from "react-icons/ai";
 const Page = (params) => {
   console.log(params);
   return (
     <>
-      <div className='flex flex-col justify-center'>
-        {/* nav */}
+      <div className="flex flex-col justify-center">
         <div>
           <main className="bg-gray-100 bg-opacity-25">
             <div className=" lg:mx-auto mb-8">
@@ -46,18 +46,17 @@ const Page = (params) => {
                   text-white font-semibold text-md rounded  text-center 
                   "
                     >
-                      <AiTwotoneHeart className='text-xl hover:text-red-500' />
+                      <AiTwotoneHeart className="text-xl hover:text-red-500" />
                       Fan
                     </button>
                   </div>
                   {/* post, following, followers list for medium screens */}
                   <ul className="hidden md:flex space-x-8 mb-4">
-
-                    <li className='flex gap-2'>
+                    <li className="flex gap-2">
                       <span className="font-semibold">40.5k</span>
                       Fans
                     </li>
-                    <li className='flex gap-2'>
+                    <li className="flex gap-2">
                       <span className="font-semibold">302</span>
                       Views
                     </li>
@@ -65,7 +64,10 @@ const Page = (params) => {
                   {/* user meta form medium screens */}
                   <div className="hidden md:block">
                     <h1 className="font-semibold">Programmer</h1>
-                    <span>"World is like a pendrive which stores memories of millions of people."</span>
+                    <span>
+                      "World is like a pendrive which stores memories of
+                      millions of people."
+                    </span>
                     <p></p>
                   </div>
                 </div>
@@ -84,57 +86,37 @@ const Page = (params) => {
           text-center p-2 text-gray-600 leading-snug text-sm"
                 >
                   <li>
-                    <span className="font-semibold text-gray-800 block">136</span>
+                    <span className="font-semibold text-gray-800 block">
+                      136
+                    </span>
                     posts
                   </li>
                   <li>
-                    <span className="font-semibold text-gray-800 block">40.5k</span>
+                    <span className="font-semibold text-gray-800 block">
+                      40.5k
+                    </span>
                     followers
                   </li>
                   <li>
-                    <span className="font-semibold text-gray-800 block">302</span>
+                    <span className="font-semibold text-gray-800 block">
+                      302
+                    </span>
                     following
                   </li>
                 </ul>
-
               </div>
             </div>
           </main>
         </div>
-        {/* tabs */}
-        <div className="space-y-5">
-          <div className="border-b border-b-gray-200">
-            <ul className="-mb-px flex items-center gap-4 text-sm font-medium">
-              <li className="flex-1">
-                <a
-                  href="#"
-                  className="relative flex items-center justify-center gap-2 px-1 py-3 text-blue-500 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-[#1970d5] hover:text-blue-400"
-                >
-                  Biography</a
-                >
-              </li>
-              <li className="flex-1">
-                <a href="#" className="flex items-center justify-center gap-2 px-1 py-3 text-gray-500 hover:text-blue-500">
-                  Gallery</a
-                >
-              </li>
 
-              <li className="flex-1">
-                <a href="#" className="flex items-center justify-center gap-2 px-1 py-3 text-gray-500 hover:text-blue-500">
-                  Table</a
-                >
-              </li>
-              <li className="flex-1">
-                <a href="#" className="flex items-center justify-center gap-2 px-1 py-3 text-gray-500 hover:text-blue-500"
-                >Fans</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+        <TabComp>
+          <TabPanel>first</TabPanel>
+          <TabPanel>second</TabPanel>
+          <TabPanel>third</TabPanel>
+        </TabComp>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

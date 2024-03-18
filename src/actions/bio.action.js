@@ -109,7 +109,9 @@ export const getDraftBios = async (_id) => {
 export const getBioById = async (_id) => {
   await connectToDb();
   try {
-    const data = await Bio.findOne({ _id });
+    const data = await Bio.findOne({ _id }).select(
+      "-share -views -fans -createdAt -updatedAt -__v -_id -isActive"
+    );
     return JSON.parse(JSON.stringify(data));
   } catch (error) {
     throw new Error({

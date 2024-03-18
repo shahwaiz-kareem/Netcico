@@ -29,8 +29,8 @@ const steps = [
 ];
 
 const BlogForm = ({
-  isUpdate,
   updateTitle,
+  itemId,
   updateSlug,
   updateCategory,
   updateAuthor,
@@ -38,9 +38,9 @@ const BlogForm = ({
   updateMetaDescription,
   updateTags,
   updateThumbnail,
-  itemId,
   updateAltText,
   updateContent,
+  isUpdate,
 }) => {
   const context = useContext(ThemeContext);
   const {
@@ -63,8 +63,8 @@ const BlogForm = ({
   const [intervalDelay, setIntervalDelay] = useState(null);
   const [categories, setCategores] = useState({});
   const { success, message } = submitSuccess;
-  let pathname = usePathname();
-  let onPage = pathname.split("/dashboard/").join(" ").split("/")[0].trim();
+  const pathname = usePathname();
+  const onPage = pathname.split("/dashboard/").join(" ").split("/")[0].trim();
 
   useEffect(() => {
     if (isUpdate) {
@@ -137,28 +137,27 @@ const BlogForm = ({
   const saveDataAsDraft = async () => {
     if (!isUpdate && !updatedAsDraft) {
       try {
-        await uploadThumbnail(thumbnailFormData, onPage).then(async (res) => {
-          setThumbnailUrl(res.thumbnailUrl);
-          const randomId = `${Math.random()
-            .toString(32)
-            .substr(2, 9)}${Date.now()}`;
-          setDraftId(randomId.toString());
-          await updateBlog({
-            title,
-            slug,
-            itemId: randomId,
-            author,
-            content: JSON.stringify(data),
-            altText,
-            category,
-            metaDescription,
-            metaTitle,
-            tags,
-            thumbnail: res.thumbnailUrl,
-          });
-          setUpdatedAsDraft(true);
-          return randomId;
+        const res = await uploadThumbnail(thumbnailFormData, onPage);
+        setThumbnailUrl(res.thumbnailUrl);
+        const randomId = `${Math.random()
+          .toString(32)
+          .substr(2, 9)}${Date.now()}`;
+        setDraftId(randomId.toString());
+        await updateBlog({
+          title,
+          slug,
+          itemId: randomId,
+          author,
+          content: JSON.stringify(data),
+          altText,
+          category,
+          metaDescription,
+          metaTitle,
+          tags,
+          thumbnail: res.thumbnailUrl,
         });
+        setUpdatedAsDraft(true);
+        return randomId;
       } catch (error) {
         await fetch("/api/upload/image/delete", {
           method: "Delete",
@@ -194,13 +193,11 @@ const BlogForm = ({
   };
 
   const useInterval = (callback, delay) => {
-    //
     const savedCallback = useRef();
     useEffect(() => {
       savedCallback.current = callback;
     }, [callback]);
 
-    // Set up the interval.
     useEffect(() => {
       const tick = () => {
         savedCallback.current();
@@ -236,28 +233,27 @@ const BlogForm = ({
   };
 
   const SaveToDatabase = async (active) => {
-    await uploadThumbnailToServer().then(async (res) => {
-      const result = await updateBlog({
-        title,
-        slug,
-        itemId: isUpdate ? itemId : draftId,
-        isActive: active,
-        author,
-        altText,
-        category,
-        content: JSON.stringify(data),
-        metaDescription,
-        metaTitle,
-        tags,
-        thumbnail: res.thumbnailUrl,
-      });
-      setSubmitSuccess({
-        success: result.success,
-        message: result.data !== null && result.data,
-      });
-      setSuccessDisplay("flex");
-      hideTag();
+    const res = await uploadThumbnailToServer();
+    const result = await updateBlog({
+      title,
+      slug,
+      itemId: isUpdate ? itemId : draftId,
+      isActive: active,
+      author,
+      altText,
+      category,
+      content: JSON.stringify(data),
+      metaDescription,
+      metaTitle,
+      tags,
+      thumbnail: res.thumbnailUrl,
     });
+    setSubmitSuccess({
+      success: result.success,
+      message: result.data !== null && result.data,
+    });
+    setSuccessDisplay("flex");
+    hideTag();
   };
 
   return (

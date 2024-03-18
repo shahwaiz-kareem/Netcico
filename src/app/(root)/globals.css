@@ -6,56 +6,39 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   font-family: ubuntu;
 }
 
-
-
 ::-webkit-scrollbar {
   width: 6px;
-
 }
 
-
-
-/* Track */
 ::-webkit-scrollbar-track {
   background: #ffffff;
   border-radius: 5px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #9c9c9c;
   border-radius: 5px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
-
-
-@media (max-width:780px) {
-  ::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@media (min-width:800px) and (max-width:1570px) {
+@media (min-width: 800px) and (max-width: 1570px) {
   .ml_20 {
     margin-right: 80px;
   }
 }
 
-@media (min-width:1570px) and (max-width:2060px) {
+@media (min-width: 1570px) and (max-width: 2060px) {
   .ml_20 {
     margin-right: 40px;
   }
 }
-
 
 .imp-light {
   font-weight: 300 !important;

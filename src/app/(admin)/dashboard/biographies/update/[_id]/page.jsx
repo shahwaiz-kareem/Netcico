@@ -1,42 +1,8 @@
-import { getBioById } from "@/actions/bio.action";
-import BioForm from "@/components/forms/BioForm";
+import UpdateBio from "@/components/dashboard/biograhpy/UpdateBio";
 
-const page = async ({ params }) => {
-  const data = await getBioById(params._id);
-  const {
-    name,
-    itemId,
-    content,
-    altText,
-    slug,
-    table,
-    category,
-    tags,
-    metaDescription,
-    metaTitle,
-    gallery,
-    author,
-    thumbnail,
-  } = data;
-
-  return (
-    <BioForm
-      isUpdate={true}
-      itemId={itemId}
-      updateAltText={altText}
-      galleryUrls={gallery}
-      updateCategory={category}
-      updateMetaDescription={metaDescription}
-      updateName={name}
-      updateTable={table}
-      updateMetaTitle={metaTitle}
-      updateAuthor={author}
-      updateSlug={slug}
-      updateTags={tags}
-      updateThumbnail={thumbnail}
-      updateContent={content}
-    />
-  );
+const page = ({ params }) => {
+  console.log(params);
+  return <UpdateBio params={params} />;
 };
 
 export default page;

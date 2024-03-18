@@ -4,8 +4,8 @@ import { IoShare } from "react-icons/io5";
 const AsideBar = ({ Onpage, views, share, likesOrFans }) => {
   const formatter = Intl.NumberFormat("en", { notation: "compact" });
   return (
-    <aside className="h-full hidden   min-[920px]:flex   w-[40%] ">
-      <div className=" w-full flex flex-col gap-6  sticky top-0  py-4">
+    <aside className="h-full hidden   min-[920px]:block   w-[40%] ">
+      <div className=" w-full flex flex-col gap-6  sticky top-20  py-2">
         <div className=" w-full border     border-gray-200 rounded-lg p-4 shadow-lg flex flex-col gap-2 ">
           <h3 className="font-semibold text-gray-800">Reactions</h3>
 

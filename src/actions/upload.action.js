@@ -5,8 +5,8 @@ import path from "path";
 import sharp from "sharp";
 
 export const uploadThumbnail = async (data, type, height, width) => {
-  console.log(data);
   const file = data.get("file");
+
   if (!file || file.name == "undefined")
     return {
       success: false,
