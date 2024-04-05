@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import "prismjs/themes/prism.css";
 #container img {
   margin: 12px 0;
   border-radius: 12px;
@@ -19,9 +19,12 @@
   border-radius: 8px;
   width: 60vw;
   line-height: 1.5;
-  overflow-x: scroll;
+  overflow-x: auto;
   background-color: #f5f5f5;
   background-position: 23px;
+}
+.code-toolbar pre {
+  width: 90%;
 }
 
 #container h2 {
@@ -56,6 +59,11 @@
 
 @media screen and (max-width: 920px) {
   #container .code-toolbar {
-    width: 90vw;
+    width: 92vw;
+  }
+}
+@media screen and (max-width: 920px) and (min-width: 800px) {
+  #container .code-toolbar {
+    width: 88vw;
   }
 }

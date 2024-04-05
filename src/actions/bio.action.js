@@ -69,6 +69,18 @@ export const getAllBios = async () => {
     });
   }
 };
+export const getBioBySlug = async (slug) => {
+  await connectToDb();
+  try {
+    const data = await Bio.findOne({ slug });
+    return JSON.parse(JSON.stringify(data));
+  } catch (error) {
+    throw new Error({
+      success: false,
+      error: error.message,
+    });
+  }
+};
 
 export const getPublishedBios = async () => {
   await connectToDb();

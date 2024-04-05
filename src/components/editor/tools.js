@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import Header from "editorjs-header-with-alignment";
 import Paragraph from "@editorjs/paragraph";
 import customeImageTool from "./customeTools";
@@ -13,11 +14,9 @@ import RawTool from "@editorjs/raw";
 import VideoTool from "editorjs-video";
 import ColorPlugin from "editorjs-text-color-plugin";
 import Tooltip from "editorjs-tooltip";
-import axios from "axios";
 import ImageGallery from "editorjs-gallery";
 import Table from "editorjs-table";
 import TextVariantTune from "@editorjs/text-variant-tune";
-import EJLaTeX from "editorjs-latex";
 import FontSize from "editorjs-inline-font-size-tool";
 import Underline from "@editorjs/underline";
 import InlineCode from "@editorjs/inline-code";
@@ -68,13 +67,7 @@ export const Create_JS_TOOLS = {
     },
   },
   underline: Underline,
-  Math: {
-    class: EJLaTeX,
-    shortcut: "CMD+SHIFT+M",
-    config: {
-      css: ".math-input-wrapper { padding: 5px; }",
-    },
-  },
+
   paragraph: {
     class: Paragraph,
     inlineToolbar: true,

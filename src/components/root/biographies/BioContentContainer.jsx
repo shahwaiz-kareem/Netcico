@@ -1,9 +1,12 @@
-import TabComp from "@/components/root/biographies/TabComp";
-import { TabPanel } from "react-tabs";
+import TabComponent from "@/components/root/biographies/TabComponent";
 import Image from "next/image";
 import { AiTwotoneHeart } from "react-icons/ai";
-const Page = (params) => {
-  console.log(params);
+import { getBioBySlug } from "@/actions/bio.action";
+import BioTabPanel from "./BioTabPanel";
+
+const BioContentContainer = async ({ slug }) => {
+  const data = await getBioBySlug(slug);
+
   return (
     <>
       <div className="flex flex-col justify-center">
@@ -12,12 +15,11 @@ const Page = (params) => {
             <div className=" lg:mx-auto mb-8">
               <header className="flex flex-wrap items-center p-4 md:py-8">
                 <div className="md:w-3/12 md:ml-16">
-                  {/* profile image */}
                   <Image
+                    width={700}
                     height={500}
-                    width={500}
                     className="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
-               border-2 border-blue-500 p-1"
+                   border-2 border-blue-500 p-1"
                     src="https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
                     alt="profile"
                   />
@@ -26,25 +28,25 @@ const Page = (params) => {
                 <div className="w-8/12 md:w-7/12 ml-4">
                   <div className="md:flex md:flex-wrap md:items-center mb-4">
                     <h2 className="font-light imp-light  text-3xl text-gray-800  md:mr-2 mb-2 sm:mb-0">
-                      __shahwaix_23k
+                      {data.name}
                     </h2>
-                    {/* badge */}
+
                     <span
                       className="inline-block fas fa-certificate fa-lg text-blue-500 
-                          mr-6 text-xl transform -translate-y-2"
+                      mr-6 text-xl transform -translate-y-2"
                       aria-hidden="true"
                     >
                       <i
                         className="fas fa-check text-white text-xs absolute inset-x-0
-                         ml-1 mt-px"
+                     ml-1 mt-px"
                       />
                     </span>
                     {/* follow button */}
                     <button
                       href="#"
                       className="flex justify-center items-center gap-2 bg-[#1970d5] hover:bg-blue-600  px-4 py-1 
-                  text-white font-semibold text-md rounded  text-center 
-                  "
+              text-white font-semibold text-md rounded  text-center 
+              "
                     >
                       <AiTwotoneHeart className="text-xl hover:text-red-500" />
                       Fan
@@ -83,7 +85,7 @@ const Page = (params) => {
                 {/* user following for mobile only */}
                 <ul
                   className="flex md:hidden justify-around space-x-8 border-t 
-          text-center p-2 text-gray-600 leading-snug text-sm"
+      text-center p-2 text-gray-600 leading-snug text-sm"
                 >
                   <li>
                     <span className="font-semibold text-gray-800 block">
@@ -108,15 +110,18 @@ const Page = (params) => {
             </div>
           </main>
         </div>
-
-        <TabComp>
-          <TabPanel>first</TabPanel>
-          <TabPanel>second</TabPanel>
-          <TabPanel>third</TabPanel>
-        </TabComp>
+        <main className="relative h-full">
+          <TabComponent
+            children={[
+              <BioTabPanel data={data} />,
+              <h1>hello</h1>,
+              <h2>h2 hello</h2>,
+            ]}
+          />
+        </main>
       </div>
     </>
   );
 };
 
-export default Page;
+export default BioContentContainer;

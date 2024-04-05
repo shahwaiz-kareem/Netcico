@@ -2,30 +2,17 @@ import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 
 export const codeBlockParser = ({ data }) => {
+  console.log(data);
   const code = Prism.highlight(data.code, Prism.languages.javascript);
-  const btnId = `${Date.now().toString(36)}`;
   return `
-
-  <div class="flex flex-col   relative my-4 code-toolbar">
-   <button id=${btnId} class="absolute shadow rounded-xl py-1 px-2 bg-gray-500 text-white right-0 top-1 mt-4 mr-2 cursor-pointer hover:bg-gray-800">
-   copy
-   </button>
+  <div  class="flex flex-col h-[40vh]   my-4 code-toolbar">
   <pre className="language-javascript">
   <code >
   ${code}
   </code>
   </pre>
   </div>
-  <script >
-    document.getElementById('${btnId}').addEventListener('click' , (e)=>{
-     e.preventDefault();
-     navigator.clipboard.writeText(\`${data.code}\`);
-     document.getElementById('${btnId}').innerText = 'copied!';
-     setTimeout(()=>{
-      document.getElementById('${btnId}').innerText = 'copy';
-     },5000)
-    } )
-  </script>
+ 
   `;
 };
 export const rawHtmlBlockParser = ({ data }) => {
@@ -58,10 +45,10 @@ export const tableBlockParse = ({ data }) => {
 
   return `
 
-    <div class="overflow-x-auto max-w-[90vw] sm:max-w-[60vw]   my-4">
+    <div class="overflow-x-auto max-w-[90vw] lg:max-w-[61vw] py-2 md:pr-4 my-4">
     <table class=" w-full divide-y divide-gray-200">
-      <thead class="bg-gray-100 rounded-lg">
-          <tr>
+      <thead class="bg-gray-100  rounded-lg">
+          <tr  class="flex w-full" >
             ${theadArr
               .map((item) => {
                 return `<th scope="col" class="px-6 w-full py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">${item}</th>`;
@@ -69,13 +56,13 @@ export const tableBlockParse = ({ data }) => {
               .join("")}
           </tr>
         </thead>
-        <tbody class=" divide-y rounded-lg ">
+        <tbody class=" rounded-lg ">
           ${tbodyArr
             .map((row) => {
-              return `<tr>
+              return `<tr class="flex   w-full ">
               ${row
                 .map((item) => {
-                  return `<td class="w-full border tracking-wider text-sm py-4 px-4">${item}</td>`;
+                  return `<td class="w-full  border border-gray-100  text-sm py-4 px-4">${item}</td>`;
                 })
                 .join("")}
             </tr>`;
