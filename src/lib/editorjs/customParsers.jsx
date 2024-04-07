@@ -2,10 +2,9 @@ import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 
 export const codeBlockParser = ({ data }) => {
-  console.log(data);
   const code = Prism.highlight(data.code, Prism.languages.javascript);
   return `
-  <div  class="flex flex-col h-[40vh]   my-4 code-toolbar">
+  <div  class="flex flex-col   my-4 code-toolbar">
   <pre className="language-javascript">
   <code >
   ${code}
@@ -22,7 +21,7 @@ export const rawHtmlBlockParser = ({ data }) => {
   </div>
   `;
 };
-
+Intl.NumberFormat();
 export const checkListBlockParser = ({ data }) => {
   return `
   <ul style="list-style-type: none; " class="my-4">

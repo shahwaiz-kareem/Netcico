@@ -3,6 +3,8 @@ import Image from "next/image";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { getBioBySlug } from "@/actions/bio.action";
 import BioTabPanel from "./BioTabPanel";
+import BioGalleryTabPanel from "./BioGalleryTabPanel";
+import BioTablePanel from "./BioTablePanel";
 
 const BioContentContainer = async ({ slug }) => {
   const data = await getBioBySlug(slug);
@@ -20,12 +22,12 @@ const BioContentContainer = async ({ slug }) => {
                     height={500}
                     className="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
                    border-2 border-blue-500 p-1"
-                    src="https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+                    src={data.thumbnail}
                     alt="profile"
                   />
                 </div>
-                {/* profile meta */}
-                <div className="w-8/12 md:w-7/12 ml-4">
+
+                <div className="w-8/12 md:w-7/12 ">
                   <div className="md:flex md:flex-wrap md:items-center mb-4">
                     <h2 className="font-light imp-light  text-3xl text-gray-800  md:mr-2 mb-2 sm:mb-0">
                       {data.name}
@@ -41,7 +43,7 @@ const BioContentContainer = async ({ slug }) => {
                      ml-1 mt-px"
                       />
                     </span>
-                    {/* follow button */}
+
                     <button
                       href="#"
                       className="flex justify-center items-center gap-2 bg-[#1970d5] hover:bg-blue-600  px-4 py-1 
@@ -52,7 +54,7 @@ const BioContentContainer = async ({ slug }) => {
                       Fan
                     </button>
                   </div>
-                  {/* post, following, followers list for medium screens */}
+
                   <ul className="hidden md:flex space-x-8 mb-4">
                     <li className="flex gap-2">
                       <span className="font-semibold">40.5k</span>
@@ -65,11 +67,8 @@ const BioContentContainer = async ({ slug }) => {
                   </ul>
                   {/* user meta form medium screens */}
                   <div className="hidden md:block">
-                    <h1 className="font-semibold">Programmer</h1>
-                    <span>
-                      "World is like a pendrive which stores memories of
-                      millions of people."
-                    </span>
+                    <h1 className="font-semibold">{data.category}</h1>
+
                     <p></p>
                   </div>
                 </div>
@@ -110,12 +109,12 @@ const BioContentContainer = async ({ slug }) => {
             </div>
           </main>
         </div>
-        <main className="relative h-full">
+        <main>
           <TabComponent
             children={[
               <BioTabPanel data={data} />,
-              <h1>hello</h1>,
-              <h2>h2 hello</h2>,
+              <BioGalleryTabPanel data={data.gallery} />,
+              <BioTablePanel tableData={data.table} />,
             ]}
           />
         </main>

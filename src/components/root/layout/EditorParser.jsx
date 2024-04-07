@@ -14,7 +14,6 @@ const edjsParser = edjsHTML({
 });
 
 const EditorParser = ({ data }) => {
-  console.log(data);
   const html = edjsParser.parseStrict(data).join("");
   return <div id="container" dangerouslySetInnerHTML={{ __html: html }} />;
 };

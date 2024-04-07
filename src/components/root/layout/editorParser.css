@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "prismjs/themes/prism.css";
+
 #container img {
   margin: 12px 0;
   border-radius: 12px;
@@ -20,6 +20,8 @@
   width: 60vw;
   line-height: 1.5;
   overflow-x: auto;
+  height: 60vh;
+  overflow-y: auto;
   background-color: #f5f5f5;
   background-position: 23px;
 }
@@ -39,8 +41,12 @@
 #container h5 {
   font-size: 0.5rem !important;
 }
+
 #container h6 {
   font-size: 0.25rem !important;
+}
+#container img {
+  height: 100%;
 }
 
 .code-toolbar pre {

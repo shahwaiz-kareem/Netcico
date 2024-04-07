@@ -3,7 +3,7 @@ import Reactions from "@/components/forms/Reactions";
 
 const AsideBar = ({ Onpage, views, share, likesOrFans }) => {
   return (
-    <aside className="h-full hidden   min-[920px]:block   w-[40%] ">
+    <aside className="h-full hidden    min-[920px]:block   w-[40%] ">
       <div className=" w-full flex flex-col gap-10  sticky top-20  py-6">
         <Reactions
           views={views}
