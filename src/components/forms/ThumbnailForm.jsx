@@ -42,6 +42,7 @@ const ThumbnailForm = ({ isUpdate, updateThumbnailUrl }) => {
       >
         <AiFillPicture className=" h-10 w-10 mt-4" />
         <input
+          accept="image/*"
           ref={uploadInp}
           onChange={handleChange}
           type="file"

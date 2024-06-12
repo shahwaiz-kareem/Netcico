@@ -13,7 +13,7 @@ const UpdateBio = ({ params }) => {
     itemId: "",
     metaDescription: "",
     content: "{}",
-    tags: "",
+
     thumbnail: "",
     altText: "",
   });
@@ -35,7 +35,7 @@ const UpdateBio = ({ params }) => {
     slug,
     table,
     category,
-    tags,
+
     metaDescription,
     metaTitle,
     gallery,
@@ -62,7 +62,6 @@ const UpdateBio = ({ params }) => {
           updateMetaTitle={metaTitle}
           updateAuthor={author}
           updateSlug={slug}
-          updateTags={tags}
           updateThumbnail={thumbnail}
           updateContent={content}
         />

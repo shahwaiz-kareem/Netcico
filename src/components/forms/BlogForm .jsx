@@ -36,7 +36,7 @@ const BlogForm = ({
   updateAuthor,
   updateMetaTitle,
   updateMetaDescription,
-  updateTags,
+
   updateThumbnail,
   updateAltText,
   updateContent,
@@ -93,7 +93,7 @@ const BlogForm = ({
       category: updateCategory || "",
       metaTitle: updateMetaTitle || "",
       metaDescription: updateMetaDescription || "",
-      tags: updateTags || "",
+
       thumbnail: updateThumbnail || "",
       altText: updateAltText || "",
     },
@@ -101,16 +101,8 @@ const BlogForm = ({
     resolver: zodResolver(blogSchema),
   });
 
-  const {
-    title,
-    slug,
-    author,
-    altText,
-    category,
-    metaDescription,
-    metaTitle,
-    tags,
-  } = getValues();
+  const { title, slug, author, altText, category, metaDescription, metaTitle } =
+    getValues();
 
   const uploadThumbnailToServer = async () => {
     const responce = await uploadThumbnail(thumbnailFormData, onPage);
@@ -153,7 +145,7 @@ const BlogForm = ({
           category,
           metaDescription,
           metaTitle,
-          tags,
+
           thumbnail: res.thumbnailUrl,
         });
         setUpdatedAsDraft(true);
@@ -245,7 +237,7 @@ const BlogForm = ({
       content: JSON.stringify(data),
       metaDescription,
       metaTitle,
-      tags,
+
       thumbnail: res.thumbnailUrl,
     });
     setSubmitSuccess({
@@ -333,12 +325,6 @@ const BlogForm = ({
                 placeholder="description(SEO)"
                 className="px-2 py-3 rounded-lg bg-zinc-900 outline-none"
                 {...register("metaDescription")}
-              />
-              <input
-                type="text"
-                placeholder="tags"
-                className="px-2 py-3 rounded-lg bg-zinc-900 outline-none"
-                {...register("tags")}
               />
             </div>
             <div className="flex flex-col gap-8">

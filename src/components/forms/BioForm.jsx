@@ -2,7 +2,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
-import { bioSchema } from "../../lib/validation/BioSchema";
+import { bioSchema } from "@/lib/validation/BioSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThemeContext } from "@/context/ThemeContext";
 import Editor from "../editor/Editor";
@@ -19,6 +19,16 @@ const steps = [
   {
     step: 0,
     name: "Basic Information",
+    fields: [
+      "name",
+      "slug",
+      "author",
+      "category",
+      "metaTitle",
+      "metaDescription",
+      "thumbnail",
+      "altText",
+    ],
   },
   {
     step: 1,
@@ -90,7 +100,6 @@ const BioForm = ({
   updateMetaTitle,
   updateMetaDescription,
   galleryUrls,
-  updateTags,
   updateThumbnail,
   itemId,
   updateAltText,
@@ -143,7 +152,7 @@ const BioForm = ({
     });
   }, []);
 
-  const { register, getValues, setValue, formState } = useForm({
+  const { register, getValues, setValue, trigger } = useForm({
     defaultValues: {
       name: updateName || "",
       slug: updateSlug || "",
@@ -151,7 +160,6 @@ const BioForm = ({
       category: updateCategory || "",
       metaTitle: updateMetaTitle || "",
       metaDescription: updateMetaDescription || "",
-      tags: updateTags || "",
       thumbnail: updateThumbnail || "",
       altText: updateAltText || "",
     },
@@ -159,36 +167,32 @@ const BioForm = ({
     resolver: zodResolver(bioSchema),
   });
 
-  const {
-    name,
-    slug,
-    author,
-    altText,
-    category,
-    metaDescription,
-    metaTitle,
-    tags,
-  } = getValues();
+  const { name, slug, author, altText, category, metaDescription, metaTitle } =
+    getValues();
   const uploadThumbnailToServer = async () => {
-    const responce = await uploadThumbnail(thumbnailFormData, onPage);
-    const { success, thumbnailUrl } = responce;
-    if (success) {
-      if (isUpdate && updatedThumb) {
-        try {
-          await fetch("/api/upload/image/delete", {
-            method: "Delete",
-            body: JSON.stringify({
-              url: updateThumbnail,
-            }),
-          });
-        } catch (error) {
-          console.log(
-            "Your thumbnail was uploaded but previous one not deleted " + error
-          );
-        }
+    const response = await uploadThumbnail(isUpdate, thumbnailFormData, onPage);
+    const { success, thumbnailUrl } = response;
+
+    if (success && isUpdate && updatedThumb) {
+      console.log("in the journey");
+      try {
+        await fetch("/api/upload/image/delete", {
+          method: "Delete",
+          body: JSON.stringify({
+            url: updateThumbnail,
+          }),
+        });
+      } catch (error) {
+        console.log(
+          "Your thumbnail was uploaded but previous one not deleted " + error
+        );
       }
     }
-    return { success, thumbnailUrl };
+
+    return {
+      success,
+      thumbnailUrl,
+    };
   };
 
   const saveDataAsDraft = async () => {
@@ -210,7 +214,6 @@ const BioForm = ({
             category,
             metaDescription,
             metaTitle,
-            tags,
             thumbnail: res.thumbnailUrl,
           });
           setUpdatedAsDraft(true);
@@ -241,16 +244,16 @@ const BioForm = ({
   };
 
   const nextStep = async () => {
+    const fields = steps[0].fields;
+    const output = await trigger(fields, { shouldFocus: true });
     if (currentStep.step === steps.length - 1) return;
-    if (isUpdate && formState.isValid)
-      setCurrentStep(steps[currentStep.step + 1]);
-    if (formState.isValid && !success && thumbnailUrl !== "") {
+    if (!output) return;
+    if (!success && thumbnailUrl !== "") {
       setCurrentStep(steps[currentStep.step + 1]);
     }
   };
 
   const useInterval = (callback, delay) => {
-    //
     const savedCallback = useRef();
     useEffect(() => {
       savedCallback.current = callback;
@@ -291,43 +294,55 @@ const BioForm = ({
   };
 
   const SaveToDatabase = async (active) => {
-    await uploadThumbnailToServer()
-      .then(async (res) => {
-        const result = await updateBio({
-          name,
-          slug,
-          itemId: isUpdate ? itemId : draftId,
-          isActive: active,
-          author,
-          table: tableArr,
-          altText,
-          category,
-          content: JSON.stringify(data),
-          metaDescription,
-          metaTitle,
-          tags,
-          thumbnail: res.thumbnailUrl,
-        });
-        await uploadGallery(
-          isUpdate ? itemId : draftId,
-          galleryData,
-          captionArr,
-          pathname
-        );
-        setSubmitSuccess({
-          success: result.success,
-          message: result.data !== null && result.data,
-        });
-        setSuccessDisplay("flex");
-        hideTag();
-        setData("");
-      })
-      .catch((error) => {
-        setSubmitSuccess({
-          success: false,
-          message: `Thumbnail not uploaded! error ${error}`,
-        });
-      });
+    const uploadThumbnailRes = await uploadThumbnailToServer();
+    const formDataRes = await updateBio({
+      name,
+      slug,
+      itemId: isUpdate ? itemId : draftId,
+      isActive: active,
+      author,
+      table: tableArr,
+      altText,
+      category,
+      content: JSON.stringify(data),
+      metaDescription,
+      metaTitle,
+      thumbnail: uploadThumbnailRes.thumbnailUrl,
+    });
+
+    const uploadGalleryData = await uploadGallery(
+      isUpdate ? itemId : draftId,
+      galleryData,
+      captionArr,
+      pathname
+    );
+    const findError = () => {
+      let error = "";
+      if (uploadGalleryData.success === false) {
+        error += "Gallery ";
+      }
+      if (formDataRes.success === false) {
+        error += "Form Data ";
+      }
+      if (uploadThumbnailRes.success === false) {
+        error += "Thumbnail ";
+      }
+      return error;
+    };
+    const error = findError();
+    const successVal =
+      formDataRes.success &&
+      uploadGalleryData.success &&
+      uploadThumbnailRes.success;
+    setSubmitSuccess({
+      success: successVal,
+      message: successVal
+        ? "All your data has been sent successfully!"
+        : `There is something wrong with your ${error}`,
+    });
+
+    setSuccessDisplay("flex");
+    hideTag();
   };
 
   return (
@@ -408,12 +423,6 @@ const BioForm = ({
                 placeholder="description(SEO)"
                 className="px-2 py-3 rounded-lg bg-zinc-900 outline-none"
                 {...register("metaDescription")}
-              />
-              <input
-                type="text"
-                placeholder="tags"
-                className="px-2 py-3 rounded-lg bg-zinc-900 outline-none"
-                {...register("tags")}
               />
             </div>
             <div className="flex flex-col gap-8">

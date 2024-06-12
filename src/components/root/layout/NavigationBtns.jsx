@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 const NavigationBtns = () => {
   const pathname = usePathname();
-  const onPage = pathname.split("/").at(1);
+  const onPage = pathname.split("/")[1];
   return (
     <>
       <div

@@ -15,7 +15,7 @@ export const bioSchema = z.object({
   metaDescription: z
     .string()
     .min(2, "Your description should be at least two characters long!"),
-  tags: z.string(),
+
   altText: z
     .string()
     .min(2, "Your alternate text should be at least two characters long!"),

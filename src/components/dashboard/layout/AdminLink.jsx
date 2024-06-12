@@ -19,6 +19,5 @@ const AdminLink = ({ link, Icon, text }) => {
     </Link>
   );
 };
-debugger;
 
 export default AdminLink;

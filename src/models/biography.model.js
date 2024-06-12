@@ -8,7 +8,7 @@ const BioSchema = new mongoose.Schema(
     author: { type: String, required: true },
     itemId: { type: String, unique: true, required: true },
     thumbnail: { type: String, required: true },
-    tags: { type: String, required: true },
+
     altText: { type: String, required: true },
     table: [
       {

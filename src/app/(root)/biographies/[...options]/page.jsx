@@ -10,14 +10,14 @@ export const metadata = {
 };
 
 const Page = async ({ params }) => {
-  const biographies = await getPublishedBiosByCategory(params.options.at(0));
+  const biographies = await getPublishedBiosByCategory(params.options[0]);
   return (
     <>
       {params.options.length <= 1 ? (
         <>
           <div className=" mt-2">
             <span className=" flex items-center flex-wrap gap-2 text-xl  md:text-2xl   sm:text-left pl-4 text-gray-800 ">
-              Biographies of {params.options.at(0)}
+              Biographies of {params.options[0]}
               <p className="text-sm"> ({biographies.length} results found)</p>
             </span>
           </div>
@@ -47,7 +47,7 @@ const Page = async ({ params }) => {
           </section>
         </>
       ) : (
-        <BioContentContainer slug={params.options.at(1)} />
+        <BioContentContainer slug={params.options[1]} />
       )}
     </>
   );

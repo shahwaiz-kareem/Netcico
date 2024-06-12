@@ -9,17 +9,13 @@ import Embed from "@editorjs/embed";
 import Delimiter from "@editorjs/delimiter";
 import Warning from "@editorjs/warning";
 import CheckList from "@editorjs/checklist";
-import AudioPlayer from "editorjs-audio-player";
 import RawTool from "@editorjs/raw";
-import VideoTool from "editorjs-video";
 import ColorPlugin from "editorjs-text-color-plugin";
 import Tooltip from "editorjs-tooltip";
-import ImageGallery from "editorjs-gallery";
 import Table from "editorjs-table";
 import TextVariantTune from "@editorjs/text-variant-tune";
 import FontSize from "editorjs-inline-font-size-tool";
 import Underline from "@editorjs/underline";
-import InlineCode from "@editorjs/inline-code";
 import CodeTool from "@rxpm/editor-js-code";
 import Hyperlink from "editorjs-hyperlink";
 import ChangeCase from "editorjs-change-case";
@@ -41,11 +37,7 @@ export const Create_JS_TOOLS = {
     class: Embed,
     inlineToolbar: true,
   },
-  audioplayer: AudioPlayer,
-  inlineCode: {
-    class: InlineCode,
-    shortcut: "CMD+SHIFT+M",
-  },
+
   list: {
     class: NestedList,
     inlineToolbar: true,
@@ -91,7 +83,7 @@ export const Create_JS_TOOLS = {
     },
   },
   Color: {
-    class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+    class: ColorPlugin,
     config: {
       colorCollections: [
         "#EC7878",
@@ -108,11 +100,11 @@ export const Create_JS_TOOLS = {
       ],
       defaultColor: "#FF1300",
       type: "text",
-      customPicker: true, // add a button to allow selecting any colour
+      customPicker: true,
     },
   },
   Marker: {
-    class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+    class: ColorPlugin,
     config: {
       defaultColor: "#FFBF00",
       type: "marker",
@@ -128,14 +120,7 @@ export const Create_JS_TOOLS = {
       cols: 3,
     },
   },
-  gallery: {
-    class: ImageGallery,
-    config: {
-      endpoints: {
-        byFile: "http://localNEXT_PUBLIC_HOST:8008/uploadFile",
-      },
-    },
-  },
+
   tooltip: {
     class: Tooltip,
     config: {
@@ -176,35 +161,6 @@ export const Create_JS_TOOLS = {
         },
       },
       inlineToolbar: true,
-    },
-  },
-  video: {
-    class: VideoTool,
-    config: {
-      endpoints: {
-        byFile: "http://localNEXT_PUBLIC_HOST:8008/uploadFile", // Your backend file uploader endpoint
-        byUrl: "http://localNEXT_PUBLIC_HOST:8008/fetchUrl", // Your endpoint that provides uploading by Url
-      },
-    },
-  },
-};
-export const Gallery_Tool = {
-  gallery: {
-    class: ImageGallery,
-    config: {
-      endpoints: {
-        byFile: "http://localNEXT_PUBLIC_HOST:8008/uploadFile",
-      },
-    },
-  },
-};
-export const Table_Tool = {
-  table: {
-    class: Table,
-    inlineToolbar: true,
-    config: {
-      rows: 2,
-      cols: 3,
     },
   },
 };

@@ -11,8 +11,8 @@ const Wrapper = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [scrollRight, setScrollRight] = useState(0);
   const pathname = usePathname();
-  const onPage = pathname.split("/").at(1);
-  const currentCategory = pathname.split("/").at(2);
+  const onPage = pathname.split("/")[1];
+  const currentCategory = pathname.split("/")[2];
 
   const getCategoriesFromDb = async () => {
     const dbCategories = await getCategories(pathname === "/" ? "all" : onPage);
@@ -37,6 +37,7 @@ const Wrapper = () => {
     setScrollLeft(scrollLeft);
   };
 
+  console.log(currentCategory);
   return (
     <div className="flex items-center  w-full">
       <button
@@ -63,7 +64,7 @@ const Wrapper = () => {
             >
               <Chip
                 text={item.category}
-                active={currentCategory === item.category}
+                active={currentCategory?.trim() === item.category.trim()}
               />
             </Link>
           );

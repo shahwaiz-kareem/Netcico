@@ -1,8 +1,8 @@
 "use client";
-import { deleteImageFromGallery } from "@/actions/bio.action";
-import { useRouter } from "next/navigation";
+
 import React, { useRef, useState } from "react";
-import { AiFillDelete, AiFillPicture } from "react-icons/ai";
+import { AiFillPicture } from "react-icons/ai";
+import GalleryPreview from "../dashboard/biograhpy/GalleryPreview";
 
 const Gallery = ({
   galleryData,
@@ -16,8 +16,9 @@ const Gallery = ({
   const fileRef = useRef(null);
   const [isUpdateAndUploaded, setIsUpdateAndUploaded] = useState(false);
   const [caption, setCaption] = useState("");
+  const [galleryUrlArr, setGalleryUrlArr] = useState(galleryUrls);
+
   const [uploadDisable, setUploadDisable] = useState(true);
-  const router = useRouter();
   const handleClick = () => {
     fileRef.current.click();
   };
@@ -34,33 +35,16 @@ const Gallery = ({
     }
     setGalleryData(newFormData);
     setCaption("");
-    router.refresh();
-  };
-
-  const deleteFromGallery = async (index) => {
-    if (isUpdate) {
-      await deleteImageFromGallery(itemId, index, pathname);
-    } else {
-      const newFormData = galleryData;
-      const files = newFormData.getAll("file");
-      files.splice(index, 1);
-      newFormData.delete("file");
-      files.forEach((file) => {
-        newFormData.append("file", file);
-      });
-      setGalleryData(newFormData);
-      setCaptionArr((prev) => prev.filter((e, i) => i !== index));
-    }
-    router.refresh();
   };
 
   return (
-    <div className="flex flex-row  mt-4 w-full gap-4  flex-wrap">
+    <div className="flex flex-row  mt-2 w-full  gap-4 flex-wrap">
       <form
         className="flex flex-initial rounded-xl gap-4 h-[180px]  w-[200px] items-center border-2 flex-col 
       border-dashed border-white justify-center py-2 px-4"
       >
         <input
+          accept="image/*"
           className="hidden"
           disabled={uploadDisable}
           onChange={handleChange}
@@ -89,38 +73,17 @@ const Gallery = ({
           placeholder="Add caption to upload!"
         />
       </form>
-
-      {(isUpdate ? galleryUrls : galleryData.getAll(`file`)).map((e, index) => (
-        <div key={index} className="h-[180px] w-[200px] relative">
-          <img
-            src={
-              isUpdate
-                ? `${process.env.NEXT_PUBLIC_HOST}${e.url}`
-                : URL.createObjectURL(e)
-            }
-            alt={`Gallery Image ${index}`}
-            className="h-full w-full rounded-xl"
-          />
-          <AiFillDelete
-            onClick={() => deleteFromGallery(index)}
-            className="cursor-pointer absolute text-3xl hover:text-red-500 hover:transition-transform shadow-lg top-0 right-0 mr-2 mt-1"
-          />
-        </div>
-      ))}
-      {isUpdateAndUploaded &&
-        galleryData.getAll("file").map((e, index) => (
-          <div key={index} className="h-[180px] w-[200px] relative">
-            <img
-              src={URL.createObjectURL(e)}
-              alt={`Gallery Image ${index}`}
-              className="h-full w-full rounded-xl"
-            />
-            <AiFillDelete
-              onClick={() => deleteFromGallery(index)}
-              className=" absolute text-3xl hover:text-red-500 hover:transition-transform shadow-lg top-0 right-0 mr-2 mt-1"
-            />
-          </div>
-        ))}
+      <GalleryPreview
+        galleryData={galleryData}
+        galleryUrls={galleryUrlArr}
+        setGalleryUrlArr={setGalleryUrlArr}
+        isUpdate={isUpdate}
+        isUpdateAndUploaded={isUpdateAndUploaded}
+        setGalleryData={setGalleryData}
+        setCaptionArr={setCaptionArr}
+        pathname={pathname}
+        itemId={itemId}
+      />
     </div>
   );
 };

@@ -13,7 +13,7 @@ const UpdateBlog = ({ params }) => {
     itemId: "",
     metaDescription: "",
     content: "{}",
-    tags: "",
+
     thumbnail: "",
     altText: "",
   });
@@ -35,7 +35,7 @@ const UpdateBlog = ({ params }) => {
     metaTitle,
     metaDescription,
     content,
-    tags,
+
     thumbnail,
     altText,
     itemId,
@@ -55,7 +55,6 @@ const UpdateBlog = ({ params }) => {
           updateAuthor={author}
           updateMetaTitle={metaTitle}
           updateMetaDescription={metaDescription}
-          updateTags={tags}
           updateThumbnail={thumbnail}
           updateAltText={altText}
           updateContent={content}

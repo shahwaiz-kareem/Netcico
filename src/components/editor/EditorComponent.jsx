@@ -3,7 +3,6 @@ import { memo, useEffect, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
 import MermaidTool from "editorjs-mermaid";
 import Undo from "editorjs-undo";
-import Script from "next/script";
 
 const EditorComponent = ({ data, onChange, tools }) => {
   const ref = useRef();
@@ -42,7 +41,6 @@ const EditorComponent = ({ data, onChange, tools }) => {
         id="editorjs"
         className="h-[110%] w-full lg:w-[65%] mx-auto  shadow-xl px-2 text-black bg-white rounded-2xl "
       />
-      <Script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest" />
     </>
   );
 };

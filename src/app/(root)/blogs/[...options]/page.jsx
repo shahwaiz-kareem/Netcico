@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 const Page = async ({ params }) => {
-  const blogs = await getPublishedBlogsByCategory(params.options.at(0));
+  const blogs = await getPublishedBlogsByCategory(params.options[0]);
 
   return (
     <>
@@ -19,7 +19,7 @@ const Page = async ({ params }) => {
         <>
           <div className=" mt-2">
             <span className=" flex flex-wrap items-center gap-2 text-xl  md:text-2xl   sm:text-left pl-4 text-gray-800 ">
-              Blogs of {params.options.category}
+              Blogs of {params.options[0]}
               <p className="text-sm"> ({blogs.length} results found)</p>
             </span>
           </div>
@@ -67,7 +67,7 @@ const Page = async ({ params }) => {
           </Wrapper>
         </>
       ) : (
-        <BlogContentContainer slug={params.options.at(1)} />
+        <BlogContentContainer slug={params.options[1]} />
       )}
     </>
   );

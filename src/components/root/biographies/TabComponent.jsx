@@ -1,28 +1,29 @@
 "use client";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import { TbListDetails } from "react-icons/tb";
-import { TfiGallery } from "react-icons/tfi";
+import { FaRegAddressBook } from "react-icons/fa";
 import "react-tabs/style/react-tabs.css";
-import { BsBook } from "react-icons/bs";
+
+import { IoImagesOutline } from "react-icons/io5";
 
 const TabComponent = ({ children }) => {
   return (
-    <Tabs className=" mt-1 w-full flex flex-col sticky top-0">
+    <Tabs className=" mt-1 w-full flex flex-col">
       <TabList className=" rounded-lg flex bg-gray-100   outline-none cursor-pointer  p-2 w-full gap-4">
-        <Tab className="w-full  flex items-center  gap-2 outline-none cursor-pointer  px-1  py-2    ">
-          <BsBook className="hidden sm:block" />
-          <span>Biography</span>
+        <Tab className="w-full hover:bg-gray-200 rounded-lg flex items-center  gap-2 outline-none cursor-pointer  px-1  py-2    ">
+          <FaRegAddressBook className="max-sm:text-center" />
+          <span className="hidden sm:block">Biography</span>
         </Tab>
-        <Tab className=" w-full flex items-center  gap-2 outline-none cursor-pointer  px-1  py-2   ">
-          <TfiGallery className="hidden sm:block" />
-          <span>Gallery</span>
+        <Tab className=" w-full flex hover:bg-gray-200  items-center rounded-lg  gap-2 outline-none cursor-pointer  px-1  py-2   ">
+          <IoImagesOutline className="max-sm:text-center" />
+          <span className="hidden sm:block">Gallery</span>
         </Tab>
         <Tab
-          className=" w-full flex items-center  gap-2 outline-none cursor-pointer 
+          className=" hover:bg-gray-200  w-full flex items-center rounded-lg  gap-2 outline-none cursor-pointer 
           px-1 py-2    "
         >
-          <TbListDetails className="hidden sm:block" />
-          <span>Table</span>
+          <TbListDetails className="max-sm:text-center" />
+          <span className="hidden sm:block">Table</span>
         </Tab>
       </TabList>
       <div className="px-2 ">

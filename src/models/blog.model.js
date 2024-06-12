@@ -8,7 +8,7 @@ const BlogSchema = new mongoose.Schema(
     author: { type: String, required: true },
     itemId: { type: String, unique: true, required: true },
     thumbnail: { type: String, required: true },
-    tags: { type: String, required: true },
+
     altText: { type: String, required: true },
     metaTitle: { type: String, required: true },
     metaDescription: { type: String, required: true },

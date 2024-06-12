@@ -4,7 +4,7 @@ import { Blog } from "@/models/blog.model";
 import { revalidatePath } from "next/cache";
 import { unlink } from "fs/promises";
 import { join } from "path";
-import { log } from "console";
+
 
 export const updateBlog = async ({
   title,
@@ -17,7 +17,7 @@ export const updateBlog = async ({
   content,
   metaTitle,
   metaDescription,
-  tags,
+ 
   author,
 }) => {
   await connectToDb();
@@ -35,7 +35,7 @@ export const updateBlog = async ({
         isActive,
         metaTitle,
         metaDescription,
-        tags,
+      
         author,
       },
       { upsert: true, timestamps: true, new: true }

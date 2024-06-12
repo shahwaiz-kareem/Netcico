@@ -5,7 +5,7 @@ import {
   rawHtmlBlockParser,
   tableBlockParse,
   checkListBlockParser,
-} from "@/lib/editorjs/customParsers.js";
+} from "@/lib/editorjs/getPopularBiosByViews.js";
 const edjsParser = edjsHTML({
   code: codeBlockParser,
   table: tableBlockParse,

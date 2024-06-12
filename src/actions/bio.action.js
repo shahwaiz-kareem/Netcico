@@ -17,7 +17,7 @@ export const updateBio = async ({
   content,
   metaTitle,
   metaDescription,
-  tags,
+
   author,
 }) => {
   await connectToDb();
@@ -36,7 +36,6 @@ export const updateBio = async ({
         isActive,
         metaTitle,
         metaDescription,
-        tags,
         author,
       },
       { upsert: true, timestamps: true, new: true }
@@ -45,15 +44,16 @@ export const updateBio = async ({
     return JSON.parse(
       JSON.stringify({
         success: true,
-        data: data,
+        message: "Form data has been sent!",
       })
     );
   } catch (error) {
-    console.log(error);
-    throw new Error({
-      success: false,
-      error: error.message,
-    });
+    return JSON.parse(
+      JSON.stringify({
+        success: false,
+        error: error.message,
+      })
+    );
   }
 };
 
@@ -204,7 +204,6 @@ export const deleteImageFromGallery = async (id, index, pathname) => {
     revalidatePath(pathname);
     return JSON.parse(JSON.stringify(data.gallery));
   } catch (error) {
-    console.log(error);
     throw new Error({
       success: false,
       error: error.message,

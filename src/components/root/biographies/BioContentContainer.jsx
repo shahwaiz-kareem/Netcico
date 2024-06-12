@@ -18,9 +18,9 @@ const BioContentContainer = async ({ slug }) => {
               <header className="flex flex-wrap items-center p-4 md:py-8">
                 <div className="md:w-3/12 md:ml-16">
                   <Image
-                    width={700}
-                    height={500}
-                    className="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
+                    width={200}
+                    height={150}
+                    className="w-20 h-20 md:w-40 md:h-40  rounded-full
                    border-2 border-blue-500 p-1"
                     src={data.thumbnail}
                     alt="profile"

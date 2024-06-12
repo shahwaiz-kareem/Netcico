@@ -4,17 +4,22 @@ import { revalidatePath } from "next/cache";
 import path from "path";
 import sharp from "sharp";
 
-export const uploadThumbnail = async (data, type, height, width) => {
+export const uploadThumbnail = async (isUpdate, data, type, height, width) => {
   const file = data.get("file");
 
-  if (!file || file.name == "undefined")
+  if (isUpdate && data.getAll("file").length === 0)
+    return {
+      success: true,
+    };
+
+  if (!file || file.name == undefined)
     return {
       success: false,
       message: "no file uploaded",
     };
 
   try {
-    const name = `thumbnail_${type}_${Date.now().toString()}`;
+    const name = `thumbnail_${type}_${Date.now().toString()}.webp`;
     const pathname = path.join(
       process.cwd(),
       "/public/uploads/thumbnail",
@@ -59,11 +64,13 @@ export const uploadGallery = async (id, formData, captionArr, pathname) => {
       const buffer = Buffer.from(bytes);
       await sharp(buffer)
         .webp()
-        // .resize(width, height)
         .flatten({ background: { r: 255, g: 255, b: 255, alpha: 0 } })
         .toFile(pathname);
 
-      return `/uploads/gallery/${name}`;
+      return {
+        path: `/uploads/gallery/${name}`,
+        success: true,
+      };
     } catch (error) {
       return {
         success: false,
@@ -72,16 +79,21 @@ export const uploadGallery = async (id, formData, captionArr, pathname) => {
     }
   };
 
-  for (let i = 0; i < files.length; i++) {
-    const url = await writeImage(files[i]);
+  try {
+    for (let i = 0; i < files.length; i++) {
+      const urlObj = await writeImage(files[i]);
 
-    const data = await Bio.findOneAndUpdate(
-      { itemId: id },
-      {
-        $push: { gallery: { caption: captionArr[i], url } },
-      }
-    );
+      await Bio.findOneAndUpdate(
+        { itemId: id },
+        {
+          $push: { gallery: { caption: captionArr[i], url: urlObj.path } },
+        }
+      );
+    }
+    revalidatePath(pathname);
+    return JSON.parse(JSON.stringify({ success: true }));
+  } catch (error) {
+    console.log(error);
+    return JSON.parse(JSON.stringify({ success: false, error: error.message }));
   }
-  revalidatePath(pathname);
-  return JSON.parse(JSON.stringify({ success: true }));
 };
