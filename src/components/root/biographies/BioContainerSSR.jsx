@@ -2,9 +2,9 @@ import BioCard from "@/components/root/biographies/Card";
 import { getPopularBiosByViews } from "@/actions/bio.action";
 
 const BioContainerSSR = async () => {
-  const biographies = await getPopularBiosByViews();
+  const biographies = await getPopularBiosByViews(1, 6);
   return (
-    <section className="flex flex-row flex-wrap mx-auto ">
+    <>
       {biographies.map((bio) => (
         <BioCard
           name={bio.name}
@@ -18,7 +18,7 @@ const BioContainerSSR = async () => {
           altText={bio.altText}
         ></BioCard>
       ))}
-    </section>
+    </>
   );
 };
 

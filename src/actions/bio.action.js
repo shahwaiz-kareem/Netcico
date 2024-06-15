@@ -69,6 +69,7 @@ export const getAllBios = async () => {
     });
   }
 };
+
 export const getBioBySlug = async (slug) => {
   await connectToDb();
   try {
@@ -94,6 +95,7 @@ export const getPublishedBios = async () => {
     });
   }
 };
+
 export const getPublishedBiosByCategory = async (category) => {
   await connectToDb();
   try {
@@ -106,6 +108,7 @@ export const getPublishedBiosByCategory = async (category) => {
     });
   }
 };
+
 export const getDraftBios = async (_id) => {
   await connectToDb();
   try {
@@ -118,6 +121,7 @@ export const getDraftBios = async (_id) => {
     });
   }
 };
+
 export const getBioById = async (_id) => {
   await connectToDb();
   try {
@@ -145,10 +149,15 @@ export const getPopularBiosByFans = async () => {
     });
   }
 };
-export const getPopularBiosByViews = async () => {
+
+export const getPopularBiosByViews = async (pageNumber, pageLimit) => {
   await connectToDb();
   try {
-    const data = await Bio.find({ isActive: true }).sort({ views: "desc" });
+    const skipAmount = (pageNumber - 1) * pageLimit;
+    const data = await Bio.find({ isActive: true })
+      .sort({ views: "desc" })
+      .skip(skipAmount)
+      .limit(pageLimit);
     return JSON.parse(JSON.stringify(data));
   } catch (error) {
     throw new Error({

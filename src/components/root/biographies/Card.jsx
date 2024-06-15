@@ -1,5 +1,5 @@
+import styles from "@/module.css/styles.module.css";
 import Image from "next/image";
-import "./globals.css";
 import { GoHeartFill } from "react-icons/go";
 import { Alegreya } from "next/font/google";
 import { FaEye } from "react-icons/fa";
@@ -18,29 +18,28 @@ const Card = ({
   views,
 }) => {
   return (
-    <article className="card overflow-hidden   h-[320px] rounded-xl transition-all duration-150 flex w-full px-4 my-4  md:w-1/2 lg:w-1/3  2xl:w-1/4 ">
-      <div className="relative rounded-xl w-full bg-zinc-800">
-        <Link href={`/biographies/${category}/${slug}`}>
-          <Image
-            className="avatar   rounded-xl  h-full"
-            height={720}
-            width={1280}
-            alt={altText}
-            src={thumbnail}
-          />
-        </Link>
-        <div
-          className={`card_content   rounded-lg overflow-hidden ${
-            name.length < 20 ? "max-lg:h-32" : "max-lg:h-[10rem] "
-          } flex h-14 flex-col px-2 py-2 text-white absolute bottom-0  w-full gap-3`}
-        >
-          <h2 className={alegreya.className + "  text-2xl    mt-2"}>{name}</h2>
-          <div className="w-2">
-            <span className="bg-[#1970d5] inline rounded p-1">
-              <span className={alegreya.className}>{category}</span>
-            </span>
+    <div className={styles.bioCard}>
+      <div className={styles.profilePic}>
+        <Image
+          className="  rounded-xl  h-full"
+          height={720}
+          width={1280}
+          alt={altText}
+          src={thumbnail}
+        />
+      </div>
+      <div className={styles.bottom}>
+        <div className={styles.content}>
+          <div className={styles.categoryBadgeContainer}>
+            <h2 className={alegreya.className + " " + styles.name}>{name}</h2>
+            <span className={styles.categoryBadge}>{category}</span>
           </div>
-          <div className="flex h-full gap-4">
+          <span className={styles.aboutMe}>
+            Know about age, early life earning and more about {name}
+          </span>
+        </div>
+        <div className={styles.bottomOfBottom}>
+          <div className={styles.socialIntrectionContainer}>
             <div className="text-white cursor-pointer flex items-center justify-center gap-1">
               <GoHeartFill className="text-2xl hover:text-red-500" />
               <span className="text-sm font-light">
@@ -66,10 +65,16 @@ const Card = ({
               </span>
             </div>
           </div>
-          <div className="div_move absolute transition-all duration-500 ease-in rounded-lg bottom-0 bg-[#1970d5] w-32 h-1 "></div>
+
+          <Link
+            className={styles.button}
+            href={`/biographies/${category}/${slug}`}
+          >
+            Read more
+          </Link>
         </div>
       </div>
-    </article>
+    </div>
   );
 };
 

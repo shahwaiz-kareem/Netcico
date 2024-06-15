@@ -1,4 +1,3 @@
-"use client";
 import axios from "axios";
 import Header from "editorjs-header-with-alignment";
 import Paragraph from "@editorjs/paragraph";
@@ -55,7 +54,7 @@ export const Create_JS_TOOLS = {
       style: "color:black;",
       availableTargets: ["_blank", "_self"],
       availableRels: ["author", "noreferrer"],
-      validate: false,
+      validate: true,
     },
   },
   underline: Underline,
@@ -134,7 +133,7 @@ export const Create_JS_TOOLS = {
   delimiter: Delimiter,
   link: Link,
   warning: Warning,
-  // mermaid: MermaidTool,
+
   image: {
     class: customeImageTool,
     config: {

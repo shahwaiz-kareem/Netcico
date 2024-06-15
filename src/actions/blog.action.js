@@ -5,7 +5,6 @@ import { revalidatePath } from "next/cache";
 import { unlink } from "fs/promises";
 import { join } from "path";
 
-
 export const updateBlog = async ({
   title,
   slug,
@@ -17,7 +16,7 @@ export const updateBlog = async ({
   content,
   metaTitle,
   metaDescription,
- 
+
   author,
 }) => {
   await connectToDb();
@@ -35,7 +34,7 @@ export const updateBlog = async ({
         isActive,
         metaTitle,
         metaDescription,
-      
+
         author,
       },
       { upsert: true, timestamps: true, new: true }
@@ -146,10 +145,14 @@ export const getPopularBlogsByLikes = async () => {
     });
   }
 };
-export const getPopularBlogsByViews = async () => {
+export const getPopularBlogsByViews = async (pageNumber, pageLimit) => {
   await connectToDb();
   try {
-    const data = await Blog.find({ isActive: true }).sort({ views: "desc" });
+    const skipAmount = (pageNumber - 1) * pageLimit;
+    const data = await Blog.find({ isActive: true })
+      .sort({ views: "desc" })
+      .skip(skipAmount)
+      .limit(pageLimit);
     return JSON.parse(JSON.stringify(data));
   } catch (error) {
     throw new Error({

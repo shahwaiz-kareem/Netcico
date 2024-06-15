@@ -21,7 +21,13 @@ const Page = async ({ params }) => {
               <p className="text-sm"> ({biographies.length} results found)</p>
             </span>
           </div>
-          <section className="flex flex-row flex-wrap mx-auto  h-full">
+          <section
+            className={`${
+              biographies.length === 0
+                ? "flex flex-row flex-wrap mx-auto  h-full"
+                : "grid sm:grid-cols-1 gap-6 mt-1 md:grid-cols-2 lg:grid-cols-3  w-full px-2 "
+            } `}
+          >
             {biographies.map((bio) => (
               <BioCard
                 klj

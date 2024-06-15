@@ -1,4 +1,6 @@
 import BioContainerSSR from "@/components/root/biographies/BioContainerSSR";
+import LoadMore from "@/components/root/biographies/LoadMore";
+import GridContainer from "@/components/root/layout/GridContainer";
 
 export const metadata = {
   title: "Biographies || Netcico",
@@ -14,7 +16,10 @@ const Page = () => {
           Biographies
         </h1>
       </div>
-      <BioContainerSSR />
+      <GridContainer>
+        <BioContainerSSR />
+        <LoadMore />
+      </GridContainer>
     </>
   );
 };

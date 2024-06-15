@@ -1,4 +1,6 @@
 import BlogContainerSSR from "@/components/root/blogs/BlogContainerSSR";
+import LoadMore from "@/components/root/blogs/LoadMore";
+import GridContainer from "@/components/root/layout/GridContainer";
 
 const page = () => {
   return (
@@ -8,7 +10,10 @@ const page = () => {
           Blogs
         </h1>
       </div>
-      <BlogContainerSSR />
+      <GridContainer>
+        <BlogContainerSSR />
+        <LoadMore />
+      </GridContainer>
     </>
   );
 };
