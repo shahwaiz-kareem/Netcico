@@ -12,6 +12,8 @@
 /.next/
 /out/
 
+/uploads/*
+
 # production
 /public/uploads
 /build
