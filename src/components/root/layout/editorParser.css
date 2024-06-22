@@ -24,6 +24,7 @@
   border-radius: 8px;
   width: 60vw;
   line-height: 1.5;
+  margin: 1rem 0;
   overflow-x: auto;
   max-height: 65vh;
   overflow-y: auto;

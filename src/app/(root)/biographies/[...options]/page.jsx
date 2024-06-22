@@ -30,7 +30,6 @@ const Page = async ({ params }) => {
           >
             {biographies.map((bio) => (
               <BioCard
-                klj
                 name={bio.name}
                 slug={bio.slug}
                 fans={bio.fans.length}

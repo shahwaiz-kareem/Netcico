@@ -1,7 +1,7 @@
 import { getPublishedBlogsByCategory } from "@/actions/blog.action";
 import BlogContentContainer from "@/components/root/blogs/BlogContentContainer";
 import BlogCard from "@/components/root/blogs/Card";
-import Wrapper from "@/components/root/blogs/Wrapper";
+import GridContainer from "@/components/root/layout/GridContainer";
 
 import { BsHeartbreakFill } from "react-icons/bs";
 
@@ -23,7 +23,7 @@ const Page = async ({ params }) => {
               <p className="text-sm"> ({blogs.length} results found)</p>
             </span>
           </div>
-          <Wrapper>
+          <GridContainer>
             {blogs.map((blog) => {
               const {
                 thumbnail,
@@ -56,15 +56,15 @@ const Page = async ({ params }) => {
                 />
               );
             })}
-            {blogs.length === 0 ? (
-              <div className=" flex items-center mt-12 justify-center gap-2  flex-col w-full h-full">
-                <BsHeartbreakFill className="text-3xl " />
-                <h3 className="text-xl  text-center ">
-                  Sorry, no post yet in this category!
-                </h3>
-              </div>
-            ) : null}
-          </Wrapper>
+          </GridContainer>
+          {blogs.length === 0 ? (
+            <div className=" flex items-center mt-12 justify-center gap-2  flex-col w-full h-full">
+              <BsHeartbreakFill className="text-3xl " />
+              <h3 className="text-xl  text-center ">
+                Sorry, no post yet in this category!
+              </h3>
+            </div>
+          ) : null}
         </>
       ) : (
         <BlogContentContainer slug={params.options[1]} />

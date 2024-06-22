@@ -112,9 +112,12 @@ const BioContentContainer = async ({ slug }) => {
         <main>
           <TabComponent
             children={[
-              <BioTabPanel data={data} />,
+              <BioTabPanel data={data} key={"Bio_Tab_Panel_97345"} />,
               <BioGalleryTabPanel data={data.gallery} />,
-              <BioTablePanel tableData={data.table} />,
+              <BioTablePanel
+                tableData={data.table}
+                key={"Bio_Table_Panel_52345"}
+              />,
             ]}
           />
         </main>

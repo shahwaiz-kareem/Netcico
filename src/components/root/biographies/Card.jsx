@@ -7,6 +7,9 @@ import { FaShare } from "react-icons/fa";
 
 const alegreya = Alegreya({ subsets: ["cyrillic"], weight: "700" });
 import Link from "next/link";
+import HeartIcon from "../Icons/HeartIcon";
+import ViewIcon from "../Icons/ViewIcon";
+import ShareIcon from "../Icons/ShareIcon";
 const Card = ({
   name,
   thumbnail,
@@ -41,7 +44,7 @@ const Card = ({
         <div className={styles.bottomOfBottom}>
           <div className={styles.socialIntrectionContainer}>
             <div className="text-white cursor-pointer flex items-center justify-center gap-1">
-              <GoHeartFill className="text-2xl hover:text-red-500" />
+              <HeartIcon className="text-2xl hover:text-red-500" />
               <span className="text-sm font-light">
                 {Intl.NumberFormat("en", { notation: "compact" }).format(
                   Number(fans)
@@ -49,7 +52,7 @@ const Card = ({
               </span>
             </div>
             <div className="text-white  flex items-center justify-center gap-1">
-              <FaEye className="text-2xl " />
+              <ViewIcon className="text-2xl " />
               <span className="text-sm font-light">
                 {Intl.NumberFormat("en", { notation: "compact" }).format(
                   Number(views)
@@ -57,7 +60,7 @@ const Card = ({
               </span>
             </div>
             <div className="text-white cursor-pointer flex items-center justify-center gap-1">
-              <FaShare className="text-2xl hover:text-blue-500" />
+              <ShareIcon className="text-2xl hover:text-blue-500" />
               <span className="text-sm font-light">
                 {Intl.NumberFormat("en", { notation: "compact" }).format(
                   Number(share)

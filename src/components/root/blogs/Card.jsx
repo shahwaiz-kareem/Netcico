@@ -23,8 +23,8 @@ const Card = ({
   }-${year}`;
   return (
     <>
-      <div className=" px-2   w-full    ">
-        <div className="py-2 px-2 flex flex-row w-full items-center justify-between">
+      <div className=" transform transition duration-300 hover:scale-105 rounded-xl shadow-lg px-4 pt-2  hover:shadow-xl bg-white   ">
+        <div className="py-1 px-2 flex flex-row w-full items-center justify-between">
           <div className="flex flex-row items-center">
             <div className="flex  flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
               <Image
@@ -43,7 +43,7 @@ const Card = ({
         </div>
         <Link href={`/blogs/${category}/${slug}`} className="">
           <Image
-            className=" h-[300px]  align-middle  w-full  rounded-2xl"
+            className=" h-[250px]  align-middle  w-full  rounded-2xl"
             src={thumbnail}
             height={300}
             width={800}
