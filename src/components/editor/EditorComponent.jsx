@@ -1,7 +1,6 @@
 "use client";
 import { memo, useEffect, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
-import MermaidTool from "editorjs-mermaid";
 import Undo from "editorjs-undo";
 
 const EditorComponent = ({ data, onChange, tools }) => {
@@ -21,7 +20,7 @@ const EditorComponent = ({ data, onChange, tools }) => {
           onChange(data);
         },
         onReady: () => {
-          MermaidTool.config({ theme: "neutral" });
+         
           new Undo({ editor });
         },
       });

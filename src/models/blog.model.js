@@ -14,7 +14,17 @@ const BlogSchema = new mongoose.Schema(
     metaDescription: { type: String, required: true },
     category: { type: String, required: true },
     likes: [mongoose.Schema.Types.ObjectId],
-    views: [mongoose.Schema.Types.ObjectId],
+    views: [
+      {
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+          default: null,
+        },
+        anonymousId: { type: String, default: null },
+        viewedAt: { type: Date, default: Date.now },
+      },
+    ],
     share: [mongoose.Schema.Types.ObjectId],
     isActive: {
       type: Boolean,

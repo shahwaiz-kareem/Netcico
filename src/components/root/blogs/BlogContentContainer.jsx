@@ -15,7 +15,7 @@ const BlogContentContainer = async ({ slug }) => {
           <p className="mt-1 inline text-xs text-gray-600">(9 minutes read)</p>
         </div>
 
-        <main className=" flex w-full  h-full gap-2   justify-between ">
+        <main className="grid grid-cols-1 min-[920px]:flex w-full  h-full gap-2   justify-between ">
           <article className="w-full h-full pr-6">
             <EditorParser data={JSON.parse(data.content)} />
           </article>

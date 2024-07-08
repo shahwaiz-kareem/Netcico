@@ -28,7 +28,7 @@ const Page = async ({ params }) => {
                 : "grid sm:grid-cols-1 gap-6 mt-1 md:grid-cols-2 lg:grid-cols-3  w-full px-2 "
             } `}
           >
-            {biographies.map((bio) => (
+            {biographies.map((bio, index) => (
               <BioCard
                 name={bio.name}
                 slug={bio.slug}
@@ -36,7 +36,7 @@ const Page = async ({ params }) => {
                 views={bio.views.length}
                 share={bio.share.length}
                 thumbnail={bio.thumbnail}
-                key={bio._id}
+                key={`${bio._id}_${index}_csr`}
                 category={bio.category}
                 altText={bio.altText}
               ></BioCard>
