@@ -25,9 +25,9 @@ const BioSchema = new mongoose.Schema(
       },
     ],
     category: { type: String, required: true },
-    fans: [mongoose.Schema.Types.ObjectId],
-    views: [mongoose.Schema.Types.ObjectId],
-    share: [mongoose.Schema.Types.ObjectId],
+    fans: [],
+    views: [],
+    share: [],
     isActive: {
       type: Boolean,
       default: false,

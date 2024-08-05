@@ -36,10 +36,9 @@ const LoadMore = () => {
       {data.map((bio) => (
         <Card
           name={bio.name}
-          fans={bio.fans.length}
+          fans={bio.fansCount}
           slug={bio.slug}
-          views={bio.views.length}
-          share={bio.share.length}
+          views={bio.viewsCount}
           thumbnail={bio.thumbnail}
           key={bio._id}
           category={bio.category}

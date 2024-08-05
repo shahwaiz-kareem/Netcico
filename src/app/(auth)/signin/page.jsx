@@ -6,8 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "@/lib/validation/SignInSchema";
 import { useEffect, useState } from "react";
 import Notify from "@/components/shared/Notify";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -51,7 +53,6 @@ const page = () => {
       email: data.email,
       password: data.password,
     });
-
     if (res?.error || !res.ok) {
       setNotifyObj({
         msg: res.error,
@@ -65,6 +66,7 @@ const page = () => {
         success: true,
       });
       setDisabled(true);
+      router.push("/");
     }
 
     dismissTimeout();
@@ -79,19 +81,23 @@ const page = () => {
       />
       <div className=" overflow-hidden flex  justify-center">
         <div className=" p-6 sm:p-0 flex flex-col shadow-xl mx-auto bg-white rounded-lg  my-5">
-          <div className="flex   w-full h-full  xl:gap-14 lg:justify-normal md:gap-5 ">
+          <div className="flex mt-6  w-full h-full  xl:gap-14 lg:justify-normal md:gap-5 ">
             <div className="flex items-center justify-center w-full sm:p-10">
               <div className="flex items-center xl:p-1">
                 <div className="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
-                  <h3 className="mb-3 text-3xl font-extrabold text-gray-700">
+                  <h3 className="mb-3 text-2xl font-extrabold text-gray-700">
                     Sign In
                   </h3>
                   <p className="mb-4 text-sm text-gray-700">
                     Sign In with Google OR Credentials
                   </p>
                   <button
-                    onClick={() => signIn("google")}
-                    className="flex items-center justify-center gap-2 w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:bg-gray-200"
+                    onClick={async () =>
+                      await signIn("google", {
+                        callbackUrl: `${process.env.NEXT_PUBLIC_HOST}`,
+                      })
+                    }
+                    className="flex items-center justify-center gap-2 w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-gray-900 bg-gray-100 hover:bg-gray-200 focus:bg-gray-200"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

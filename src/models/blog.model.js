@@ -8,24 +8,13 @@ const BlogSchema = new mongoose.Schema(
     author: { type: String, required: true },
     itemId: { type: String, unique: true, required: true },
     thumbnail: { type: String, required: true },
-
     altText: { type: String, required: true },
     metaTitle: { type: String, required: true },
     metaDescription: { type: String, required: true },
     category: { type: String, required: true },
-    likes: [mongoose.Schema.Types.ObjectId],
-    views: [
-      {
-        userId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-          default: null,
-        },
-        anonymousId: { type: String, default: null },
-        viewedAt: { type: Date, default: Date.now },
-      },
-    ],
-    share: [mongoose.Schema.Types.ObjectId],
+    likes: [],
+    views: [],
+    share: [],
     isActive: {
       type: Boolean,
       default: false,

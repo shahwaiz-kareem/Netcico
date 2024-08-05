@@ -2,21 +2,37 @@ import { getPublishedBiosByCategory } from "@/actions/bio.action";
 import BioCard from "@/components/root/biographies/Card";
 import { BsHeartbreakFill } from "react-icons/bs";
 import BioContentContainer from "@/components/root/biographies/BioContentContainer";
+import { headers } from "next/headers";
 
 export const metadata = {
   title: "Biographies || Netcico",
   description:
-    "Age, gender, height, early life and  intresting biographies of popular people around the world.",
+    "Age, gender, height, early life and interesting biographies of popular people around the world.",
 };
 
 const Page = async ({ params }) => {
   const biographies = await getPublishedBiosByCategory(params.options[0]);
+
+  const requestHeaders = headers();
+  const token = requestHeaders.get("user-token");
+
+  if (token) {
+    await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/track/bio`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "user-token": token,
+        slug: params.options[1],
+      },
+    });
+  }
+
   return (
     <>
       {params.options.length <= 1 ? (
         <>
-          <div className=" mt-2">
-            <span className=" flex items-center flex-wrap gap-2 text-xl  md:text-2xl   sm:text-left pl-4 text-gray-800 ">
+          <div className="mt-2">
+            <span className="flex items-center flex-wrap gap-2 text-xl md:text-2xl sm:text-left pl-4 text-gray-800">
               Biographies of {params.options[0]}
               <p className="text-sm"> ({biographies.length} results found)</p>
             </span>
@@ -24,9 +40,9 @@ const Page = async ({ params }) => {
           <section
             className={`${
               biographies.length === 0
-                ? "flex flex-row flex-wrap mx-auto  h-full"
-                : "grid sm:grid-cols-1 gap-6 mt-1 md:grid-cols-2 lg:grid-cols-3  w-full px-2 "
-            } `}
+                ? "flex flex-row flex-wrap mx-auto h-full"
+                : "grid sm:grid-cols-1 gap-6 mt-1 md:grid-cols-2 lg:grid-cols-3 w-full px-2"
+            }`}
           >
             {biographies.map((bio, index) => (
               <BioCard
@@ -42,9 +58,9 @@ const Page = async ({ params }) => {
               ></BioCard>
             ))}
             {biographies.length === 0 ? (
-              <div className=" flex items-center mt-12 justify-center gap-2  flex-col w-full h-full">
-                <BsHeartbreakFill className="text-3xl " />
-                <h3 className="text-xl  text-center ">
+              <div className="flex items-center mt-12 justify-center gap-2 flex-col w-full h-full">
+                <BsHeartbreakFill className="text-3xl" />
+                <h3 className="text-xl text-center">
                   Sorry, no post yet in this category!
                 </h3>
               </div>

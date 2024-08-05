@@ -1,14 +1,17 @@
+import bcrypt from "bcryptjs";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { verifyPassword, getUserByEmail } from "@/lib/authjs/auth";
+import { getUserByEmail as getUser } from "@/actions/user.action";
 
 export const providerOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      profile(profile) {
+        return { ...profile, id: profile.sub };
+      },
     }),
-
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -20,11 +23,12 @@ export const providerOptions = {
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
-        const user = await getUserByEmail(credentials.email);
-        if (
-          user &&
-          (await verifyPassword(credentials.password, user.password))
-        ) {
+        const user = await getUser(credentials.email);
+        const isValid = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
+        if (user && isValid) {
           return user;
         } else {
           throw new Error("Invalid credentials!");
@@ -32,4 +36,18 @@ export const providerOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user._id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token?.id) {
+        session.user.id = token.id;
+      }
+      return session;
+    },
+  },
 };

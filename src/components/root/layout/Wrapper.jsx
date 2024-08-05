@@ -37,7 +37,6 @@ const Wrapper = () => {
     setScrollLeft(scrollLeft);
   };
 
-  console.log(currentCategory);
   return (
     <div className="flex items-center  w-full">
       <button
@@ -74,7 +73,7 @@ const Wrapper = () => {
         onClick={() =>
           slideRight(elementRef.current, elementRef.current.scrollRight)
         }
-        className="flex p-[0.30rem]  sm:p-[0.90rem]  cursor-pointer mx-3   sm:hover:bg-gray-300  rounded-full mb-1 sm:bg-gray-100 relative justify-center items-center"
+        className="flex z-0 p-[0.30rem]  sm:p-[0.90rem]  cursor-pointer mx-3   sm:hover:bg-gray-300  rounded-full mb-1 sm:bg-gray-100 relative justify-center items-center"
       >
         <AiOutlineArrowRight className="absolute max-sm:hidden" />
       </button>

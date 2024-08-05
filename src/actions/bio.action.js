@@ -4,6 +4,7 @@ import { Bio } from "@/models/biography.model";
 import { revalidatePath } from "next/cache";
 import { unlink } from "fs/promises";
 import { join } from "path";
+import { constants } from "http2";
 
 export const updateBio = async ({
   name,
@@ -73,7 +74,9 @@ export const getAllBios = async () => {
 export const getBioBySlug = async (slug) => {
   await connectToDb();
   try {
-    const data = await Bio.findOne({ slug });
+    const data = await Bio.findOne({ slug }).select(
+      " -itemId  -altText -isActive -views -share -fans"
+    );
     return JSON.parse(JSON.stringify(data));
   } catch (error) {
     throw new Error({
@@ -157,8 +160,18 @@ export const getPopularBiosByViews = async (pageNumber, pageLimit) => {
     const data = await Bio.find({ isActive: true })
       .sort({ views: "desc" })
       .skip(skipAmount)
-      .limit(pageLimit);
-    return JSON.parse(JSON.stringify(data));
+      .limit(pageLimit)
+      .lean();
+
+    const newDocs = data.map((document) => {
+      document.viewsCount = document.views.length;
+      document.fansCount = document.fans.length;
+      delete document.views;
+      delete document.fans;
+      return document;
+    });
+
+    return JSON.parse(JSON.stringify(newDocs));
   } catch (error) {
     throw new Error({
       success: false,
@@ -166,6 +179,74 @@ export const getPopularBiosByViews = async (pageNumber, pageLimit) => {
     });
   }
 };
+
+export const countFansAndViews = async (_id) => {
+  await connectToDb();
+  try {
+    const doc = await Bio.findById(_id, { views: 1, fans: 1 });
+    const fansCount = doc.fans.length;
+    const viewsCount = doc.views.length;
+
+    return JSON.parse(JSON.stringify({ success: true, fansCount, viewsCount }));
+  } catch (error) {
+    throw new Error({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+export const checkBioFan = async (_id, user_id) => {
+  await connectToDb();
+
+  try {
+    const bio = await Bio.findOne({ _id }, { fans: 1 });
+    let isLiked = false;
+
+    if (bio && bio.fans.includes(user_id)) {
+      isLiked = true;
+    }
+
+    return {
+      success: true,
+      isFan: isLiked,
+    };
+  } catch (error) {
+    throw new Error({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+export const addBioFan = async (_id, user_id, path) => {
+  await connectToDb();
+
+  try {
+    const update = await Bio.findOneAndUpdate(
+      { _id, fans: { $elemMatch: { $eq: user_id } } },
+      { $pull: { fans: user_id } },
+      { new: true }
+    );
+
+    let action = "removed";
+
+    if (!update) {
+      await Bio.findByIdAndUpdate(
+        _id,
+        { $push: { fans: user_id } },
+        { new: true }
+      );
+      action = "added";
+    }
+    revalidatePath(path);
+    revalidatePath("(root)/");
+    return { success: true, action };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+};
+
 export const deleteBio = async (id, pathname) => {
   await connectToDb();
   try {

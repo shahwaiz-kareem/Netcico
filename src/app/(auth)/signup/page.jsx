@@ -7,8 +7,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema } from "@/lib/validation/SignUpSchema";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -60,14 +63,13 @@ const Page = () => {
       }
 
       const res = await registerUserToDB({ name, email, password });
-
       setNotifyObj({
         msg: res.message,
         notify: true,
         success: res.success,
       });
 
-      if (res.success) reset(), setDisabled(true);
+      if (res.success) reset(), setDisabled(true), router.push("/signin");
       dismissTimeout();
     } catch (error) {
       setNotifyObj({

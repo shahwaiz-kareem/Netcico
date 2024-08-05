@@ -8,10 +8,9 @@ const BioContainerSSR = async () => {
       {biographies.map((bio) => (
         <BioCard
           name={bio.name}
-          fans={bio.fans.length}
           slug={bio.slug}
-          views={bio.views.length}
-          share={bio.share.length}
+          fans={bio.fansCount}
+          views={bio.viewsCount}
           thumbnail={bio.thumbnail}
           key={bio._id}
           category={bio.category}

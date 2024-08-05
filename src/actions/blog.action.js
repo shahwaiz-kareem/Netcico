@@ -121,10 +121,13 @@ export const getBlogById = async (_id) => {
 export const getBlogBySlug = async (slug) => {
   await connectToDb();
   try {
-    const data = await Blog.findOne({ slug }).select(
-      "-_id -itemId  -altText -isActive"
-    );
-    return JSON.parse(JSON.stringify(data));
+    const doc = await Blog.findOne({ slug, active: true })
+      .select(" -itemId  -altText -isActive  -share ")
+      .lean();
+    const likesCount = doc.likes.length;
+    const viewsCount = doc.views.length;
+
+    return JSON.parse(JSON.stringify({ ...doc, likesCount, viewsCount }));
   } catch (error) {
     console.log(error);
     throw new Error({
@@ -133,6 +136,76 @@ export const getBlogBySlug = async (slug) => {
     });
   }
 };
+export const checkBlogLike = async (_id, user_id) => {
+  await connectToDb();
+  try {
+    const blog = await Blog.findOne({ _id }, { likes: 1 });
+
+    let isLiked = false;
+
+    if (blog && blog.likes.includes(user_id)) {
+      isLiked = true;
+    }
+
+    return {
+      success: true,
+      isLiked,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message,
+    };
+  }
+};
+
+export const countLikesAndViews = async (_id) => {
+  await connectToDb();
+  try {
+    const doc = await Blog.findById(_id, { likes: 1, views: 1 });
+    const likesCount = doc.likes.length;
+    const viewsCount = doc.views.length;
+
+    return JSON.parse(
+      JSON.stringify({ success: true, likesCount, viewsCount })
+    );
+  } catch (error) {
+    throw new Error({
+      success: false,
+      ...error,
+    });
+  }
+};
+
+export const addBlogLike = async (_id, user_id, path) => {
+  await connectToDb();
+
+  try {
+    const update = await Blog.findOneAndUpdate(
+      { _id, likes: { $elemMatch: { $eq: user_id } } },
+      { $pull: { likes: user_id } },
+      { new: true }
+    );
+
+    let action = "removed";
+
+    if (!update) {
+      await Blog.findByIdAndUpdate(
+        _id,
+        { $push: { likes: user_id } },
+        { new: true }
+      );
+      action = "added";
+    }
+    revalidatePath("(root)/");
+    revalidatePath(path);
+    return { success: true, action };
+  } catch (error) {
+    console.log(error);
+    return { success: false, error: error.message };
+  }
+};
+
 export const getPopularBlogsByLikes = async () => {
   await connectToDb();
   try {

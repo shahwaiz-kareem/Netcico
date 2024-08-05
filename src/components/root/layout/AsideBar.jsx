@@ -1,7 +1,7 @@
 import NewsletterBox from "@/components/forms/NewsletterBox";
 import Reactions from "@/components/forms/Reactions";
 
-const AsideBar = ({ Onpage, views, share, likesOrFans }) => {
+const AsideBar = ({ Onpage, views, share, likesOrFans, _id, slug }) => {
   return (
     <aside className=" hidden    min-[920px]:block   w-[60%] ">
       <div className=" w-[95%] flex flex-col gap-10  sticky top-20  lg:px-2 py-6">
@@ -9,6 +9,8 @@ const AsideBar = ({ Onpage, views, share, likesOrFans }) => {
           views={views}
           Onpage={Onpage}
           share={share}
+          _id={_id}
+          slug={slug}
           likesOrFans={likesOrFans}
         />
         <div className="flex flex-col   gap-2">

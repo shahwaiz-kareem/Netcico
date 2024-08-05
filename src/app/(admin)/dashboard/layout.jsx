@@ -2,8 +2,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/dashboard/layout/Header.jsx";
 import Sidebar from "@/components/dashboard/layout/Sidebar.jsx";
-import { ThemeProvider } from "@/context/ThemeContext";
 import TopLoader from "@/components/dashboard/layout/TopLoader";
+
+import { ThemeProvider } from "@/context/ThemeContext";
 export const metadata = {
   title: "Dashboard || Netcico",
   description: "Dashbord for netcico.com",

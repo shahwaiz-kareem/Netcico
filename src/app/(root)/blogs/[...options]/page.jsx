@@ -2,6 +2,7 @@ import { getPublishedBlogsByCategory } from "@/actions/blog.action";
 import BlogContentContainer from "@/components/root/blogs/BlogContentContainer";
 import BlogCard from "@/components/root/blogs/Card";
 import GridContainer from "@/components/root/layout/GridContainer";
+import { headers } from "next/headers";
 
 import { BsHeartbreakFill } from "react-icons/bs";
 
@@ -12,6 +13,20 @@ export const metadata = {
 
 const Page = async ({ params }) => {
   const blogs = await getPublishedBlogsByCategory(params.options[0]);
+
+  const requestHeaders = headers();
+  const token = requestHeaders.get("user-token");
+
+  if (token) {
+    await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/track/blog`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "user-token": token,
+        slug: params.options[1],
+      },
+    });
+  }
 
   return (
     <>
