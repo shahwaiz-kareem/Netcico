@@ -34,7 +34,7 @@ const BlogContentContainer = async ({ slug }) => {
             likesOrFans={data.likesCount}
             views={data.viewsCount}
           />
-          <NewsletterBox />
+          <NewsletterBox Onpage={"blogs"} slug={data.slug} />
         </div>
       </section>
     </>

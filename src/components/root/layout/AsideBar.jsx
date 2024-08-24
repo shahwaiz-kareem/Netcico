@@ -21,7 +21,7 @@ const AsideBar = ({ Onpage, views, share, likesOrFans, _id, slug }) => {
             ADS PLACEHOLDER
           </span>
         </div>
-        <NewsletterBox />
+        <NewsletterBox Onpage={Onpage} slug={slug} />
       </div>
     </aside>
   );

@@ -181,3 +181,7 @@
   transform: scale(2.5);
   transition: all 0.5s ease-in-out 0.5s;
 }
+
+.breakWord {
+  word-break: break-word;
+}

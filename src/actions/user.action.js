@@ -17,7 +17,7 @@ export const createUser = async ({ name, email, password }) => {
 export const getUserByEmail = async (email) => {
   await connectToDb();
   try {
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ email }).lean();
     return user;
   } catch (error) {
     throw new Error(error);

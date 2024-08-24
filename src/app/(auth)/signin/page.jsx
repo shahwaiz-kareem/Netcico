@@ -6,10 +6,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "@/lib/validation/SignInSchema";
 import { useEffect, useState } from "react";
 import Notify from "@/components/shared/Notify";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const page = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next");
   const {
     register,
     handleSubmit,
@@ -53,9 +55,9 @@ const page = () => {
       email: data.email,
       password: data.password,
     });
-    if (res?.error || !res.ok) {
+    if (res?.error) {
       setNotifyObj({
-        msg: res.error,
+        msg: res.error.message,
         notify: true,
         success: false,
       });
@@ -66,7 +68,7 @@ const page = () => {
         success: true,
       });
       setDisabled(true);
-      router.push("/");
+      router.push(next || "/");
     }
 
     dismissTimeout();
@@ -92,11 +94,7 @@ const page = () => {
                     Sign In with Google OR Credentials
                   </p>
                   <button
-                    onClick={async () =>
-                      await signIn("google", {
-                        callbackUrl: `${process.env.NEXT_PUBLIC_HOST}`,
-                      })
-                    }
+                    onClick={async () => await signIn("google")}
                     className="flex items-center justify-center gap-2 w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-gray-900 bg-gray-100 hover:bg-gray-200 focus:bg-gray-200"
                   >
                     <svg

@@ -36,7 +36,7 @@ const AccountTB = ({ session }) => {
       ) : (
         <Link
           href={"/signin"}
-          className="py-2 px-4 text-white rounded-lg bg-[#1970d5] hover:bg-blue-400"
+          className="py-2 px-1 sm:px-4 text-white rounded-lg bg-[#1970d5] hover:bg-blue-400"
         >
           Sign in
         </Link>

@@ -11,7 +11,7 @@ const BioTabPanel = async ({ data }) => {
   );
 
   return (
-    <main className=" flex w-full relative  gap-6 py-4 justify-between ">
+    <main className=" flex w-full relative max-[920px]:flex-col   gap-6 py-4 justify-between ">
       <article className="w-full flex items-center   justify-center  lg:pr-6">
         <EditorParser data={JSON.parse(data.content)} />
       </article>
@@ -31,7 +31,7 @@ const BioTabPanel = async ({ data }) => {
           slug={data.slug}
         />
 
-        <NewsletterBox />
+        <NewsletterBox Onpage={"bio"} slug={data.slug} />
       </div>
     </main>
   );

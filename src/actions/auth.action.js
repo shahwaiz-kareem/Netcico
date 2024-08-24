@@ -1,9 +1,10 @@
 "use server";
-import { getUserByEmail as getUser } from "@/lib/authjs/auth";
+
 import bcrypt from "bcryptjs";
 import { createUser } from "./user.action";
+import { User } from "@/models/user.model";
 export const registerUserToDB = async ({ name, email, password }) => {
-  const user = await getUser(email);
+  const user = await User.findOne({ email });
   if (user)
     return JSON.parse(
       JSON.stringify({

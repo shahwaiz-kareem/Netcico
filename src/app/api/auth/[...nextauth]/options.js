@@ -31,7 +31,9 @@ export const providerOptions = {
         if (user && isValid) {
           return user;
         } else {
-          throw new Error("Invalid credentials!");
+          throw new Error(
+            "Wrong credentails! Please check your email and password"
+          );
         }
       },
     }),

@@ -2,7 +2,7 @@
 import { GoHome } from "react-icons/go";
 import { SiReaddotcv } from "react-icons/si";
 import { GoPeople } from "react-icons/go";
-import { MdOutlineForum } from "react-icons/md";
+import { TfiCommentAlt } from "react-icons/tfi";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 const NavigationBtns = () => {
@@ -47,7 +47,7 @@ const NavigationBtns = () => {
         }  hover:duration-200 hover:ease-linear focus:bg-white`}
       >
         <Link href={"/forum"}>
-          <MdOutlineForum />
+          <TfiCommentAlt />
         </Link>
       </div>
     </>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Card from "./Card";
 import Image from "next/image";
-let page = 1;
+let page = 2;
 const LoadMore = () => {
   const { inView, ref } = useInView();
   const [data, setData] = useState([]);
@@ -18,11 +18,6 @@ const LoadMore = () => {
       setData((prev) => [...prev, ...newData]);
     }
   };
-
-  useEffect(() => {
-    page = 1;
-    setHasMoreData(true);
-  }, []);
 
   useEffect(() => {
     if (inView && hasMoreData) {
