@@ -2,6 +2,7 @@
 
 import { connectToDb } from "@/db/db";
 import { Forum } from "@/models/forum.model";
+import mongoose from "mongoose";
 
 export const createQuestion = async ({ name, text, category }) => {
   try {
@@ -74,27 +75,43 @@ export const getAnswers = async (_id, pageNumber, pageLimit) => {
     await connectToDb();
     const skipAmount = (pageNumber - 1) * pageLimit;
 
-    const data = await Forum.findOne({ _id }, { text: 1, answers: 1, _id: 0 })
-      .populate({
-        path: "answers",
-        sort: { upvotes: "desc" },
-        skip: skipAmount,
-        limit: pageLimit,
-      })
-      .lean();
+    const data = await Forum.aggregate([
+      { $match: { _id: new mongoose.Types.ObjectId(_id) } },
+      { $unwind: "$answers" },
+      {
+        $lookup: {
+          from: "forums",
+          localField: "answers",
+          foreignField: "_id",
+          as: "answers",
+        },
+      },
+      { $unwind: "$answers" },
+      { $sort: { "answers.upvotes": -1 } },
+      { $skip: skipAmount },
+      { $limit: pageLimit },
+      {
+        $group: {
+          _id: "$_id",
+          text: { $first: "$text" },
+          answers: { $push: "$answers" },
+        },
+      },
+    ]);
+    const doc = await Forum.findOne({ _id }).lean();
 
-    data.answers.forEach((doc) => {
-      doc.votesCount = doc.upvotes.length;
+    data.forEach((doc) => {
+      doc.answers.forEach((answer) => {
+        answer.votesCount = answer.upvotes.length;
+      });
     });
 
-    return JSON.parse(
-      JSON.stringify({
-        ...data,
-        ansCount: data.answers.length,
-        success: true,
-        message: "Your answer has been posted sucessfully!",
-      })
-    );
+    return {
+      ...data[0],
+      ansCount: doc.answers.length,
+      success: true,
+      message: "Answers fetched successfully!",
+    };
   } catch (error) {
     console.log(error);
     throw new Error({ success: false, error: error.message });

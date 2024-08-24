@@ -14,12 +14,14 @@ const UpvoteReaction = ({ _id, votes }) => {
   const [upvotes, setUpvotes] = useState(votes);
   useEffect(() => {
     const checkStatus = async () => {
-      const res = await checkUpvoteById({ _id, id: session?.user?.id });
-      if (res.isExist)
-        btnRef.current.className = "text-blue-500 hover:text-gray-500";
+      if (session?.user?.id) {
+        const res = await checkUpvoteById({ _id, id: session.user.id });
+        if (res.isExist)
+          btnRef.current.className = "text-blue-500 hover:text-gray-500";
+      }
     };
     checkStatus();
-  }, [_id, status]);
+  }, [_id, session?.user?.id]);
 
   const sendUserReaction = async () => {
     if (status === "unathenticated") {
@@ -39,7 +41,7 @@ const UpvoteReaction = ({ _id, votes }) => {
   };
 
   return (
-    <div className="flex bg-none gap-1 ">
+    <div className="flex bg-none justify-center items-center gap-1 ">
       <button
         ref={btnRef}
         onClick={sendUserReaction}
@@ -47,7 +49,7 @@ const UpvoteReaction = ({ _id, votes }) => {
       >
         <BiSolidUpvote className=" cursor-pointer text-xl" />
       </button>
-      <span className="italic text-md">{formatter.format(upvotes)}</span>
+      <span className=" text-md">{formatter.format(upvotes)}</span>
     </div>
   );
 };
