@@ -24,6 +24,12 @@ const FilterCategory = ({ setFilterBy }) => {
           >
             Biographies
           </option>
+          <option
+            value={"forum"}
+            className=" block rounded-md  w-full px-4 py-2 text-lg text-white hover:bg-gray-500 cursor-pointer"
+          >
+            Forum
+          </option>
         </select>
       </div>
     </div>

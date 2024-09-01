@@ -65,6 +65,12 @@ const CategoryForm = () => {
             >
               Biographies
             </option>
+            <option
+              className=" block rounded-md  w-full px-4 py-2 text-lg text-white hover:bg-gray-500 cursor-pointer"
+              value="forum"
+            >
+              Forum
+            </option>
           </select>
           <button
             className="bg-blue-500 text-white  rounded-lg p-2 flex items-center justify-center "

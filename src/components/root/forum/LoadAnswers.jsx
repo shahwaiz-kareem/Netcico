@@ -17,7 +17,8 @@ const LoadAnswers = ({ _id }) => {
   const handleClick = async () => {
     setIsLoading(true);
     const data = await getAnswers(_id, page, 6);
-    if (data.answers.length === 0) {
+    console.log(data.answers);
+    if (!data.answers) {
       ref.current.classList.add("hidden");
       setIsLoading(false);
       return;

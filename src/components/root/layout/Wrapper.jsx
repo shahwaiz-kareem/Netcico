@@ -64,6 +64,7 @@ const Wrapper = () => {
               <Chip
                 text={item.category}
                 active={currentCategory?.trim() === item.category.trim()}
+                type={item.type}
               />
             </Link>
           );

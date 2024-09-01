@@ -24,7 +24,11 @@ const Page = async () => {
         </div>
         <article className="mt-4 flex flex-col gap-8 justify-center ">
           {data.map((document) => (
-            <Link key={document._id} href={`/forum/${document._id}`}>
+            <Link
+              className=" md:w-1/2 mt-2"
+              key={document._id}
+              href={`/forum/${document.category}/${document._id}`}
+            >
               <QuestionCard
                 name={document.name}
                 date={document.createdAt}

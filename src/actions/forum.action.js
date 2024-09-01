@@ -70,6 +70,22 @@ export const getParentQuestions = async (pageNumber, pageLimit) => {
     throw new Error({ success: false, error: error.message });
   }
 };
+export const getQuestionsByCategory = async (category) => {
+  await connectToDb();
+
+  try {
+    const data = await Forum.find({ category }).lean();
+    const newData = data.map((doc) => {
+      doc.ansCount = doc?.answers?.length;
+      return doc;
+    });
+
+    return JSON.parse(JSON.stringify(newData));
+  } catch (error) {
+    console.log(error);
+    throw new Error({ success: false, error: error.message });
+  }
+};
 export const getAnswers = async (_id, pageNumber, pageLimit) => {
   try {
     await connectToDb();
@@ -106,12 +122,14 @@ export const getAnswers = async (_id, pageNumber, pageLimit) => {
       });
     });
 
-    return {
-      ...data[0],
-      ansCount: doc.answers.length,
-      success: true,
-      message: "Answers fetched successfully!",
-    };
+    return JSON.parse(
+      JSON.stringify({
+        ...data[0],
+        ansCount: doc.answers.length,
+        success: true,
+        message: "Answers fetched successfully!",
+      })
+    );
   } catch (error) {
     console.log(error);
     throw new Error({ success: false, error: error.message });

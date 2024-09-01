@@ -23,7 +23,7 @@ const QuestionCard = ({ name, date, _id, question, ansCount, category }) => {
   ];
 
   return (
-    <div className="flex flex-col bg-white shadow-lg md:w-1/2 rounded-md px-2 sm:px-8 py-4">
+    <div className="flex w-full flex-col bg-white shadow-lg rounded-md px-2 sm:px-8 py-4">
       <div className="flex items-center mb-1 justify-between">
         <div className="flex items-center gap-2 justify-center ">
           <span
