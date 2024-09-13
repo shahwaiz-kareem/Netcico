@@ -218,6 +218,35 @@ export const checkBioFan = async (_id, user_id) => {
     });
   }
 };
+export const searchBio = async (pageNumber, pageLimit, text) => {
+  await connectToDb();
+  try {
+    const skipAmount = (pageNumber - 1) * pageLimit;
+    const data = await Bio.find({
+      name: { $regex: text, $options: "i" },
+      isActive: true,
+    })
+      .sort({ views: "desc" })
+      .skip(skipAmount)
+      .limit(pageLimit)
+      .lean();
+
+    const newDocs = data.map((document) => {
+      document.viewsCount = document.views.length;
+      document.fansCount = document.fans.length;
+      delete document.views;
+      delete document.fans;
+      return document;
+    });
+
+    return JSON.parse(JSON.stringify(newDocs));
+  } catch (error) {
+    throw new Error({
+      success: false,
+      error: error.message,
+    });
+  }
+};
 
 export const addBioFan = async (_id, user_id, path) => {
   await connectToDb();

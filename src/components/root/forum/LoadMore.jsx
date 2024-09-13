@@ -42,7 +42,11 @@ const LoadMore = ({ isDataEmpty }) => {
       ) : null}
 
       {data.map((document) => (
-        <Link key={document._id} href={`/forum/${document._id}`}>
+        <Link
+          className="lg:w-1/2"
+          key={document._id}
+          href={`/forum/${document._id}`}
+        >
           <QuestionCard
             _id={document._id}
             name={document.name}

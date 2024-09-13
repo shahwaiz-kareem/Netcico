@@ -31,7 +31,7 @@ const QuestionCard = ({ name, date, _id, question, ansCount, category }) => {
               colors[Math.floor(Math.random() * 5)]
             }`}
           >
-            {name.toUpperCase().slice(0, 1)}
+            {name?.toUpperCase().slice(0, 1)}
           </span>
           <span className="text-xs sm:text-lg font-medium">{name}</span>
         </div>

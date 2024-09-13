@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Alegreya } from "next/font/google";
-import { BsHandThumbsUp } from "react-icons/bs";
 
 import Link from "next/link";
 const alegreya = Alegreya({ subsets: ["cyrillic"], weight: "500" });
@@ -21,6 +20,7 @@ const Card = ({
   const createdAt = `${date < 10 ? "0" + date : date}-${
     month < 10 ? "0" + month : month
   }-${year}`;
+
   return (
     <>
       <div className=" transform transition duration-300 hover:scale-105 rounded-xl shadow-lg px-4 pt-2  hover:shadow-xl bg-white   ">
@@ -41,15 +41,17 @@ const Card = ({
             <p className="text-xs font-semibold text-gray-500">{createdAt}</p>
           </div>
         </div>
-        <Link href={`/blogs/${category}/${slug}`} className="">
-          <Image
-            className=" h-[250px]  align-middle  w-full  rounded-2xl"
-            src={thumbnail}
-            height={300}
-            width={800}
-            alt={altText}
-          />
-        </Link>
+        <div>
+          <Link href={`/blogs/${category}/${slug}`} className="">
+            <Image
+              className=" h-[250px]  align-middle  w-full  rounded-2xl"
+              src={thumbnail}
+              height={300}
+              width={800}
+              alt={altText}
+            />
+          </Link>
+        </div>
 
         <div className="py-2 px-2 flex flex-col gap-1">
           <Link href={`/blogs/${category}/${slug}`}>
@@ -57,7 +59,7 @@ const Card = ({
               {title}
             </h2>
           </Link>
-          <p className="inline ">{metaDescription.slice(0, 100).trim()}...</p>
+          <p className="inline ">{metaDescription?.slice(0, 100).trim()}...</p>
         </div>
       </div>
     </>

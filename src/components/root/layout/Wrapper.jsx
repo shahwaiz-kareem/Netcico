@@ -21,10 +21,6 @@ const Wrapper = () => {
 
   useEffect(() => {
     getCategoriesFromDb();
-  }, []);
-
-  useEffect(() => {
-    getCategoriesFromDb();
   }, [pathname]);
 
   const elementRef = useRef(null);
@@ -38,47 +34,51 @@ const Wrapper = () => {
   };
 
   return (
-    <div className="flex items-center  w-full">
-      <button
-        onClick={() =>
-          slideLeft(elementRef.current, elementRef.current.scrollLeft)
-        }
-        className="flex sm:p-[0.90rem]  cursor-pointer mx-2   sm:hover:bg-gray-300  rounded-full mb-1 sm:bg-gray-100 relative justify-center items-center"
-      >
-        <AiOutlineArrowLeft className="absolute max-sm:hidden" />
-      </button>
-      <div
-        ref={elementRef}
-        className="flex  w-full pb-2 pt-1  lg:px-8 gap-2  overflow-scroll overflow-x-auto  scrollbar-hide scroll-smooth"
-      >
-        <Link className="flex" href={`/${onPage}`}>
-          <Chip text={"All"} active={currentCategory === undefined} />
-        </Link>
-        {categories.map((item, index) => {
-          return (
-            <Link
-              key={index}
-              className="flex"
-              href={`/${item.type}/${item.category}`}
-            >
-              <Chip
-                text={item.category}
-                active={currentCategory?.trim() === item.category.trim()}
-                type={item.type}
-              />
+    <>
+      {onPage !== "search" && (
+        <div className="flex items-center  w-full">
+          <button
+            onClick={() =>
+              slideLeft(elementRef.current, elementRef.current.scrollLeft)
+            }
+            className="flex sm:p-[0.90rem]  cursor-pointer mx-2   sm:hover:bg-gray-300  rounded-full mb-1 sm:bg-gray-100 relative justify-center items-center"
+          >
+            <AiOutlineArrowLeft className="absolute max-sm:hidden" />
+          </button>
+          <div
+            ref={elementRef}
+            className="flex  w-full pb-2 pt-1  lg:px-8 gap-2  overflow-scroll overflow-x-auto  scrollbar-hide scroll-smooth"
+          >
+            <Link className="flex" href={`/${onPage}`}>
+              <Chip text={"All"} active={currentCategory === undefined} />
             </Link>
-          );
-        })}
-      </div>
-      <button
-        onClick={() =>
-          slideRight(elementRef.current, elementRef.current.scrollRight)
-        }
-        className="flex z-0 p-[0.30rem]  sm:p-[0.90rem]  cursor-pointer mx-3   sm:hover:bg-gray-300  rounded-full mb-1 sm:bg-gray-100 relative justify-center items-center"
-      >
-        <AiOutlineArrowRight className="absolute max-sm:hidden" />
-      </button>
-    </div>
+            {categories?.map((item, index) => {
+              return (
+                <Link
+                  key={index}
+                  className="flex"
+                  href={`/${item.type}/${item.category}`}
+                >
+                  <Chip
+                    text={item.category}
+                    active={currentCategory?.trim() === item.category.trim()}
+                    type={item.type}
+                  />
+                </Link>
+              );
+            })}
+          </div>
+          <button
+            onClick={() =>
+              slideRight(elementRef.current, elementRef.current.scrollRight)
+            }
+            className="flex z-0 p-[0.30rem]  sm:p-[0.90rem]  cursor-pointer mx-3   sm:hover:bg-gray-300  rounded-full mb-1 sm:bg-gray-100 relative justify-center items-center"
+          >
+            <AiOutlineArrowRight className="absolute max-sm:hidden" />
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 

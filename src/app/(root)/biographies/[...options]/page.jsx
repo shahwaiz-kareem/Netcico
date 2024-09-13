@@ -1,8 +1,8 @@
 import { getPublishedBiosByCategory } from "@/actions/bio.action";
 import BioCard from "@/components/root/biographies/Card";
 import { BsHeartbreakFill } from "react-icons/bs";
-import BioContentContainer from "@/components/root/biographies/BioContentContainer";
 import { headers } from "next/headers";
+import BioPage from "@/components/root/biographies/BioPage";
 
 export const metadata = {
   title: "Biographies || Netcico",
@@ -68,7 +68,7 @@ const Page = async ({ params }) => {
           </section>
         </>
       ) : (
-        <BioContentContainer slug={params.options[1]} />
+        <BioPage slug={params.options[1]} />
       )}
     </>
   );

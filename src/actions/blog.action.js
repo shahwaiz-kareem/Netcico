@@ -234,6 +234,36 @@ export const getPopularBlogsByViews = async (pageNumber, pageLimit) => {
     });
   }
 };
+export const searchBlog = async (pageNumber, pageLimit, text) => {
+  await connectToDb();
+  try {
+    const skipAmount = (pageNumber - 1) * pageLimit;
+    const docs = await Blog.find({
+      title: { $regex: text, $options: "i" },
+      isActive: true,
+    })
+      .sort({ views: "desc" })
+      .skip(skipAmount)
+      .limit(pageLimit)
+      .lean();
+    console.log(docs);
+    const newDocs = docs.map((blog) => {
+      blog.likesCount = blog.likes.length;
+      blog.viewsCount = blog.views.length;
+      delete blog.likes;
+      delete blog.views;
+      return blog;
+    });
+
+    return JSON.parse(JSON.stringify(newDocs));
+  } catch (error) {
+    console.log(error);
+    throw new Error({
+      success: false,
+      error: error.message,
+    });
+  }
+};
 export const deleteBlog = async (id, pathname) => {
   await connectToDb();
   try {

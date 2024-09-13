@@ -70,6 +70,31 @@ export const getParentQuestions = async (pageNumber, pageLimit) => {
     throw new Error({ success: false, error: error.message });
   }
 };
+export const searchQuestion = async (pageNumber, pageLimit, query) => {
+  await connectToDb();
+
+  try {
+    const skipAmount = (pageNumber - 1) * pageLimit;
+
+    const data = await Forum.find({
+      text: { $regex: query, $options: "i" },
+      parentId: { $in: [null, undefined] },
+    })
+      .sort({ createdAt: "desc" })
+      .skip(skipAmount)
+      .limit(pageLimit)
+      .lean();
+    const newData = data.map((doc) => {
+      doc.ansCount = doc?.answers?.length;
+      return doc;
+    });
+
+    return JSON.parse(JSON.stringify(newData));
+  } catch (error) {
+    console.log(error);
+    throw new Error({ success: false, error: error.message });
+  }
+};
 export const getQuestionsByCategory = async (category) => {
   await connectToDb();
 
