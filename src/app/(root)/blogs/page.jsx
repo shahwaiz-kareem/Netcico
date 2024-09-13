@@ -2,6 +2,12 @@ import BlogContainerSSR from "@/components/root/blogs/BlogContainerSSR";
 import LoadMore from "@/components/root/blogs/LoadMore";
 import GridContainer from "@/components/root/layout/GridContainer";
 
+export const metadata = {
+  title: "Blog || Netcico",
+  description:
+    "Read articles and blogs about technolgy, sports, cooking, travelling and etc.",
+};
+
 const page = () => {
   return (
     <>

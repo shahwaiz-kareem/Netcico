@@ -6,6 +6,13 @@ import Link from "next/link";
 
 const Page = async () => {
   const data = await getParentQuestions(1, 6);
+  const colors = [
+    "bg-orange-500",
+    "bg-green-800",
+    "bg-blue-800",
+    "bg-yellow-800",
+    "bg-purple-500",
+  ];
 
   return (
     <section className="flex flex-col w-full  sm:items-center md:items-start gap-4 py-4">
@@ -32,6 +39,7 @@ const Page = async () => {
               <QuestionCard
                 name={document.name}
                 date={document.createdAt}
+                color={colors[Math.floor(Math.random() * 5)]}
                 _id={document._id}
                 question={document.text}
                 ansCount={document.ansCount}
@@ -39,7 +47,7 @@ const Page = async () => {
               />
             </Link>
           ))}
-          <LoadMore isDataEmpty={data.length === 0} />
+          <LoadMore colors={colors} isDataEmpty={data.length === 0} />
         </article>
       </main>
     </section>

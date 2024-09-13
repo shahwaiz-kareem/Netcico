@@ -12,6 +12,7 @@ export const providerOptions = {
         return { ...profile, id: profile.sub };
       },
     }),
+
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -41,7 +42,7 @@ export const providerOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user._id;
+        token.id = user.id || user._id;
       }
       return token;
     },

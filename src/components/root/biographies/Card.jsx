@@ -27,6 +27,7 @@ const Card = ({
           width={1280}
           alt={altText}
           src={thumbnail}
+          priority={true}
         />
       </div>
       <div className={styles.bottom}>

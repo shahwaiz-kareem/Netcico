@@ -7,43 +7,60 @@ import sharp from "sharp";
 export const uploadThumbnail = async (isUpdate, data, type, height, width) => {
   const file = data.get("file");
 
-  if (isUpdate && data.getAll("file").length === 0)
-    return {
-      success: true,
-    };
+  if (isUpdate && data.getAll("file").length === 0) {
+    return { success: true };
+  }
 
-  if (!file || file.name == undefined)
-    return {
-      success: false,
-      message: "no file uploaded",
-    };
+  if (!file || file.name === undefined) {
+    return { success: false, message: "No file uploaded" };
+  }
 
   try {
-    const name = `thumbnail_${type}_${Date.now().toString()}.webp`;
-    const pathname = path.join(
+    const timestamp = Date.now().toString();
+    const webpName = `thumbnail_${type}_${timestamp}.webp`;
+    const jpegName = `thumbnail_${type}_${timestamp}.jpeg`; // Fallback format
+    const webpPath = path.join(
       process.cwd(),
       "/public/uploads/thumbnail",
-      name
+      webpName
     );
+    const jpegPath = path.join(
+      process.cwd(),
+      "/public/uploads/thumbnail",
+      jpegName
+    );
+
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
+
+    // WebP Processing with aspect ratio preservation and quality optimization
     await sharp(buffer)
-      .webp()
-      .resize(width, height)
+      .resize(width, height, { fit: "inside" })
+      .webp({ quality: 85 })
       .flatten({ background: { r: 255, g: 255, b: 255, alpha: 0 } })
-      .toFile(pathname);
+      .toFile(webpPath);
+
+    // Fallback JPEG Processing
+    await sharp(buffer)
+      .resize(width, height, { fit: "inside" })
+      .jpeg({ quality: 80, progressive: true })
+      .toFile(jpegPath);
+
     return {
       success: true,
       message: "Your image has been resized and uploaded successfully!",
-      thumbnailUrl: `${process.env.NEXT_PUBLIC_HOST}/uploads/thumbnail/${name}`,
+      thumbnailUrl: `${process.env.NEXT_PUBLIC_HOST}/uploads/thumbnail/${webpName}`,
+      fallbackUrl: `${process.env.NEXT_PUBLIC_HOST}/uploads/thumbnail/${jpegName}`, // Fallback URL
     };
   } catch (error) {
+    console.error("Image upload error:", error);
     return {
       success: false,
-      message: error.message,
+      message: "Error uploading image: " + error.message,
     };
   }
 };
+
 export const uploadGallery = async (id, formData, captionArr, pathname) => {
   const files = formData.getAll("file");
   if (!files)
@@ -63,7 +80,8 @@ export const uploadGallery = async (id, formData, captionArr, pathname) => {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
       await sharp(buffer)
-        .webp()
+        .webp({ quality: 85 })
+
         .flatten({ background: { r: 255, g: 255, b: 255, alpha: 0 } })
         .toFile(pathname);
 

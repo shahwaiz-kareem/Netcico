@@ -1,12 +1,12 @@
-const QuestionCard = ({ name, date, _id, question, ansCount, category }) => {
-  const colors = [
-    "bg-orange-500",
-    "bg-green-800",
-    "bg-blue-800",
-    "bg-yellow-800",
-    "bg-purple-500",
-  ];
-
+const QuestionCard = ({
+  name,
+  date,
+  color,
+  _id,
+  question,
+  ansCount,
+  category,
+}) => {
   const months = [
     "Jan",
     "Feb",
@@ -27,9 +27,7 @@ const QuestionCard = ({ name, date, _id, question, ansCount, category }) => {
       <div className="flex items-center mb-1 justify-between">
         <div className="flex items-center gap-2 justify-center ">
           <span
-            className={`rounded-full flex text-sm sm:textlg items-center justify-center h-6 w-6 md:h-8 md:w-8 text-white ${
-              colors[Math.floor(Math.random() * 5)]
-            }`}
+            className={`rounded-full flex text-sm sm:textlg items-center justify-center h-6 w-6 md:h-8 md:w-8 text-white ${color}`}
           >
             {name?.toUpperCase().slice(0, 1)}
           </span>

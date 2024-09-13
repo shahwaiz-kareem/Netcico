@@ -1,14 +1,44 @@
-import { getPublishedBiosByCategory } from "@/actions/bio.action";
+import { getBioBySlug, getPublishedBiosByCategory } from "@/actions/bio.action";
 import BioCard from "@/components/root/biographies/Card";
 import { BsHeartbreakFill } from "react-icons/bs";
 import { headers } from "next/headers";
-import BioPage from "@/components/root/biographies/BioPage";
 
-export const metadata = {
-  title: "Biographies || Netcico",
-  description:
-    "Age, gender, height, early life and interesting biographies of popular people around the world.",
-};
+import BioContentContainer from "@/components/root/biographies/BioContentContainer";
+
+export async function generateMetadata({ params }) {
+  const slug = params?.options[1];
+  const data = await getBioBySlug(slug);
+
+  return {
+    title:
+      `Read intresting biography of ${data.name}` || "Biographies || Netcico",
+    description:
+      data.metaDescription ||
+      "Age, gender, height, early life and interesting biographies of popular people around the world.",
+    openGraph: {
+      title:
+        `Read interesting and amazing biography of ${data.name}` ||
+        "Biographies || Netcico",
+      description:
+        data.metaDescription ||
+        "Age, gender, height, early life and interesting biographies of popular people around the world.",
+      url: `${process.env.NEXT_PUBLIC_HOST}/${params.options[0]}/${slug}`,
+      images: data.thumbnail
+        ? [`${process.env.NEXT_PUBLIC_HOST}/${data.thumbnail}`]
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title:
+        `Read interesting and amazing biography of ${data.name}` ||
+        "Biographies || Netcico",
+      description:
+        data.metaDescription ||
+        "Age, gender, height, early life and interesting biographies of popular people around the world.",
+      image: `${process.env.NEXT_PUBLIC_HOST}/${data.thumbnail}`,
+    },
+  };
+}
 
 const Page = async ({ params }) => {
   const biographies = await getPublishedBiosByCategory(params.options[0]);
@@ -68,7 +98,7 @@ const Page = async ({ params }) => {
           </section>
         </>
       ) : (
-        <BioPage slug={params.options[1]} />
+        <BioContentContainer slug={params.options[1]} />
       )}
     </>
   );

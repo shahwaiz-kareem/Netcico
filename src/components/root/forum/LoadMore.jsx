@@ -6,7 +6,7 @@ import { getParentQuestions } from "@/actions/forum.action";
 import Link from "next/link";
 import QuestionCard from "./QuestionCard";
 let page = 2;
-const LoadMore = ({ isDataEmpty }) => {
+const LoadMore = ({ isDataEmpty, colors }) => {
   const { inView, ref } = useInView();
   const [data, setData] = useState([]);
   const [hasMoreData, setHasMoreData] = useState(true);
@@ -50,6 +50,7 @@ const LoadMore = ({ isDataEmpty }) => {
           <QuestionCard
             _id={document._id}
             name={document.name}
+            color={colors[Math.floor(Math.random() * 5)]}
             date={document.createdAt}
             question={document.text}
             ansCount={document.ansCount}

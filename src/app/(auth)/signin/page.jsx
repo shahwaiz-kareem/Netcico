@@ -12,6 +12,7 @@ const page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get("next");
+  console.log(next);
   const {
     register,
     handleSubmit,
@@ -68,7 +69,8 @@ const page = () => {
         success: true,
       });
       setDisabled(true);
-      router.push(next || "/");
+      console.log(next);
+      router.push(`/${next}` || "/");
     }
 
     dismissTimeout();
@@ -94,7 +96,11 @@ const page = () => {
                     Sign In with Google OR Credentials
                   </p>
                   <button
-                    onClick={async () => await signIn("google")}
+                    onClick={async () =>
+                      await signIn("google", {
+                        callbackUrl: next ? `/${next}` : "/",
+                      })
+                    }
                     className="flex items-center justify-center gap-2 w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-gray-900 bg-gray-100 hover:bg-gray-200 focus:bg-gray-200"
                   >
                     <svg

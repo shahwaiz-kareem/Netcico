@@ -121,6 +121,7 @@ export const getBlogById = async (_id) => {
 export const getBlogBySlug = async (slug) => {
   await connectToDb();
   try {
+    if (!slug || slug.length === 0) return {};
     const doc = await Blog.findOne({ slug, active: true })
       .select(" -itemId  -altText -isActive  -share ")
       .lean();

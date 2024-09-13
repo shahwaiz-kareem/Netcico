@@ -3,6 +3,7 @@
 import { connectToDb } from "@/db/db";
 import { Forum } from "@/models/forum.model";
 import mongoose from "mongoose";
+import { revalidatePath } from "next/cache";
 
 export const createQuestion = async ({ name, text, category }) => {
   try {
@@ -12,6 +13,7 @@ export const createQuestion = async ({ name, text, category }) => {
       text,
       category,
     });
+    revalidatePath("/forum");
 
     return JSON.parse(
       JSON.stringify({
@@ -25,16 +27,16 @@ export const createQuestion = async ({ name, text, category }) => {
   }
 };
 
-export const createAnswer = async ({ parentId, name, text }) => {
+export const createAnswer = async ({ parentId, name, text ,path}) => {
   await connectToDb();
-
+  console.log(parentId);
   try {
     const data = await Forum.create({ parentId, name, text });
     await Forum.findOneAndUpdate(
       { _id: parentId },
       { $push: { answers: data._id } }
     );
-
+    revalidatePath(path)
     return JSON.parse(
       JSON.stringify({
         success: true,
@@ -178,6 +180,7 @@ export const updateQuestion = async ({ text }) => {
   try {
     await connectToDb();
     const data = Forum.findByIdAndUpdate(_id, { $set: { text } });
+    revalidatePath("/forum");
     return {
       success: true,
       data,
@@ -222,6 +225,8 @@ export const addOrRemoveUpvote = async ({ _id, userId }) => {
       await Forum.findByIdAndUpdate(_id, { $addToSet: { upvotes: userId } });
       action = "added";
     }
+    revalidatePath("/forum");
+
     return {
       success: true,
       action,

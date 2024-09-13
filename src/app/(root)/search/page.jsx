@@ -24,7 +24,13 @@ const page = () => {
   const [hasMoreData, setHasMoreData] = useState(true);
   const [showLoader, setShowLoader] = useState(true);
   const [data, setData] = useState([]);
-
+  const colors = [
+    "bg-orange-500",
+    "bg-green-800",
+    "bg-blue-800",
+    "bg-yellow-800",
+    "bg-purple-500",
+  ];
   const searchData = async (page, limit) => {
     if (
       !query ||
@@ -113,6 +119,7 @@ const page = () => {
                   date={document.createdAt}
                   question={document.text}
                   ansCount={document.ansCount}
+                  color={colors[Math.floor(Math.random() * 5)]}
                   category={document.category}
                 />
               </Link>

@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const ForumAnswerForm = ({ parentId }) => {
+const ForumAnswerForm = ({ parentId, path }) => {
   const { data: session, status } = useSession();
   const [isBtnDisabled, setBtnDisabled] = useState(true);
   const [notification, setNotification] = useState({
@@ -37,12 +37,15 @@ const ForumAnswerForm = ({ parentId }) => {
         parentId,
         name: session?.user?.name,
         text,
+        path,
       });
       showNotification(!res.success, res.message, true);
       if (res.success) setBtnDisabled(true), formRef.current.reset();
     } else {
       showNotification(true, "Login to proceed!", true);
-      router.push(`/signin?next=forum/${parentId}`);
+      router.push(
+        `/signin?next=${path.startsWith("/") ? path.slice(0) : path}`
+      );
       sessionStorage.setItem(
         "userForumAnswer",
         JSON.stringify({ parentId, text })

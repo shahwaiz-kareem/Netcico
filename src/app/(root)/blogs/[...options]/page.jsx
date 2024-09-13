@@ -1,4 +1,7 @@
-import { getPublishedBlogsByCategory } from "@/actions/blog.action";
+import {
+  getBlogBySlug,
+  getPublishedBlogsByCategory,
+} from "@/actions/blog.action";
 import BlogContentContainer from "@/components/root/blogs/BlogContentContainer";
 import BlogCard from "@/components/root/blogs/Card";
 import GridContainer from "@/components/root/layout/GridContainer";
@@ -6,10 +9,38 @@ import { headers } from "next/headers";
 
 import { BsHeartbreakFill } from "react-icons/bs";
 
-export const metadata = {
-  title: "Blogs || Netcico",
-  description: "Read amazing articles published on netcico ",
-};
+export async function generateMetadata({ params }) {
+  console.log(params);
+  const slug = params?.options[1];
+  const data = await getBlogBySlug(slug);
+
+  return {
+    title: data.title || "Blog || Netcico",
+    description:
+      data.metaDescription ||
+      "Read articles and blogs about technolgy, sports, cooking, travelling and etc.",
+    openGraph: {
+      title: data.title || "Blog || Netcico",
+
+      description:
+        data.metaDescription ||
+        "Read articles and blogs about technolgy, sports, cooking, travelling and etc.",
+      url: `${process.env.NEXT_PUBLIC_HOST}/${params.options[0]}/${slug}`,
+      images: data.thumbnail
+        ? [`${process.env.NEXT_PUBLIC_HOST}/${data.thumbnail}`]
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.title || "Blog || Netcico",
+
+      description:
+        data.metaDescription ||
+        "Read articles and blogs about technolgy, sports, cooking, travelling and etc.",
+      image: `${process.env.NEXT_PUBLIC_HOST}/${data.thumbnail}`,
+    },
+  };
+}
 
 const Page = async ({ params }) => {
   const blogs = await getPublishedBlogsByCategory(params.options[0]);

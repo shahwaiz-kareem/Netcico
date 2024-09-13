@@ -74,6 +74,8 @@ export const getAllBios = async () => {
 export const getBioBySlug = async (slug) => {
   await connectToDb();
   try {
+    if (!slug || slug.length === 0) return {};
+
     const data = await Bio.findOne({ slug }).select(
       " -itemId  -altText -isActive -views -share -fans"
     );
