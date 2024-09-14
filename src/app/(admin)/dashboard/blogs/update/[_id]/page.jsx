@@ -4,4 +4,4 @@ const page = ({ params }) => {
   return <UpdateBlog params={params} />;
 };
 
-export default page;
+export default Page;

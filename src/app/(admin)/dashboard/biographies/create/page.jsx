@@ -4,4 +4,4 @@ const Page = () => {
   return <BioForm />;
 };
 
-export default page;
+export default Page;

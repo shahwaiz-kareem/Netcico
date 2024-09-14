@@ -5,4 +5,4 @@ const page = ({ params }) => {
   return <UpdateBio params={params} />;
 };
 
-export default page;
+export default Page;

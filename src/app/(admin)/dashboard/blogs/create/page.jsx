@@ -5,4 +5,4 @@ const Page = () => {
   return <BlogForm isUpdate={false} tools={Create_JS_TOOLS} />;
 };
 
-export default page;
+export default Page;
