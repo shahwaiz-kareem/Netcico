@@ -29,7 +29,7 @@ const Card = ({
             <div className="flex  flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
               <Image
                 className="rounded-full  h-8 w-8 object-cover"
-                src={thumbnail}
+                src={"/profile.png"}
                 height={50}
                 width={50}
                 alt="Profile image"

@@ -36,6 +36,11 @@ const BlogContainerSSR = async () => {
           />
         );
       })}
+      {blogs.length === 0 && (
+        <div className="text-center mx-auto text-xl font-normal my-4">
+          No post added yet!
+        </div>
+      )}
     </>
   );
 };

@@ -17,6 +17,11 @@ const BioContainerSSR = async () => {
           altText={bio.altText}
         ></BioCard>
       ))}
+      {biographies.length === 0 && (
+        <div className="text-center text-xl font-normal my-4">
+          No post added yet!
+        </div>
+      )}
     </>
   );
 };
