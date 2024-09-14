@@ -1,3 +1,4 @@
+"use client";
 import axios from "axios";
 import Header from "editorjs-header-with-alignment";
 import Paragraph from "@editorjs/paragraph";
@@ -100,7 +101,7 @@ export const Create_JS_TOOLS = {
       customPicker: true,
     },
   },
-  
+
   table: {
     class: Table,
     inlineToolbar: true,
@@ -110,7 +111,6 @@ export const Create_JS_TOOLS = {
     },
   },
 
- 
   delimiter: Delimiter,
   link: Link,
 
