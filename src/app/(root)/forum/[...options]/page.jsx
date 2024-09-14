@@ -6,7 +6,7 @@ import QuestionCard from "@/components/root/forum/QuestionCard";
 import Link from "next/link";
 import { BsHeartbreakFill } from "react-icons/bs";
 
-const page = async ({ params }) => {
+const Page = async ({ params }) => {
   let data;
   if (params.options.length >= 2)
     data = await getAnswers(params.options[1], 1, 6);

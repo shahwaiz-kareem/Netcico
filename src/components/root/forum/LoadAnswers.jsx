@@ -4,14 +4,14 @@ import { getAnswers } from "@/actions/forum.action";
 import { useEffect, useRef, useState } from "react";
 import AnswerCard from "./AnswerCard";
 import Image from "next/image";
-let page = 2;
+letPage = 2;
 const LoadAnswers = ({ _id, colors }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
-    page = 2;
+    Page = 2;
   }, []);
 
   const handleClick = async () => {

@@ -1,6 +1,6 @@
 import UpdateBlog from "@/components/dashboard/blog/UpdateBlog";
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   return <UpdateBlog params={params} />;
 };
 
