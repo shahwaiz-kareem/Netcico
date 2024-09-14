@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { BsPlus } from "react-icons/bs";
 import "@/components/dashboard/layout/layout.css";
-const page = () => {
+const Page = () => {
   const [filterBy, setFilterBy] = useState("all");
   const [dataObj, setDataObj] = useState({});
   const getData = async () => {

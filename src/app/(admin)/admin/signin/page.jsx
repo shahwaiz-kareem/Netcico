@@ -2,7 +2,7 @@
 import { authenticateAdmin } from "@/actions/auth.action";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   const submit = async (e) => {

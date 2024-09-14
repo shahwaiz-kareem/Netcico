@@ -8,7 +8,7 @@ export const metadata = {
     "Read articles and blogs about technolgy, sports, cooking, travelling and etc.",
 };
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <div>

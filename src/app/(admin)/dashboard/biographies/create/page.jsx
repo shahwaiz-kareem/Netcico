@@ -1,9 +1,7 @@
-import BioForm from "@/components/forms/BioForm"
+import BioForm from "@/components/forms/BioForm";
 
-const page = () => {
-  return (
-    <BioForm />
-  )
-}
+const Page = () => {
+  return <BioForm />;
+};
 
-export default page
+export default page;

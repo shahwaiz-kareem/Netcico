@@ -13,7 +13,7 @@ import { searchQuestion } from "@/actions/forum.action";
 import { BsHeartbreakFill } from "react-icons/bs";
 import Image from "next/image";
 
-const page = () => {
+const Page = () => {
   const params = useSearchParams();
   const query = params.get("search");
   const defaultSearchType = params.get("searchfor");

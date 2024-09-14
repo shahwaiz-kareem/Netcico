@@ -18,7 +18,7 @@ import DeleteModal from "@/components/dashboard/layout/DeleteModal";
 import { useRouter } from "next/navigation";
 import FilterSearch from "@/components/dashboard/layout/FilterSearch";
 
-const page = () => {
+const Page = () => {
   const [filterBy, setFilterBy] = useState("all");
   const [searchQuery, setSearchQuery] = useState();
   const [dataObj, setDataObj] = useState({});

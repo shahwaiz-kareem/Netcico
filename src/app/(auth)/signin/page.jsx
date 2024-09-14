@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Notify from "@/components/shared/Notify";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get("next");
