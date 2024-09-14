@@ -8,7 +8,7 @@ const SearchBox = () => {
   const pathname = usePathname();
 
   let searchFor = "";
-  const Page = pathname.split("/")[1];
+  const page = pathname.split("/")[1];
 
   if (pathname === "/") {
     searchFor = "Biography";

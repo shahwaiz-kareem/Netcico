@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "@/lib/validation/SignInSchema";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Notify from "@/components/shared/Notify";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -77,7 +77,13 @@ const Page = () => {
   };
 
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center h-screen">
+          <Image src="/snake.gif" alt="Loading..." width={40} height={40} />
+        </div>
+      }
+    >
       <Notify
         message={notifyObj.msg}
         notify={notifyObj.notify}
@@ -181,7 +187,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-    </>
+    </Suspense>
   );
 };
 

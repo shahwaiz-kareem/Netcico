@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getParentQuestions } from "@/actions/forum.action";
 import Link from "next/link";
 import QuestionCard from "./QuestionCard";
-letPage = 2;
+let page = 2;
 const LoadMore = ({ isDataEmpty, colors }) => {
   const { inView, ref } = useInView();
   const [data, setData] = useState([]);
