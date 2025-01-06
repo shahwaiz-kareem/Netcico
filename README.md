@@ -1,7 +1,7 @@
-**Nitcico || The treasure of information**
+**Netcico || The treasure of information**
 ========================================
 
-Nitcico is a cutting-edge platform for sharing biographies and articles, built with modern technologies to deliver a seamless user experience.
+Netcico is a cutting-edge platform for sharing biographies and articles, built with modern technologies to deliver a seamless user experience.
 
 **Key Features**
 ---------------
@@ -20,7 +20,7 @@ Nitcico is a cutting-edge platform for sharing biographies and articles, built w
 * Backend: Node.js, MongoDB, Mongoose
 * Text Editing: Prism, Editor.js
 
-**About Nitcico**
+**About Netcico**
 -----------------
 
-Nitcico is designed to provide a platform for users to share biographies and articles, making it easy to discover and engage with diverse content. With its robust features and modern tech stack, Nitcico is poised to become a leading destination for online content sharing.
+Netcico is designed to provide a platform for users to share biographies and articles, making it easy to discover and engage with diverse content. With its robust features and modern tech stack, Netcico is poised to become a leading destination for online content sharing.
